@@ -1,8 +1,18 @@
-This is a test
+## Cheap Date
 
-## Template
+## MVP (minimum viable product)
+
+Who is your audience? - People at home, aged over 18, wanting to experiment,
+What is the problem that the product will address? - Recipe on how to make, cost involved,
+How does the product solve that problem? - Informs how to make correct cocktails at home
 
 ## Description
+
+As a person wanting to experiment with cocktails at home, I want to view a recipe and ingredients for my desired cocktail, so that I am informed on how to make it and how much it will cost.
+
+## Acceptance Criteria
+
+As a person wanting to expriment with cocktails at home, when I visit this application, then I am presented with a series of cocktail recipes which I can then choose from to make depending on price.
 
 ## Screenshot
 
