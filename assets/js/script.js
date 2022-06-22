@@ -74,7 +74,9 @@ $(function(){
                  "status": "error",
                  "errorMessage": error                 
              };
+
              return returnValue;
+
         });
        
         
@@ -82,6 +84,7 @@ $(function(){
 
     // call this function from the click listener for each ingredient 
     function getIngredientData(ingredient){
+
 
         // https://spoonacular.com/food-api/
         var apiKey = "8745aeb27da04cd69ab054ceafed0495";
@@ -106,4 +109,5 @@ $(function(){
     // Example Usage
     //getCocktail("Margarita").then(response => console.log(response));
     //getIngredientData("brown sugar").then(response => console.log(response));
+
 });
