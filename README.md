@@ -16,7 +16,17 @@ As a person wanting to expriment with cocktails at home, when I visit this appli
 
 ## Screenshot
 
-<img src="./assets/images/screencaps/Capture.PNG " />
+Flowchart and Wireframes in assets folder.
+
+## APIs chosen
+
+1. https://www.thecocktaildb.com/api.php?ref=apilist.fun
+2. https://spoonacular.com/food-api
+
+## Breakdown of tasks:
+
+HTML & CSS - Ruben and Tanel working together using bootstrap.
+JavaScript and API - Vanessa and Nate working together.
 
 ## Installing / Getting started
 
