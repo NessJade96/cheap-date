@@ -56,5 +56,6 @@ $(function(){
     // Example Usage
     getCocktails("Gin").then(response => console.log(response));
     getRecipe("11007").then(response => console.log(response));
+//https://spoonacular.com/food-api/
 
 });
