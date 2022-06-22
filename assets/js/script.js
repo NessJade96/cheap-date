@@ -54,8 +54,24 @@ $(function(){
     }
     
     // Example Usage
-    getCocktails("Gin").then(response => console.log(response));
-    getRecipe("11007").then(response => console.log(response));
+    // getCocktails("Gin").then(response => console.log(response));
+    // getRecipe("11007").then(response => console.log(response));
 //https://spoonacular.com/food-api/
+
+    $("#alcoholTypeDiv").on("click",function(e){
+        getCocktails(e.target.id).then(response => {
+            var drinks = response.data.drinks;
+            var buttonsHTML = ``;
+            drinks.map((drink) => {
+                buttonsHTML += `<button class="drinkName" id="${drink.idDrink}">${drink.strDrink}</button>`;
+            });
+            $('#drinkNameDiv').append(buttonsHTML);
+            
+        });
+    });
+    $("#drinkNameDiv").on("click",function(e) {
+        console.log(e.target.id);
+        getRecipe(e.target.id).then(response => console.log(response));
+    });
 
 });
