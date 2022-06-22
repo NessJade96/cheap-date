@@ -1,15 +1,17 @@
 $(function(){
 
     // call this function with the value from the search text input on click listener
-    function getCocktail(cocktailName){
+    function getCocktail(cocktailName,cocktailId){
 
         var apiKey = "1";
         var returnValue = {};
-        return fetch(`https://www.thecocktaildb.com/api/json/v1/${apiKey}/search.php?s=${cocktailName}`)
+        if (cocktailName !== null) { var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/search.php?s=${cocktailName}`; }
+        if (cocktailId !== null) { var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/search.php?i=${cocktailId}`;  }
+        return fetch(url)
         .then (response => response.json())
         .then((data) => {
             
-            // if there is more than one drink, add buttons to modal for user to select which one
+            // if there is more than one drink, add names to array so the function caller can add buttons
             // ie, "Margarita" will return half a dozen different versions
             var drinksReturned = data.drinks.length;
             if (drinksReturned >= 1) {
@@ -43,7 +45,8 @@ $(function(){
                     var drinkList = [];
                     data.drinks.map((drink) => {
                         var drinkName = drink.strDrink;
-                        drinkList.push(drinkName); 
+                        var drinkId = drink.strId;
+                        drinkList.push({"drinkId": drinkId, "drinkName": drinkName}); 
                     });
                     
                     // append buttonListHTML to modal
