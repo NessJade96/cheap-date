@@ -74,6 +74,9 @@ $(function(){
                  "status": "error",
                  "errorMessage": error                 
              };
+
+             return returnValue;
+
         });
        
         
@@ -82,16 +85,29 @@ $(function(){
     // call this function from the click listener for each ingredient 
     function getIngredientData(ingredient){
 
-        // for testing
-        ingredient = "Sugar";
 
         // https://spoonacular.com/food-api/
         var apiKey = "8745aeb27da04cd69ab054ceafed0495";
+        var url=`https://api.spoonacular.com/food/ingredients/search?query=${ingredient}&apiKey=${apiKey}`
+        return fetch(url)
+        .then(response => response.json())
+        .then((data) => {
+            returnValue = data;
+            return returnValue;
+        })
+        .catch((error) => {
+             returnValue = {
+                 "status": "error",
+                 "errorMessage": error                 
+             };
+             return returnValue;
+        });
 
-        // insert into modal
+    
     }
     
     // Example Usage
-    getCocktail("Margarita").then(response => console.log(response));
+    //getCocktail("Margarita").then(response => console.log(response));
+    //getIngredientData("brown sugar").then(response => console.log(response));
 
 });
