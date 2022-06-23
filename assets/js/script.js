@@ -103,6 +103,9 @@ $(function () {
 		// empty the cocktailNameUl	so we can append new items there
 		$("#cocktailNameUl").empty();
 
+		// turn on spinner
+		$("#cocktailNameDivSpinner").removeClass("d-none").addClass("d-flex");
+			
 		// make the api call to get all drinks with e.target.id, ie "Rum" in the ingredients
 		getCocktails(e.target.id).then((response) => {
 			var drinks = response.data.drinks;
@@ -117,6 +120,9 @@ $(function () {
 
 			// append the buttonsHTML variable to the cocktailNameUl ul
 			$("#cocktailNameUl").append(buttonsHTML);
+
+			// turn off spinner
+			$("#cocktailNameDivSpinner").removeClass("d-flex").addClass("d-none");
 		});
 	});
 
@@ -132,6 +138,9 @@ $(function () {
 		// add the active class the the li parent of the button pressed.
 		$("#"+e.target.id+"Li").addClass("active");
 
+		// turn on the spinner
+		$("#recipeDivSpinner").removeClass("d-none").addClass("d-flex");
+
 		// api call to get the recipe of the selected cocktail
 		getRecipe(e.target.id).then((response) => {
 
@@ -141,6 +150,9 @@ $(function () {
 				<h3>${response.data.drinks[0].strDrink}<h3>
 				<p>${response.data.drinks[0].strInstructions}</p>
 			`);
+
+			// turn off the spinner
+			$("#recipeDivSpinner").removeClass("d-flex").addClass("d-none");
 		});
 	});
 });
