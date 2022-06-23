@@ -9,8 +9,6 @@
 
 }
 
-
-
 .custom-nav{
     display:flex;
     justify-content: flex-end;
@@ -46,12 +44,30 @@
     background: lightcyan;
 }
 
-.bar-container{
+/* .bar-container {
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
+    justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
     max-width: 673px;
 
+} */
+
+.bar-container {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
+
+.bar-header{
+    display:flex;
+    justify-content: center;
+}
+
+.bar-desc{
+    display: flex;
+    justify-content: center;
+}
+
 
