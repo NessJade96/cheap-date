@@ -3,10 +3,16 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 :root {
-    --mainColor60: rgba(0, 20, 66, 1); 
+    --mainColor60: #0d6efd; 
     --mainColor30: rgba(7, 84, 83, 1); 
     --mainColor10: rgba(122, 122, 122, 1); 
+    --background: rgba(248,249,250)
 
+}
+
+body{
+    background-color: var(--background);
+    opacity: 1;
 }
 
 
@@ -19,17 +25,38 @@
     
 }
 
+.navbar-bg{
+    background-color: white;
+}
+
 .custom-brand{
-    font-size: 35px;
-    padding-left:40px;
+    color:black;
+    font-style: normal;
+    font-size: 40px;
+    margin-left:50px;
     
 }
 
 .custom-list{
     max-width: 400px;
     padding-left: 40px;
-    padding-top: 40px;
+    /* padding-top: 40px; */
 
+}
+
+.custom-link{
+    color:black;
+    margin-left: 50px;
+}
+
+.custom-link:hover{
+    color:var(--mainColor60);
+}
+
+.home-header{
+    
+    font-size: 20px;
+    
 }
 
 .list-container{
@@ -42,7 +69,7 @@
 
 .custom-item:hover{
     cursor: pointer;
-    background: lightcyan;
+    background: var(--mainColor60);
 }
 
 /* .bar-container {
@@ -59,11 +86,16 @@
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
+    padding-bottom: 40px;
+    padding-top: 40px;
 }
 
-.bar-header{
+.bar-header {
     display:flex;
     justify-content: center;
+    color:var(--mainColor60);
+    font-size: 45px;
+    padding-bottom: 20px;
 }
 
 .bar-desc{
@@ -96,16 +128,56 @@
     font-weight: bold;
 }
 #cocktailNameDiv {
-    height: 500px;
+    height: 388px;
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: none;
 }
 
+#recipeDiv {
+    height:388px;
+}
+
+/* .recipeDesc h3{
+    display:flex;
+    justify-content: center;
+    text-align: center;
+    font-size:18px;
+    color:black;
+    font-style: italic;
+} */
+
+
+.recipeDesc img {
+    display:flex;
+    justify-content: center;
+    max-height: 388px;
+    max-width: 388px;
+}
+
+
 #cocktailNameDiv::-webkit-scrollbar{
     display:none;
 
 }
+
+.recipe-container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+    /* width: 50%; */
+    text-align: center;
+}
+
+.recipe-header h4{
+    display:inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:35px;
+
+}
+
+
 
 /* hide the scroll ::backdrop */
 
