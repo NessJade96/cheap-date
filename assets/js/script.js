@@ -185,7 +185,7 @@ $(function () {
 				
 			// print the image, name and instructions to recipeDiv
 			$("#imageDiv").html(`<img src="${response.data.drinks[0].strDrinkThumb}"/>`);
-			$("#recipeHeader").html(`<h3>${response.data.drinks[0].strDrink}<h3>`);
+			$("#recipeHeader").html(`<h3 id="h3DrinkName">${response.data.drinks[0].strDrink}<h3>`);
 			$("#recipeSpan").html(`<p>${response.data.drinks[0].strInstructions}</p>`);
 
 			// turn off the spinner
