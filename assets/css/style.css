@@ -107,16 +107,6 @@
     display:none;
 
 }
-#cocktailNameDivSpinner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(214, 5, 5, 0.8);
-}
-
-#recipeDiv {
-    position: relative;
-}
 
 
 #cocktailNameDivSpinner {
@@ -125,15 +115,13 @@
     left: 0;
     background: rgba(255, 255, 255,.8);
 }
-
-
-#recipeDivSpinner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(214, 5, 5, 0.8);
+#recipeDiv {
+    position: relative;
 }
-/* hide the scroll ::backdrop */
+
+
+
+
 
 
 
