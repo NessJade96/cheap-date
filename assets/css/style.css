@@ -55,3 +55,27 @@
 
 }
 
+.alcoholTypeLi button {
+    height: 100%;
+    width: 100%;
+    border: 0;
+    color:black;
+    background: none;
+
+}
+.alcoholTypeLi.active button {
+    color:rgb(255, 255, 255);
+    font-weight: bold;
+}
+.cocktailNameLi button {
+    height: 100%;
+    width: 100%;
+    border: 0;
+    color:black;
+    background: none;
+}
+.cocktailNameLi.active button{
+    color:rgb(255, 255, 255);
+    font-weight: bold;
+}
+
