@@ -10,7 +10,6 @@
 }
 
 
-
 .custom-nav{
     display:flex;
     justify-content: flex-end;
@@ -78,4 +77,15 @@
     color:rgb(255, 255, 255);
     font-weight: bold;
 }
+#cocktailNameDiv {
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+/* hide the scroll ::backdrop */
+
+
+  
 
