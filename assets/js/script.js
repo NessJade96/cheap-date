@@ -53,9 +53,15 @@ $(function () {
 	});
 
 	// call this function with the value from the search text input on click listener
-	function getCocktails(cocktailAlcoholType) {
+	function getCocktails(cocktailAlcoholType) {  // is a string, ie "Rum"
+
+		// api key for dev is "1"
 		var apiKey = "1";
+
+		// we are going to return a promise containing returnValue object
 		var returnValue = {};
+
+		// api endpoint
 		var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/filter.php?i=${cocktailAlcoholType}`;
 		return fetch(url)
 			.then((response) => response.json())
@@ -76,9 +82,18 @@ $(function () {
 			});
 	}
 
-	function getRecipe(drinkId) {
+	function getRecipe(drinkId) { // drink ID is a string ie "11007"
+
+		// api key for dev is "1"
 		var apiKey = "1";
+
+		// we are going to return a promise containing this object
+		var returnValue = {};
+
+		// api endpoint
 		var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/lookup.php?i=${parseInt(drinkId)}`;
+
+		// and return a promise containing returnValue object
 		return fetch(url)
 			.then((response) => response.json())
 			.then((data) => {
@@ -119,21 +134,29 @@ $(function () {
 			
 		// make the api call to get all drinks with e.target.id, ie "Rum" in the ingredients
 		getCocktails(e.target.id).then((response) => {
-			var drinks = response.data.drinks;
-			var buttonsHTML = ``;
 
-			// loop through the returned cocktails
-			drinks.map((drink) => {
+			if (response.status === "success") {
+				var drinks = response.data.drinks;
+				var buttonsHTML = ``;
 
-				// write a li and button to the buttonsHTML variable
-				buttonsHTML += `<li class="list-group-item custom-item cocktailNameLi" id="${drink.idDrink}Li"><button class="drinkName" id="${drink.idDrink}">${drink.strDrink}</button></li>`;
-			});
+				// loop through the returned cocktails
+				drinks.map((drink) => {
 
-			// append the buttonsHTML variable to the cocktailNameUl ul
-			$("#cocktailNameUl").append(buttonsHTML);
+					// write a li and button to the buttonsHTML variable
+					buttonsHTML += `<li class="list-group-item custom-item cocktailNameLi" id="${drink.idDrink}Li"><button class="drinkName" id="${drink.idDrink}">${drink.strDrink}</button></li>`;
+				});
 
-			// turn off spinner
-			$("#cocktailNameDivSpinner").removeClass("d-flex").addClass("d-none");
+				// append the buttonsHTML variable to the cocktailNameUl ul
+				$("#cocktailNameUl").append(buttonsHTML);
+
+				// turn off spinner
+				$("#cocktailNameDivSpinner").removeClass("d-flex").addClass("d-none");
+
+			}
+			else {
+				console.log(response.errorMessage);
+			}
+		
 		});
 	});
 
@@ -157,7 +180,7 @@ $(function () {
 
 		// api call to get the recipe of the selected cocktail
 		getRecipe(e.target.id).then((response) => {
-
+			if (response.status === "success") {
 			// print the image, name and instructions to recipeDiv
 			$("#recipeDiv").html(`
 				<img src="${response.data.drinks[0].strDrinkThumb}"/>
@@ -167,6 +190,10 @@ $(function () {
 
 			// turn off the spinner
 			$("#recipeDivSpinner").removeClass("d-flex").addClass("d-none");
+			}
+			else {
+				console.log(response.errorMessage);
+			}
 		});
 	});
 });
