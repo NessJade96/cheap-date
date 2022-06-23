@@ -31,8 +31,11 @@ $(function () {
 		localStorage.setItem("favouriteCocktail", selectedCocktail);
 		var favouritedCocktail = localStorage.getItem("favouriteCocktail");
 		console.log(favouritedCocktail);
+		console.log(typeof favouritedCocktail);
+		favouritedCocktail.split(",");
+		console.log(favouritedCocktail);
 		//need to add to favourites html - via buttons
-		$("favouritedCocktail").each(function () {
+		Array.from(favouritedCocktail).forEach(function () {
 			var favouriteDrinkItem =
 				"<button class='cocktailFavDrinksButton'>" +
 				favouritedCocktail +
