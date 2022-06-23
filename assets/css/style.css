@@ -91,6 +91,23 @@ body{
     justify-content: center;
 }
 
+.favourites-container {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.favourites-header{
+    display: flex;
+    justify-content: center;
+}
+
+.favourites-desc{
+    display: flex;
+    justify-content: center;
+
+}
 
 .alcoholTypeLi button {
     height: 100%;
@@ -137,6 +154,7 @@ body{
 
 }
 
+
 .recipe-container{
     display:flex;
     flex-wrap: wrap;
@@ -153,12 +171,16 @@ body{
 }
 
 
+
 #cocktailNameDivSpinner {
     position: absolute;
     top: 0;
     left: 0;
     background: rgba(255, 255, 255,.8);
 }
+
+
+
 
 #recipeDiv {
     position: relative;
