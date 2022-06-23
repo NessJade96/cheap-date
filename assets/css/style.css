@@ -100,13 +100,31 @@
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: none;
+    position: relative;
 }
 
 #cocktailNameDiv::-webkit-scrollbar{
     display:none;
 
 }
+#cocktailNameDivSpinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(214, 5, 5, 0.8);
+}
 
+#recipeDiv {
+    position: relative;
+}
+
+
+#recipeDivSpinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(214, 5, 5, 0.8);
+}
 /* hide the scroll ::backdrop */
 
 

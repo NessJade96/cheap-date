@@ -94,6 +94,9 @@ $(function () {
 	// add listener to alcoholTypeUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
 	$("#alcoholTypeUl").on("click", function (e) {
 
+		// prevent default 
+		e.preventDefault();
+
 		// remove active from any LI that currently has it
 		$(".alcoholTypeLi").removeClass("active");
 
@@ -122,6 +125,9 @@ $(function () {
 
 	// event listener for the cocktailNameUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
 	$("#cocktailNameUl").on("click", function (e) {
+
+		// prevent default 
+		e.preventDefault();
 
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
