@@ -1,8 +1,57 @@
 /* Feel free to change these colors */
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
 :root {
     --mainColor60: rgba(0, 20, 66, 1); 
     --mainColor30: rgba(7, 84, 83, 1); 
     --mainColor10: rgba(122, 122, 122, 1); 
+
+}
+
+
+
+.custom-nav{
+    display:flex;
+    justify-content: flex-end;
+    padding-right: 40px;
+    font-size: 25px;
+    float:right;
+    
+}
+
+.custom-brand{
+    font-size: 35px;
+    padding-left:40px;
+    
+}
+
+.custom-list{
+    max-width: 400px;
+    padding-left: 40px;
+    padding-top: 40px;
+
+}
+
+.list-container{
+    display:flex;
+    flex-wrap: wrap;
+    /* flex-direction: row; */
+    justify-content: center;
+    max-width: 100%;
+}
+
+.custom-item:hover{
+    cursor: pointer;
+    background: lightcyan;
+}
+
+.bar-container{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 673px;
 
 }
 
