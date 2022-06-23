@@ -40,7 +40,6 @@ body{
 .custom-list{
     max-width: 400px;
     padding-left: 40px;
-    /* padding-top: 40px; */
 
 }
 
@@ -62,7 +61,6 @@ body{
 .list-container{
     display:flex;
     flex-wrap: wrap;
-    /* flex-direction: row; */
     justify-content: center;
     max-width: 100%;
 }
@@ -71,16 +69,6 @@ body{
     cursor: pointer;
     background: var(--mainColor60);
 }
-
-/* .bar-container {
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    font-family: Arial, Helvetica, sans-serif;
-    max-width: 673px;
-
-} */
 
 .bar-container {
     display:flex;
@@ -132,20 +120,8 @@ body{
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: none;
+    position: relative;
 }
-
-#recipeDiv {
-    height:388px;
-}
-
-/* .recipeDesc h3{
-    display:flex;
-    justify-content: center;
-    text-align: center;
-    font-size:18px;
-    color:black;
-    font-style: italic;
-} */
 
 
 .recipeDesc img {
@@ -166,7 +142,6 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 40px;
-    /* width: 50%; */
     text-align: center;
 }
 
@@ -178,9 +153,20 @@ body{
 }
 
 
+#cocktailNameDivSpinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255,.8);
+}
 
-/* hide the scroll ::backdrop */
+#recipeDiv {
+    position: relative;
+}
 
-
-  
-
+#recipeDivSpinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255,.8);
+}
