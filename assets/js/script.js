@@ -78,9 +78,7 @@ $(function () {
 
 	function getRecipe(drinkId) {
 		var apiKey = "1";
-		var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/lookup.php?i=${parseInt(
-			drinkId
-		)}`;
+		var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/lookup.php?i=${parseInt(drinkId)}`;
 		return fetch(url)
 			.then((response) => response.json())
 			.then((data) => {
@@ -99,25 +97,76 @@ $(function () {
 			});
 	}
 
-	// Example Usage
-	// getCocktails("Gin").then(response => console.log(response));
-	// getRecipe("11007").then(response => console.log(response));
 	//https://spoonacular.com/food-api/
 
-	$("#alcoholTypeDiv").on("click", function (e) {
+	// add listener to alcoholTypeUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
+	$("#alcoholTypeUl").on("click", function (e) {
+
+		// prevent default 
+		e.preventDefault();
+
+		// remove active from any LI that currently has it
+		$(".alcoholTypeLi").removeClass("active");
+
+		// add active class to then parent Li of the button they pressed
+		$("#"+e.target.id+"Li").addClass("active");
+
+		// empty the cocktailNameUl	so we can append new items there
+		$("#cocktailNameUl").empty();
+
+		// turn on spinner
+		$("#cocktailNameDivSpinner").removeClass("d-none").addClass("d-flex");
+			
+		// make the api call to get all drinks with e.target.id, ie "Rum" in the ingredients
 		getCocktails(e.target.id).then((response) => {
 			var drinks = response.data.drinks;
 			var buttonsHTML = ``;
+
+			// loop through the returned cocktails
 			drinks.map((drink) => {
-				buttonsHTML += `<button class="drinkName" id="${drink.idDrink}">${drink.strDrink}</button>`;
+
+				// write a li and button to the buttonsHTML variable
+				buttonsHTML += `<li class="list-group-item custom-item cocktailNameLi" id="${drink.idDrink}Li"><button class="drinkName" id="${drink.idDrink}">${drink.strDrink}</button></li>`;
 			});
-			$("#drinkNameDiv").append(buttonsHTML);
+
+			// append the buttonsHTML variable to the cocktailNameUl ul
+			$("#cocktailNameUl").append(buttonsHTML);
+
+			// turn off spinner
+			$("#cocktailNameDivSpinner").removeClass("d-flex").addClass("d-none");
 		});
 	});
-	$("#drinkNameDiv").on("click", function (e) {
+
+	// event listener for the cocktailNameUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
+	$("#cocktailNameUl").on("click", function (e) {
+
+		// prevent default 
+		e.preventDefault();
+
+		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
-		console.log(e.target.id);
-		console.log(selectedCocktail);
-		getRecipe(e.target.id).then((response) => console.log(response));
+
+		// remove the active class from any cocktailNameLi that currently has it
+		$(".cocktailNameLi").removeClass("active");
+
+		// add the active class the the li parent of the button pressed.
+		$("#"+e.target.id+"Li").addClass("active");
+
+		// turn on the spinner
+		$("#recipeDivSpinner").removeClass("d-none").addClass("d-flex");
+
+		// api call to get the recipe of the selected cocktail
+		getRecipe(e.target.id).then((response) => {
+
+			// print the image, name and instructions to recipeDiv
+			$("#recipeDiv").html(`
+				<img src="${response.data.drinks[0].strDrinkThumb}"/>
+				<h3>${response.data.drinks[0].strDrink}<h3>
+				<p>${response.data.drinks[0].strInstructions}</p>
+			`);
+
+			// turn off the spinner
+			$("#recipeDivSpinner").removeClass("d-flex").addClass("d-none");
+		});
 	});
 });

@@ -3,12 +3,17 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 :root {
-    --mainColor60: rgba(0, 20, 66, 1); 
+    --mainColor60: #0d6efd; 
     --mainColor30: rgba(7, 84, 83, 1); 
     --mainColor10: rgba(122, 122, 122, 1); 
+    --background: rgba(248,249,250)
 
 }
 
+body{
+    background-color: var(--background);
+    opacity: 1;
+}
 
 
 .custom-nav{
@@ -20,38 +25,170 @@
     
 }
 
+.navbar-bg{
+    background-color: white;
+}
+
 .custom-brand{
-    font-size: 35px;
-    padding-left:40px;
+    color:black;
+    font-style: normal;
+    font-size: 40px;
+    margin-left:50px;
     
 }
 
 .custom-list{
     max-width: 400px;
     padding-left: 40px;
-    padding-top: 40px;
 
+}
+
+.custom-link{
+    color:black;
+    margin-left: 50px;
+}
+
+.custom-link:hover{
+    color:var(--mainColor60);
+}
+
+.home-header{
+    
+    font-size: 20px;
+    
 }
 
 .list-container{
     display:flex;
     flex-wrap: wrap;
-    /* flex-direction: row; */
     justify-content: center;
     max-width: 100%;
 }
 
 .custom-item:hover{
     cursor: pointer;
-    background: lightcyan;
+    background: var(--mainColor60);
 }
 
-.bar-container{
+.bar-container {
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
-    font-family: Arial, Helvetica, sans-serif;
-    max-width: 673px;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.bar-header {
+    display:flex;
+    justify-content: center;
+    color:var(--mainColor60);
+    font-size: 45px;
+    padding-bottom: 20px;
+}
+
+.bar-desc{
+    display: flex;
+    justify-content: center;
+}
+
+.favourites-container {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.favourites-header{
+    display: flex;
+    justify-content: center;
+}
+
+.favourites-desc{
+    display: flex;
+    justify-content: center;
 
 }
 
+.alcoholTypeLi button {
+    height: 100%;
+    width: 100%;
+    border: 0;
+    color:black;
+    background: none;
+
+}
+.alcoholTypeLi.active button {
+    color:rgb(255, 255, 255);
+    font-weight: bold;
+}
+.cocktailNameLi button {
+    height: 100%;
+    width: 100%;
+    border: 0;
+    color:black;
+    background: none;
+}
+.cocktailNameLi.active button{
+    color:rgb(255, 255, 255);
+    font-weight: bold;
+}
+#cocktailNameDiv {
+    height: 388px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    position: relative;
+}
+
+
+.recipeDesc img {
+    display:flex;
+    justify-content: center;
+    max-height: 388px;
+    max-width: 388px;
+}
+
+
+#cocktailNameDiv::-webkit-scrollbar{
+    display:none;
+
+}
+
+
+.recipe-container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.recipe-header h4{
+    display:inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:35px;
+
+}
+
+
+
+#cocktailNameDivSpinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255,.8);
+}
+
+
+
+
+#recipeDiv {
+    position: relative;
+}
+
+#recipeDivSpinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255,.8);
+}
