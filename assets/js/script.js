@@ -181,6 +181,17 @@ $(function () {
 		// api call to get the recipe of the selected cocktail
 		getRecipe(e.target.id).then((response) => {
 			if (response.status === "success") {
+				console.log(response.data);
+
+				// setup ingredients string
+				var ingredientsHTML = `<ul>`;
+				for (var i = 1; i <= 15; i++) {
+					if (response.data.drinks[0]['strIngredient'+i] !== null){
+						ingredientsHTML += `<li>${response.data.drinks[0]['strIngredient'+i]} ${response.data.drinks[0]['strMeasure'+i]}</li>`;
+					}
+				}
+				ingredientsHTML += `</ul>`;
+				$("#ingredientsDiv").append(ingredientsHTML);
 			// print the image, name and instructions to recipeDiv
 			$("#recipeDiv").html(`
 				<img src="${response.data.drinks[0].strDrinkThumb}"/>
