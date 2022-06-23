@@ -1,9 +1,8 @@
 $(function () {
-	var selectedCocktail;
 	//clickhandler on the nav bar:
 	$("#aboutButtonNav").on("click", function () {
 		console.log("takes you to the about page");
-		//Once the html is complete this funciton will hide all the pages (display: hidden), then make the about page visible (display:flex).
+		//Once the html is complete this funciton will hide all the pages, then make the about page visible.
 		$(this).addClass("displayHTML"); //need to add in css to show display
 		$("#homePage").addClass("hideHTML");
 		$("#favouritesPage").addClass("hideHTML"); //Names for the divs that wrap the home and favourites pages // need to add in css class "hideHTML" to hide display
@@ -22,20 +21,29 @@ $(function () {
 		$("#aboutPage").addClass("hideHTML");
 		$("#favouritesPage").addClass("hideHTML"); //Names for the divs that wrap the about and favourites pages // need to add in css class "hideHTML" to hide display
 	});
-	//clickhandler to reload the page
+	//clickhandler to reload the page -> instead of reload page - empty the html from the two drink divs - element.empty() alcoholTypeLi active.
 	$("#reloadPage").on("click", function () {
-		location.reload();
+		$("#cocktailNameUl").empty();
+		$("#recipeDiv").empty();
+		$(".alcoholTypeLi").removeClass("active");
 	});
+
 	//click event listener to save current selected drink to local storage
-	$("#favouriteDrinkButton").on("click", function () {
-		localStorage.setItem("favouriteCocktail", selectedCocktail);
-		var favouritedCocktail = localStorage.getItem("favouriteCocktail");
-		console.log(favouritedCocktail);
-		console.log(typeof favouritedCocktail);
-		favouritedCocktail.split(",");
-		console.log(favouritedCocktail);
-		//need to add to favourites html - via buttons
-		Array.from(favouritedCocktail).forEach(function () {
+	$("#favouriteDrinkButton").on("click", function (event) {
+		var storedCocktails = JSON.parse(
+			localStorage.getItem("storedCocktails")
+		);
+		if (storedCocktails === null) {
+			storedCocktails = [];
+		}
+		var favouritedCocktail = $("#h3DrinkName").text();
+		storedCocktails.push(favouritedCocktail);
+		localStorage.setItem(
+			"storedCocktails",
+			JSON.stringify(storedCocktails)
+		);
+		storedCocktails.map((cocktail) => {
+			console.log(cocktail);
 			var favouriteDrinkItem =
 				"<button class='cocktailFavDrinksButton'>" +
 				favouritedCocktail +
