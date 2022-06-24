@@ -52,6 +52,12 @@ body{
     color:var(--mainColor60);
 }
 
+.ingredients-container{
+    display: flex;
+    justify-content: center;
+
+}
+
 .home-header{
     
     font-size: 20px;
@@ -148,21 +154,23 @@ body{
 }
 
 
-.recipeDesc img {
+.custom-list img {
     display:flex;
     justify-content: center;
+    align-items: center;
     max-height: 388px;
     max-width: 388px;
 }
 
+.recipe-description{
+    display:flex;
+    justify-content: center;
+}
 
 #cocktailNameDiv::-webkit-scrollbar{
     display:none;
 
 }
-
-
-
 
 .recipe-container{
     display:flex;
