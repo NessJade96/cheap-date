@@ -58,6 +58,18 @@ $(function () {
 		$("#favouriteDrinkIcon").removeClass("bi-suit-heart-fill").addClass("bi-suit-heart");
 	});
 
+	function addAlcoholNames(){
+		var alcoholNamesArray = ["Absinth","Tequila","Gin","Vodka","Rum","Whiskey","Brandy","Beer","Wine","Champagne"];
+		var html = ``;
+		alcoholNamesArray.map((alcohol) => {
+			html += `<li class="list-group-item d-flex justify-content-between align-items-center custom-item alcoholTypeLi" id="${alcohol}Li">
+			<button id="${alcohol}">${alcohol}</button></li>`;
+		});
+		$("#alcoholTypeUl").append(html);
+		
+	}
+	addAlcoholNames();
+
 	// call this function with the value from the search text input on click listener
 	function getCocktails(cocktailAlcoholType) {  // is a string, ie "Rum"
 
