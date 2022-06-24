@@ -25,26 +25,7 @@
 </head>
 <body>
 
-      <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                  <a class="navbar-brand custom-brand" href="#">cheap date</a>
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="custom-nav collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav mr-auto">
-                      <li class="nav-item active">
-                        <a id="aboutButtonNav" class="nav-link" href="#">about <span class="sr-only"></span></a>
-                      </li>
-                      <li class="nav-item">
-                        <a id="favouritesButtonNav" class="nav-link" href="#">favourites</a>
-                      </li>
-                      <li class="nav-item">
-                        <a id="homeButtonNav" class="nav-link" href="#">home</a>
-                      </li>
-                    </ul>
-                  </div>
-                </nav>
+      
 
   <!--Nav bar-->
     <div> 
@@ -81,9 +62,7 @@
 		</div>
 	</section>
 
-
-      
-    <div class="list-container">
+	<div class="main-container">
         <ul class="list-group custom-list col-sm col-md-4"  id="alcoholTypeUl">
           	<li class="list-group-item d-flex justify-content-between align-items-center custom-item alcoholTypeLi" id="TequilaLi">
             	<button id="Tequila">Tequila</button>
@@ -113,41 +92,25 @@
             	<button id="Champagne">Champagne</button>
           	</li>
         </ul>
-        <div class="list-group custom-list col-sm" id="recipeDiv"></div>
-        <aside>
-          <button id="reloadPage">Reload</button>
-          <button id="favouriteDrinkButton">LoveHeart</button>
-        </aside>
-        </div>
-
-      </div>
-    
-
+        
 		<div id="cocktailNameDiv">
 			<div    
 				id="cocktailNameDivSpinner" 
-				class="
-					flex-row
-					justify-content-center
-					align-items-center
-					d-none
-					w-100
-					h-100">
+					class="
+						flex-row
+						justify-content-center
+						align-items-center
+						d-none
+						w-100
+						h-100">
 				<div class="spinner-border"  role="status"></div>
 			</div>
 			<ul class="list-group custom-list col-sm" id="cocktailNameUl"></ul>
 		</div>
 
-		<div class="list-group custom-list col-sm" id="imageDiv"></div>
-		<div class="list-group custom-list col-sm" id="ingredientsDiv"></div>
-						
-		        
-    </div>
-
-	<section>
-		<div class="recipe-container">
+		<div class="list-group custom-list col-sm" id="imageWrapper">
 			<div    
-				id="recipeDivSpinner" 
+				id="recipeImageSpinner" 
 				class="
 					flex-row
 					justify-content-center
@@ -156,19 +119,46 @@
 					w-100
 					h-100">
 				<div class="spinner-border"  role="status"></div>
+				
+			</div>
+
+
+		<div class="list-group custom-list col-sm" id="imageDiv"></div>
+		<div class="list-group custom-list col-sm" id="ingredientsDiv"></div>
+						
+
+	</div>				
+
+		        
+
+
+	<section>
+		<div class="recipe-container">
+			<div    
+				id="recipeContainerSpinner" 
+				class="
+					flex-row
+					justify-content-center
+					align-items-center
+					d-none
+					w-100
+					h-100">
+				<div class="spinner-border"  role="status"></div>
+				
 			</div>
 			<div class="recipe-header w-100">
-				<h4>Mojito</h4>
+				<span id="recipeHeader"></span>
 			</div>
 			<div class="recipe-description col-8">
-				<p id="recipeDiv">The mojito is the epitome of the refreshing cocktail, stripped down to just the bare essentials of rum, lime juice,
-					sugar, soda water, and mint. Each ingredient is seemingly specifically selected to cure hot weather-induced pangs
-					of thirst — it is in turns sweet, acidic, minty, and sparkling.</p>
+				<span id="recipeSpan"></span>
 			</div>
 		</div>
 	</section>
 
-    
+	<aside>
+		<button id="reloadPage">Reload</button>
+		<button id="favouriteDrinkButton">LoveHeart</button>
+  </aside>
 
 </body>
 </html>

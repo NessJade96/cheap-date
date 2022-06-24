@@ -176,7 +176,8 @@ $(function () {
 		$("#"+e.target.id+"Li").addClass("active");
 
 		// turn on the spinner
-		$("#recipeDivSpinner").removeClass("d-none").addClass("d-flex");
+		$("#recipeImageSpinner").removeClass("d-none").addClass("d-flex");
+		$("#recipeContainerSpinner").removeClass("d-none").addClass("d-flex");
 
 		// api call to get the recipe of the selected cocktail
 		getRecipe(e.target.id).then((response) => {
@@ -192,15 +193,15 @@ $(function () {
 				}
 				ingredientsHTML += `</ul>`;
 				$("#ingredientsDiv").append(ingredientsHTML);
+
 			// print the image, name and instructions to recipeDiv
-			$("#recipeDiv").html(`
-				<img src="${response.data.drinks[0].strDrinkThumb}"/>
-				<h3>${response.data.drinks[0].strDrink}<h3>
-				<p>${response.data.drinks[0].strInstructions}</p>
-			`);
+			$("#imageDiv").html(`<img src="${response.data.drinks[0].strDrinkThumb}"/>`);
+			$("#recipeHeader").html(`<h3 id="h3DrinkName">${response.data.drinks[0].strDrink}<h3>`);
+			$("#recipeSpan").html(`<p>${response.data.drinks[0].strInstructions}</p>`);
 
 			// turn off the spinner
-			$("#recipeDivSpinner").removeClass("d-flex").addClass("d-none");
+			$("#recipeImageSpinner").removeClass("d-flex").addClass("d-none");
+			$("#recipeContainerSpinner").removeClass("d-flex").addClass("d-none");
 			}
 			else {
 				console.log(response.errorMessage);
