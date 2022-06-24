@@ -51,6 +51,12 @@ $(function () {
 			$("#cocktailFavDiv").append(favouriteDrinkItem);
 		});
 	});
+	$("#favouriteDrinkButton").on("mouseover", function () {
+		$("#favouriteDrinkIcon").removeClass("bi-suit-heart").addClass("bi-suit-heart-fill");
+	});
+	$("#favouriteDrinkButton").on("mouseout", function () {
+		$("#favouriteDrinkIcon").removeClass("bi-suit-heart-fill").addClass("bi-suit-heart");
+	});
 
 	// call this function with the value from the search text input on click listener
 	function getCocktails(cocktailAlcoholType) {  // is a string, ie "Rum"
