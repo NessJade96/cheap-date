@@ -58,7 +58,7 @@ body{
     
 }
 
-.list-container{
+.main-container{
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -140,6 +140,13 @@ body{
     position: relative;
 }
 
+#cocktailNameDivSpinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255,.8);
+}
+
 
 .recipeDesc img {
     display:flex;
@@ -155,12 +162,15 @@ body{
 }
 
 
+
+
 .recipe-container{
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 40px;
     text-align: center;
+    position: relative;
 }
 
 .recipe-header h4{
@@ -170,23 +180,17 @@ body{
 
 }
 
+#imageWrapper {
+    position: relative;
+}
 
-
-#cocktailNameDivSpinner {
+#recipeImageSpinner {
     position: absolute;
     top: 0;
     left: 0;
     background: rgba(255, 255, 255,.8);
 }
-
-
-
-
-#recipeDiv {
-    position: relative;
-}
-
-#recipeDivSpinner {
+#recipeContainerSpinner {
     position: absolute;
     top: 0;
     left: 0;
