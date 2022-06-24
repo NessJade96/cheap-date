@@ -56,11 +56,11 @@ body{
 .ingredients-container{
     display: flex;
     justify-content: center;
+    margin:20px;
 
 }
 
 .home-header{
-    
     font-size: 20px;
     
 }
@@ -158,8 +158,11 @@ body{
     display:flex;
     justify-content: center;
     align-items: center;
-    margin:auto;
-    max-height: 400px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 280px;
 }
 
 .recipe-description{
@@ -181,11 +184,27 @@ body{
     position: relative;
 }
 
+.button-container{
+    display:flex;
+    justify-content: center;
+}
+
 .recipe-header h4{
     display:inline-block;
     font-family: Arial, Helvetica, sans-serif;
     font-size:35px;
 
+}
+
+#h3DrinkName{
+    color:var(--mainColor60);
+    font-size: 40px;
+    padding-bottom: 20px;
+
+}
+
+#h3DrinkName p{
+    font-size: 20px;
 }
 
 #imageWrapper {
@@ -217,4 +236,20 @@ body{
     transform: scale(1.5);
     color:rgb(226, 43, 165);
     transition: transform 0.3s ease-out;
+}
+
+.reloadBtn{
+    width: 75px;
+    padding:5px;
+    color:white;
+    background-color:var(--mainColor60);
+    border: solid .5px;
+    border-radius: 5px;
+}
+
+.reloadBtn:hover {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    cursor:pointer;  
 }
