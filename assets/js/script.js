@@ -206,7 +206,7 @@ $(function () {
 				var ingredientsHTML = `<ul>`;
 				for (var i = 1; i <= 15; i++) {
 					if (response.data.drinks[0]['strIngredient'+i] !== null){
-						ingredientsHTML += `<li>${response.data.drinks[0]['strIngredient'+i]} ${response.data.drinks[0]['strMeasure'+i]}</li>`;
+						ingredientsHTML += `<li>${response.data.drinks[0]['strIngredient'+i]} ${(response.data.drinks[0]['strMeasure'+i] === null) ? "" : response.data.drinks[0]['strMeasure'+i]}</li>`;
 					}
 				}
 				ingredientsHTML += `</ul>`;
