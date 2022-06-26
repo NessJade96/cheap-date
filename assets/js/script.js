@@ -131,7 +131,14 @@ $(function () {
 	}
 
 	//https://spoonacular.com/food-api/
-
+// fetch (`https://api.spoonacular.com/food/ingredients/search?apiKey=8745aeb27da04cd69ab054ceafed0495&query=Vodka`)
+// .then((response) => response.json())
+// 			.then((data) => {
+// 				console.log(data);
+// 			})
+// 			.catch((error) => {
+// 				console.log(error);
+// 			});
 	// add listener to alcoholTypeUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
 	$("#alcoholTypeUl").on("click", function (e) {
 
