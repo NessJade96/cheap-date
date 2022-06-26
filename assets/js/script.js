@@ -202,6 +202,8 @@ $(function () {
 			if (response.status === "success") {
 				console.log(response.data);
 
+				// empty ingredients div
+				$("#ingredientsDiv").empty();
 				// setup ingredients string
 				var ingredientsHTML = `<ul>`;
 				for (var i = 1; i <= 15; i++) {
