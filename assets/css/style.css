@@ -286,4 +286,24 @@ body{
         margin:0;
     }
 
+    @media (max-width: 800px) {
+        .navbar {
+        flex-direction: column;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .custom-nav {
+        flex-direction: column;
+        }
+    }
+
+    .displayHTML{
+        display: block;
+    }
+    
+    
+    .hideHTML{
+        display: none;
+    }
 }
