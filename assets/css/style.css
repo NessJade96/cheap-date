@@ -163,7 +163,9 @@ body{
 
 #cocktailNameDiv::-webkit-scrollbar{
     display:none;
-=======
+}
+
+
 .recipe-description{
     display:flex;
     justify-content: center;
