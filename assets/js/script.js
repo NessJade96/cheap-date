@@ -153,7 +153,7 @@ $(function () {
 
 		// empty the cocktailNameUl	so we can append new items there
 		$("#cocktailNameUl").empty();
-
+		$("#cocktailNameUl").css({"width":"300px"});
 		// turn on spinner
 		$("#cocktailNameDivSpinner").removeClass("d-none").addClass("d-flex");
 			
