@@ -13,8 +13,8 @@
 :root {
     --mainColor60: rgba(11, 223, 36); 
     --mainColor30: #0d6efd; 
-    --mainColor10: rgba(61, 55, 55, 24); 
-    --background: rgba(29, 26, 26);
+    --mainColor10: rgba(65, 65, 65); 
+    --background: rgba(38, 38, 38);
 }
 
 body{
@@ -39,9 +39,10 @@ body{
 }
 
 .custom-list{
+    background-color: red;
     max-width: 300px;
-    max-height: 431px;
-    margin:auto;
+    max-height: 474px;
+    /* margin:20px; */
     font-family: 'Source Code Pro';
 }
 
@@ -131,7 +132,6 @@ body{
     font-weight: bold;
 }
 #cocktailNameDiv {
-    height: 388px;
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: none;
@@ -152,7 +152,7 @@ body{
     display:flex;
     justify-content: center;
     align-items: center;
-    margin:auto;
+    /* margin:auto; */
     max-height: 280px;
 }
 
@@ -247,10 +247,19 @@ body{
     width: 75px;
     padding:5px;
     font-family: 'Nova Square';
-    color:var(--background);
+    color:black;
     background-color:var(--mainColor60);
     border-radius: 5px;
     border: none;
+    position:fixed;
+    top:50%;
+    left:0;
+}
+
+.reloadBtnBtm{
+    top:0;
+    left:0
+
 }
 
 .reloadBtn:hover {
@@ -259,7 +268,6 @@ body{
     transform: scale(1.05);
     cursor:pointer;  
 }
-
 
 @media screen and (max-width: 980px) {
     .main-container {
@@ -281,23 +289,4 @@ body{
         margin:0;
     }
 
-    @media (max-width: 800px) {
-        .navbar {
-        flex-direction: column;
-        }
-    }
-
-    @media (max-width: 800px) {
-        .custom-nav {
-        flex-direction: column;
-        }
-    }
-
-    @media screen and (max-width: 980px) {
-        .favourites-container {
-            align-items: center;
-            flex-direction: column;
-        }
-    }
-        
 }
