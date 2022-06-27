@@ -22,7 +22,7 @@ $(function () {
 		$("#favouritesPage").addClass("hideHTML"); //Names for the divs that wrap the about and favourites pages // need to add in css class "hideHTML" to hide display
 	});
 	//clickhandler to reload the page -> instead of reload page - empty the html from the two drink divs - element.empty() alcoholTypeLi active.
-	$("#reloadPage").on("click", function () {
+	$(".reloadBtn").on("click", function () {
 		$("#cocktailNameUl").empty();
 		$("#imageDiv").empty();
 		$("#ingredientsDiv").empty();
@@ -201,7 +201,7 @@ $(function () {
 
 		// empty the cocktailNameUl	so we can append new items there
 		$("#cocktailNameUl").empty();
-		$("#cocktailNameUl").css({ width: "300px" });
+		// $("#cocktailNameUl").css({ width: "300px" });
 		// turn on spinner
 		$("#cocktailNameDivSpinner").removeClass("d-none").addClass("d-flex");
 
