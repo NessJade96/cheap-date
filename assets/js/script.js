@@ -71,6 +71,7 @@ $(function () {
 			"Beer",
 			"Wine",
 			"Champagne",
+			"Cognac"
 		];
 		var html = ``;
 		alcoholNamesArray.map((alcohol) => {
