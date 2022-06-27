@@ -1,12 +1,14 @@
 /* Feel free to change these colors */
-*{
-    font-family: Arial, Helvetica, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+
+
 :root {
-    --mainColor60: #0d6efd; 
-    --mainColor30: rgba(7, 84, 83, 1); 
-    --mainColor10: rgba(122, 122, 122, 1); 
-    --background: rgba(248,249,250)
+    --mainColor60: rgba(11, 223, 36); 
+    --mainColor30: #0d6efd; 
+    --mainColor10: rgba(61, 55, 55, 24); 
+    --background: rgba(29, 26, 26);
 
 }
 
@@ -30,8 +32,8 @@ body{
 }
 
 .custom-brand{
-    color:black;
-    font-style: normal;
+    color:var(--mainColor60);
+    font-family: 'Nova Square';
     font-size: 40px;
     margin-left:50px;
     
@@ -41,25 +43,19 @@ body{
     max-width: 300px;
     max-height: 431px;
     margin:auto;
-    /* padding-left: 40px; */
+    font-family: 'Source Code Pro';
 
 }
 
+
 .custom-link{
-    color:black;
+    color:#FFF;
+    font-family: 'Nova Square';
     margin-left: 50px;
 }
 
 .custom-link:hover{
     color:var(--mainColor60);
-}
-
-.ingredients-container{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin:20px;
-
 }
 
 .home-header{
@@ -74,34 +70,26 @@ body{
     flex-direction: row;
 }
 
+.custom-item {
+    background: var(--mainColor10);
+}
+
 .custom-item:hover{
     cursor: pointer;
-    background: var(--mainColor60);
+    color:white;
+    background: var(--mainColor30);
 }
 
 .bar-container {
-    display:flex;
-    flex-wrap: wrap;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
     padding-bottom: 40px;
     padding-top: 40px;
+    margin:70px;
+    font-family: 'Source Code Pro';
 }
 
 .bar-header {
-    display:flex;
-    color:var(--mainColor60);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 45px;
-    padding-bottom: 20px;
-}
-
-.bar-desc p {
-    display: flex;
-    flex-wrap: wrap;
-    font-size:20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Nova Square';
+    font-size:45px;
 }
 
 .favourites-container {
@@ -126,7 +114,7 @@ body{
     height: 100%;
     width: 100%;
     border: 0;
-    color:black;
+    color:#FFF;
     background: none;
 
 }
@@ -138,7 +126,7 @@ body{
     height: 100%;
     width: 100%;
     border: 0;
-    color:black;
+    color:#FFF;
     background: none;
 }
 .cocktailNameLi.active button{
@@ -157,7 +145,7 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(255, 255, 255,.8);
+    background: transparent;
 }
 
 
@@ -165,16 +153,8 @@ body{
     display:flex;
     justify-content: center;
     align-items: center;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
+    margin:auto;
     max-height: 280px;
-}
-
-.recipe-description{
-    display:flex;
-    justify-content: center;
 }
 
 #cocktailNameDiv::-webkit-scrollbar{
@@ -186,9 +166,14 @@ body{
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 100px;
     text-align: center;
-    position: relative;
+    font-family:'Source Code Pro';
+    color:#FFF;
+}
+
+.navbar-color {
+    background-color: var(--background);
 }
 
 .button-container{
@@ -198,16 +183,21 @@ body{
 
 .recipe-header h4{
     display:inline-block;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Nova Square';
     font-size:35px;
 
 }
 
+.ingredients-container{
+    color:#FFF;
+    font-family: 'Source Code Pro';
+    font-weight: 300;
+}
+
 #h3DrinkName{
-    color:black;
+    color:yellow;
     font-size: 35px;
-    font-style: italic;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Nova Square';
     padding-top: 20px;
     padding-bottom: 20px;
 
@@ -225,21 +215,20 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(255, 255, 255,.8);
+    background: transparent;
 }
 #recipeContainerSpinner {
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(255, 255, 255,.8);
+    background: transparent;
 }
 
 #favouriteDrinkButton {
     width: 50px;
     height: 50px;
     background: none;
-    border: 0;
-    
+    border: none;
     transition: transform 0.3s ease-out;
 }
 #favouriteDrinkButton:hover {
@@ -251,15 +240,16 @@ body{
 .reloadBtn{
     width: 75px;
     padding:5px;
-    color:white;
+    font-family: 'Nova Square';
+    color:var(--background);
     background-color:var(--mainColor60);
-    border: solid .5px;
     border-radius: 5px;
+    border: none;
 }
 
 .reloadBtn:hover {
     -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.05);
+    transition: transform 0.3s ease-out;
     transform: scale(1.05);
     cursor:pointer;  
 }
