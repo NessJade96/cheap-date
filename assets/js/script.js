@@ -61,7 +61,7 @@ $(function () {
 
 	function addAlcoholNames() {
 		var alcoholNamesArray = [
-			"Absinth",
+			"Absinthe",
 			"Tequila",
 			"Gin",
 			"Vodka",
