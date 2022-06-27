@@ -58,7 +58,40 @@ $(function () {
 			.removeClass("bi-suit-heart-fill")
 			.addClass("bi-suit-heart");
 	});
-
+	function listlyLists () {
+		var ListlyLists = [
+			"3H3e",
+			"3JRH",
+			"586",
+			"XeF",
+			"NbN",
+			"30Uo",
+			"RYc",
+			"2qls",
+			"1p0Q"
+		]
+		var randomListIndex = Math.floor(Math.random() * ListlyLists.length);
+		fetch (`https://list.ly/api/v4/lists/${ListlyLists[randomListIndex]}`)
+		.then(response => response.json())
+		.then((data) => {
+			
+			console.log(data);
+			console.log(data.list.title);
+			console.log(data.list.description);
+		});
+		fetch (`https://list.ly/api/v4/lists/${ListlyLists[randomListIndex]}/items`)
+		.then(response => response.json())
+		.then((data) => {
+			
+			console.log(data);
+			console.log(data.items);
+			data.items.map((item) => {
+				console.log(item.name);
+				console.log(item.item_note);
+				console.log(item.images.small);
+			});
+		});
+	}
 	function addAlcoholNames() {
 		var alcoholNamesArray = [
 			"Absinth",
@@ -80,7 +113,7 @@ $(function () {
 		$("#alcoholTypeUl").append(html);
 	}
 	addAlcoholNames();
-
+	listlyLists();
 	// call this function with the value from the search text input on click listener
 	function getCocktails(cocktailAlcoholType) {
 		// is a string, ie "Rum"
