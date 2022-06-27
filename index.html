@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" 
-          content="width=device-width, initial-scale=1.0">
-
-<!-- import css files -->
-    <link href="./assets/css/reset.css" 
-          rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" 
+	content="width=device-width, initial-scale=1.0">
+	
+	<!-- import css files -->
+	<link href="./assets/css/reset.css" 
+	rel="stylesheet">
 	<link rel="stylesheet" 
-		  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
-          rel="stylesheet" 
-          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
-          crossorigin="anonymous">
-    <link type="text/css"
-          href="./assets/css/style.css" 
-          rel="stylesheet">
-
-<!-- import script files -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./assets/js/script.js"></script>
-
-    <title>Cheap Date</title>
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+	rel="stylesheet" 
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
+	crossorigin="anonymous">
+	<link type="text/css"
+	href="./assets/css/style.css" 
+	rel="stylesheet">
+	
+	<!-- import script files -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	<script src="./assets/js/script.js"></script>
+	
+	<title>Cheap Date</title>
 </head>
 <body>
-
-      
-
-  <!--Nav bar-->
-    <div> 
-    	<nav class="navbar navbar-expand-lg navbar-bg navbar-light bg-light">
+	
+	
+	
+	<!--Nav bar-->
+	<div> 
+		<nav class="navbar navbar-expand-lg navbar-bg navbar-light bg-light">
 			<a class="navbar-brand custom-brand" href="#">Cheap Date</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -49,9 +49,9 @@
 					</li>
 				</ul>
 			</div>
-        </nav>
-    </div>
-<!--'Your Bar' element-->
+		</nav>
+	</div>
+	<!--'Your Bar' element-->
 	<section class="bar-container">
 		<div>
 			<h1 class="bar-header">Your Bar</h1>
@@ -63,70 +63,70 @@
 			</p>
 		</div>
 	</section>
-
+	
 	<div class="main-container">
-        <ul class="list-group custom-list col-sm"  id="alcoholTypeUl"></ul>		<div class="custom-list" id="cocktailNameDiv">
+		<ul class="list-group custom-list col-sm"  id="alcoholTypeUl"></ul>		<div class="custom-list" id="cocktailNameDiv">
 			<div    
-				id="cocktailNameDivSpinner" 
-					class="
-						flex-row
-						justify-content-center
-						align-items-center
-						d-none
-						w-100
-						h-100">
-				<div class="spinner-border"  role="status"></div>
-			</div>
-			<ul class="list-group custom-list col-sm" id="cocktailNameUl"></ul>
-		</div><div class="list-group custom-list col-sm" id="imageWrapper">
-			<div    
-				id="recipeImageSpinner" 
-				class="
-					flex-row
-					justify-content-center
-					align-items-center
-					d-none
-					w-100
-					h-100">
-				<div class="spinner-border"  role="status"></div>
-			</div>
-			<div class="list-group custom-list col-sm" id="imageDiv"></div>
+			id="cocktailNameDivSpinner" 
+			class="
+			flex-row
+			justify-content-center
+			align-items-center
+			d-none
+			w-100
+			h-100">
+			<div class="spinner-border"  role="status"></div>
 		</div>
-    </div>
-	<section>
-		<div class="recipe-container">
-			<div    
-				id="recipeContainerSpinner" 
-				class="
-					flex-row
-					justify-content-center
-					align-items-center
-					d-none
-					w-100
-					h-100">
-				<div class="spinner-border"  role="status"></div>
-			</div>
-			<div class="recipe-header w-100">
-				<span id="recipeHeader"></span>
-			</div>
-			<div class="recipe-description col-8">
-				<span id="recipeSpan"></span>
-			</div>
+		<ul class="list-group custom-list col-sm" id="cocktailNameUl"></ul>
+	</div><div class="list-group custom-list col-sm" id="imageWrapper">
+		<div    
+		id="recipeImageSpinner" 
+		class="
+		flex-row
+		justify-content-center
+		align-items-center
+		d-none
+		w-100
+		h-100">
+		<div class="spinner-border"  role="status"></div>
+	</div>
+	<div class="list-group custom-list col-sm" id="imageDiv"></div>
+</div>
+</div>
+<section>
+	<div class="recipe-container">
+		<div    
+		id="recipeContainerSpinner" 
+		class="
+		flex-row
+		justify-content-center
+		align-items-center
+		d-none
+		w-100
+		h-100">
+		<div class="spinner-border"  role="status"></div>
+	</div>
+	<div class="recipe-header w-100">
+		<span id="recipeHeader"></span>
+	</div>
+	<div class="recipe-description col-8">
+		<span id="recipeSpan"></span>
+	</div>
+</div>
+</section>
+<section>
+	<div class="ingredients-container">
+		<div class="list-group" id="ingredientsDiv"></div>
+	</div>
+</section>
+<section>
+	<div class="button-container">
+		<div>
+			<button class="reloadBtn" id="reloadPage">New</button>
+			<button id="favouriteDrinkButton"><i id="favouriteDrinkIcon" class="bi bi-suit-heart"></i></button>
 		</div>
-	</section>
-	<section>
-		<div class="ingredients-container">
-			<div class="list-group" id="ingredientsDiv"></div>
-		</div>
-	</section>
-	<section>
-		<div class="button-container">
-			<div>
-				<button class="reloadBtn" id="reloadPage">New</button>
-          		<button id="favouriteDrinkButton"><i id="favouriteDrinkIcon" class="bi bi-suit-heart"></i></button>
-			</div>
-		</div>
-	</section>
+	</div>
+</section>
 
 </body>
 </html>
