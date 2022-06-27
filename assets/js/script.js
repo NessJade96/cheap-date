@@ -31,8 +31,9 @@ $(function () {
 		$(".alcoholTypeLi").removeClass("active");
 	});
 
-	//click event listener to save current selected drink to local storage
+	//click event listener to save current selected drink to local storage as an Array
 	$("#favouriteDrinkButton").on("click", function (event) {
+		event.preventDefault();
 		var storedCocktails = JSON.parse(
 			localStorage.getItem("storedCocktails")
 		);
@@ -45,15 +46,8 @@ $(function () {
 			"storedCocktails",
 			JSON.stringify(storedCocktails)
 		);
-		storedCocktails.map((cocktail) => {
-			console.log(cocktail);
-			var favouriteDrinkItem =
-				"<button class='cocktailFavDrinksButton'>" +
-				favouritedCocktail +
-				"</button>";
-			$("#cocktailFavDiv").append(favouriteDrinkItem);
-		});
 	});
+
 	$("#favouriteDrinkButton").on("mouseover", function () {
 		$("#favouriteDrinkIcon")
 			.removeClass("bi-suit-heart")
