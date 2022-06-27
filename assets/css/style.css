@@ -31,10 +31,6 @@ body{
     float:right;
 }
 
-.navbar-bg{
-    background-color: white;
-}
-
 .custom-brand{
     color:var(--mainColor60);
     font-family: 'Nova Square';
@@ -283,26 +279,5 @@ body{
     .custom-list img{
         padding-top: 40px;
         margin:0;
-    }
-
-    @media (max-width: 800px) {
-        .navbar {
-        flex-direction: column;
-        }
-    }
-
-    @media (max-width: 800px) {
-        .custom-nav {
-        flex-direction: column;
-        }
-    }
-
-    .displayHTML{
-        display: block;
-    }
-    
-    
-    .hideHTML{
-        display: none;
     }
 }
