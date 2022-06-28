@@ -1,292 +1,269 @@
-
 /* Feel free to change these colors */
-@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap");
 
-
-
-*{
-    font-family: Arial, Helvetica, sans-serif;
+* {
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 :root {
-    --mainColor60: rgba(11, 223, 36); 
-    --mainColor30: #0d6efd; 
-    --mainColor10: rgba(65, 65, 65); 
-    --background: rgba(38, 38, 38);
+	--mainColor60: rgba(11, 223, 36);
+	--mainColor30: #0d6efd;
+	--mainColor10: rgba(65, 65, 65);
+	--background: rgba(38, 38, 38);
 }
 
-body{
-    background-color: var(--background);
-    opacity: 1;
+body {
+	background-color: var(--background);
+	opacity: 1;
 }
 
-
-.custom-nav{
-    display:flex;
-    justify-content: flex-end;
-    padding-right: 40px;
-    font-size: 25px;
-    float:right;
+.custom-nav {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 40px;
+	font-size: 25px;
+	float: right;
 }
 
-.custom-brand{
-    color:var(--mainColor60);
-    font-family: 'Nova Square';
-    font-size: 40px;
-    margin-left:50px;
+.custom-brand {
+	color: var(--mainColor60);
+	font-family: "Nova Square";
+	font-size: 40px;
+	margin-left: 50px;
 }
 
-.custom-list{
-    max-width: 300px;
-    max-height: 474px;
-    font-family: 'Source Code Pro';
+.custom-list {
+	max-width: 300px;
+	max-height: 474px;
+	font-family: "Source Code Pro";
 }
 
-
-.custom-link{
-    color:#FFF;
-    font-family: 'Nova Square';
-    margin-left: 50px;
+.custom-link {
+	color: #fff;
+	font-family: "Nova Square";
+	margin-left: 50px;
 }
 
-.custom-link:hover{
-    color:var(--mainColor60);
+.custom-link:hover {
+	color: var(--mainColor60);
 }
 
-.home-header{
-    font-size: 20px;
+.home-header {
+	font-size: 20px;
 }
 
-.main-container{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: row;
+.main-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	flex-direction: row;
 }
 
 .custom-item {
-    background: var(--mainColor10);
+	background: var(--mainColor10);
 }
 
-.custom-item:hover{
-    cursor: pointer;
-    color:white;
-    background: var(--mainColor30);
+.custom-item:hover {
+	cursor: pointer;
+	color: white;
+	background: var(--mainColor30);
 }
 
 .bar-container {
-    padding-bottom: 40px;
-    padding-top: 40px;
-    margin:70px;
-    font-family: 'Source Code Pro';
+	padding-bottom: 40px;
+	padding-top: 40px;
+	margin: 70px;
+	font-family: "Source Code Pro";
 }
 
 .bar-header {
-    font-family: 'Nova Square';
-    padding-bottom: 20px;
-    font-size:45px;
+	font-family: "Nova Square";
+	padding-bottom: 20px;
+	font-size: 45px;
 }
 
 .favourites-container {
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    max-width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	max-width: 100%;
 }
 
-.favourites-header{
-    display: flex;
-    justify-content: center;
+.favourites-header {
+	display: flex;
+	justify-content: center;
 }
 
-.favourites-desc{
-    display: flex;
-    justify-content: center;
+.favourites-desc {
+	display: flex;
+	justify-content: center;
 }
 /* ------------------------------------------------ ALCOHOL TYPE */
 .alcoholTypeLi button {
-    height: 100%;
-    width: 100%;
-    border: 0;
-    color:#FFF;
-    background: none;
+	height: 100%;
+	width: 100%;
+	border: 0;
+	color: #fff;
+	background: none;
 }
 .alcoholTypeLi.active button {
-    color:rgb(255, 255, 255);
-    font-weight: bold;
+	color: rgb(255, 255, 255);
+	font-weight: bold;
 }
 
 /* ------------------------------------------------ COCKTAIL NAME */
 .cocktailNameLi button {
-    height: 100%;
-    width: 100%;
-    border: 0;
-    color:#FFF;
-    background: none;
+	height: 100%;
+	width: 100%;
+	border: 0;
+	color: #fff;
+	background: none;
 }
-.cocktailNameLi.active button{
-    color:rgb(255, 255, 255);
-    font-weight: bold;
+.cocktailNameLi.active button {
+	color: rgb(255, 255, 255);
+	font-weight: bold;
 }
 #cocktailNameDiv {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    position: relative;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-width: none;
+	position: relative;
 }
 
 #cocktailNameDivSpinner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: transparent;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: transparent;
 }
-#cocktailNameDiv::-webkit-scrollbar{
-    display:none;
+#cocktailNameDiv::-webkit-scrollbar {
+	display: none;
 }
 /* ------------------------------------------------  */
 .custom-list img {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    max-height: 280px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-height: 280px;
 }
 
-#cocktailNameDiv::-webkit-scrollbar{
-    display:none;
+#cocktailNameDiv::-webkit-scrollbar {
+	display: none;
 }
 
-.recipe-description{
-    display:flex;
-    justify-content: center;
-    padding-bottom:20px;
+.recipe-description {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 20px;
 }
 
-.recipe-container{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-    font-family:'Source Code Pro';
-    color:#FFF;
+.recipe-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 20px;
+	font-family: "Source Code Pro";
+	color: #fff;
 }
 
 .navbar-color {
-    background-color: var(--background);
+	background-color: var(--background);
 }
 
-.button-container{
-    display:flex;
-    justify-content: center;
-    margin-top:30px;
+.button-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
 }
 
-.recipe-header h4{
-    display:inline-block;
-    font-family: 'Nova Square';
-    font-size:35px;
-
+.recipe-header h4 {
+	display: inline-block;
+	font-family: "Nova Square";
+	font-size: 35px;
 }
 
-.ingredients-container{
-    color:#FFF;
-    font-family: 'Source Code Pro';
-    font-weight: 300;
+.ingredients-container {
+	color: #fff;
+	font-family: "Source Code Pro";
+	font-weight: 300;
 }
-#ingredientsDiv tr:nth-child(odd){
-    background: var(--mainColor10);
-}
-
-#h3DrinkName{
-    color:yellow;
-    font-size: 35px;
-    font-family: 'Nova Square';
+#ingredientsDiv tr:nth-child(odd) {
+	background: var(--mainColor10);
 }
 
-#h3DrinkName p{
-    font-size: 20px;
+#h3DrinkName {
+	color: yellow;
+	font-size: 35px;
+	font-family: "Nova Square";
+}
+
+#h3DrinkName p {
+	font-size: 20px;
 }
 
 #imageWrapper {
-    position: relative;
+	position: relative;
 }
 
 #recipeImageSpinner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: transparent;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: transparent;
 }
 #recipeContainerSpinner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: transparent;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: transparent;
 }
 
-#favouriteDrinkButton {
-    width: 50px;
-    height: 50px;
-    background: none;
-    border: none;
-    transition: transform 0.3s ease-out;
-}
-#favouriteDrinkButton:hover {
-    transform: scale(1.5);
-    color:rgb(226, 43, 165);
-    transition: transform 0.3s ease-out;
-}
-
-.reloadBtn{
-    width: 75px;
-    padding:5px;
-    font-family: 'Nova Square';
-    color:black;
-    background-color:var(--mainColor60);
-    border-radius: 5px;
-    border: none;
-    position:fixed;
-    top:50%;
-    left:0;
+.reloadBtn {
+	width: 75px;
+	padding: 5px;
+	font-family: "Nova Square";
+	color: black;
+	background-color: var(--mainColor60);
+	border-radius: 5px;
+	border: none;
+	position: fixed;
+	top: 50%;
+	left: 0;
 }
 
-.reloadBtnBtm{
-    top:0;
-    left:0
-
+.reloadBtnBtm {
+	top: 0;
+	left: 0;
 }
 
 .reloadBtn:hover {
-    -webkit-transform: scale(1.05);
-    transition: transform 0.3s ease-out;
-    transform: scale(1.05);
-    cursor:pointer;  
+	-webkit-transform: scale(1.05);
+	transition: transform 0.3s ease-out;
+	transform: scale(1.05);
+	cursor: pointer;
 }
 
 .navbar {
-    --bs-navbar-active-color: rgba(11, 223, 36); 
-    --bs-navbar-brand-color: rgba(11, 223, 36); 
-    --bs-navbar-brand-hover-color: rgba(11, 223, 36); 
+	--bs-navbar-active-color: rgba(11, 223, 36);
+	--bs-navbar-brand-color: rgba(11, 223, 36);
+	--bs-navbar-brand-hover-color: rgba(11, 223, 36);
 }
 
 /* FAVOURITES BUTTON */
-  .heart {
-    width: 100px;
-    height: 100px;
-    background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
-    background-position: 0 0;
-    cursor: pointer;
-    transition: background-position 1s steps(28);
-    transition-duration: 0s;
+.heart {
+	width: 100px;
+	height: 100px;
+	background: url("https://cssanimation.rocks/images/posts/steps/heart.png")
+		no-repeat;
+	background-position: 0 0;
+	cursor: pointer;
+	transition: background-position 1s steps(28);
+	transition-duration: 0s;
 }
 
 .heart.is-active {
-      transition-duration: 1s;
-      background-position: -2800px 0;
+	transition-duration: 1s;
+	background-position: -2800px 0;
 }
-
-
-
-
