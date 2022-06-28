@@ -59,13 +59,13 @@ $(function () {
 			.addClass("bi-suit-heart");
 	});
 	function getIngredientPrice(ingredientName,callIngredientName,measure) {
-		return fetch(`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}`)
+		return fetch(`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}&sorttype=relevance`)
 		.then(response=>response.json())
 		.then(response=>{
 			if (response.products !== null){
 				var randomItemIndex = Math.floor(Math.random() * response.Products.length);
-				var randomProduct = response.Products[randomItemIndex];
-				
+				//var randomProduct = response.Products[randomItemIndex];
+				var randomProduct = response.Products[0];
 				// need to send these two straight back so they are in scope for the calling function
 				randomProduct["myMeasure"] = measure;
 				randomProduct["callIngredientName"] = callIngredientName;
