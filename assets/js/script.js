@@ -244,7 +244,10 @@ $(function () {
 
 						// get the price of this ingredient, also send measure to get it back again, unless it's ice
 						if (callIngredientName !== "Ice") {
-							getIngredientPrice(response.data.drinks[0]["strIngredient" + i], callIngredientName, measure)
+							if (callIngredientName === "Roses sweetened lime juice"){
+								callIngredientName = "Lime Juice";
+							}
+							getIngredientPrice(callIngredientName, callIngredientName, measure)
 							.then((ingredient) => {
 
 								// set up the tr
