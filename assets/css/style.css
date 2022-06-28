@@ -273,5 +273,11 @@ body{
     cursor:pointer;  
 }
 
+.navbar {
+    --bs-navbar-active-color: rgba(11, 223, 36); 
+    --bs-navbar-brand-color: rgba(11, 223, 36); 
+    --bs-navbar-brand-hover-color: rgba(11, 223, 36); 
+}
+
 /* ABOUT PAGE */
 
