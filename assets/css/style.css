@@ -91,15 +91,29 @@ body {
 	max-width: 100%;
 }
 
-.favourites-header {
-	display: flex;
-	justify-content: center;
-}
 
 .favourites-desc {
 	display: flex;
 	justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  max-width: 100%;
+  padding-bottom: 40px;
+  padding-top: 40px;
+  margin:70px;
+  font-family: 'Source Code Pro';
 }
+
+.favourites-header{
+    display: flex;
+    justify-content: center;
+    font-family: 'Nova Square';
+    padding-bottom: 20px;
+    font-size:45px;
+}
+
+
+
 /* ------------------------------------------------ ALCOHOL TYPE */
 .alcoholTypeLi button {
 	height: 100%;
@@ -133,15 +147,19 @@ body {
 }
 
 #cocktailNameDivSpinner {
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    background: transparent;
+
 }
 #cocktailNameDiv::-webkit-scrollbar {
 	display: none;
 }
+
 /* ------------------------------------------------  */
+
 .custom-list img {
 	display: flex;
 	justify-content: center;
@@ -213,11 +231,27 @@ body {
 	left: 0;
 	background: transparent;
 }
+
 #recipeContainerSpinner {
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    background: transparent;
+}
+
+#favouriteDrinkButton {
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+    transition: transform 0.3s ease-out;
+}
+#favouriteDrinkButton:hover {
+    transform: scale(1.5);
+    color:rgb(226, 43, 165);
+    transition: transform 0.3s ease-out;
+
 }
 
 .reloadBtn {
