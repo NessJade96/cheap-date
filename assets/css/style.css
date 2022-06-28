@@ -201,6 +201,9 @@ body{
     font-family: 'Source Code Pro';
     font-weight: 300;
 }
+#ingredientsDiv tr:nth-child(odd){
+    background: var(--mainColor10);
+}
 
 #h3DrinkName{
     color:yellow;
