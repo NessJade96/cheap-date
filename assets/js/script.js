@@ -1,4 +1,13 @@
 $(function () {
+
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var drink = url.searchParams.get("drink");
+	if (drink != null && drink !== "undefined" && drink != "") {
+		getRecipe(drink,false);
+	}
+
+
 	//clickhandler to reload the page -> instead of reload page - empty the html from the two drink divs - element.empty() alcoholTypeLi active.
 	$(".reloadBtn").on("click", function () {
 		$("#cocktailNameUl").empty();
@@ -133,7 +142,15 @@ $(function () {
 			});
 	}
 
-	function getRecipe(drinkId) {
+	function getRecipe(drinkId,isInt) {
+		if (isInt) {
+			drinkId = parseInt(drinkId);
+		}
+		else {
+
+			// this means the call came from the fav page, we need to get the id of this drink
+			console.log(drinkId);
+		}
 		// drink ID is a string ie "11007"
 
 		// api key for dev is "1"
@@ -143,9 +160,9 @@ $(function () {
 		var returnValue = {};
 
 		// api endpoint
-		var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/lookup.php?i=${parseInt(
+		var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/lookup.php?i=${
 			drinkId
-		)}`;
+		}`;
 
 		// and return a promise containing returnValue object
 		return fetch(url)
@@ -228,7 +245,7 @@ $(function () {
 		$("#recipeContainerSpinner").removeClass("d-none").addClass("d-flex");
 
 		// api call to get the recipe of the selected cocktail
-		getRecipe(e.target.id).then((response) => {
+		getRecipe(e.target.id, true).then((response) => {
 			if (response.status === "success") {
 				// empty ingredients div
 				$("#ingredientsDiv").empty();
@@ -338,11 +355,4 @@ $(function () {
 			}
 		});
 	});
-	// FAVOURITES BUTTON FUNCTION
-	$(".heart").on("click", function () {
-		$(this).toggleClass("is-active");
-	});
 });
-
-
-
