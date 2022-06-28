@@ -1,145 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<!-- import css files -->
-		<link href="./assets/css/reset.css" rel="stylesheet" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
-		/>
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-			crossorigin="anonymous"
-		/>
-		<link type="text/css" href="./assets/css/style.css" rel="stylesheet" />
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<!-- import script files -->
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-		<script src="./assets/js/script.js"></script>
+	<!-- import css files -->
+	<link href="./assets/css/reset.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+	<link type="text/css" href="./assets/css/style.css" rel="stylesheet" />
 
-		<title>Cheap Date</title>
-	</head>
-	<body>
-		<!--Nav bar-->
+	<!-- import script files -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	<script src="./assets/js/script.js"></script>
+
+	<title>Cheap Date</title>
+</head>
+
+<body>
+	<!--Nav bar-->
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-color">
+			<a class="navbar-brand custom-brand" href="#">Cheap Date</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarText"
+				aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="custom-nav collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link custom-link" href="./about.html">about<span class="sr-only"></span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link custom-link" href="./favourites.html">favourites</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link custom-link" href="./index.html">home</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<!--'Your Bar' element-->
+
+
+
+	<section class="bar-container d-flex p-2 text-center align-items-center flex-column">
 		<div>
-			<nav
-				class="navbar navbar-expand-lg navbar-bg navbar-light bg-light"
-			>
-				<a class="navbar-brand custom-brand" href="./index.html"
-					>Cheap Date</a
-				>
-				<button
-					class="navbar-toggler"
-					type="button"
-					data-bs-toggle="collapse"
-					data-target="#navbarText"
-					aria-controls="navbarText"
-					aria-expanded="false"
-					aria-label="Toggle navigation"
-				>
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div
-					class="custom-nav collapse navbar-collapse"
-					id="navbarText"
-				>
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link custom-link" href="./about"
-								>about<span class="sr-only"></span
-							></a>
-						</li>
-						<li class="nav-item">
-							<a
-								class="nav-link custom-link"
-								href="./favourites.html"
-								>favourites</a
-							>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link custom-link" href="./index.html"
-								>home</a
-							>
-						</li>
-					</ul>
-				</div>
-			</nav>
+			<h1 class="bar-header text-white">your bar</h1>
 		</div>
-		<!--'Your Bar' element-->
-		<section class="bar-container">
-			<div>
-				<h1 class="bar-header">Your Bar</h1>
-			</div>
-			<div class="bar-desc">
-				<p>
-					Add the ingredients you'd like to use and we'll display the
-					cocktails you can make. You can also add them to your
-					favourites so you don't have to go through this process
-					every time!
-				</p>
-			</div>
-		</section>
+		<div class="d-flex p-2 text-white col-sm-12">Add the ingredients you'd like to use and we'll display the
+			cocktails you can make. You can
+			also add them to your favourites so you don't have to go through this process every time!
+		</div>
+	</section>
 
-		<div class="main-container">
-			<ul class="list-group custom-list col-sm" id="alcoholTypeUl"></ul>
-			<div class="custom-list" id="cocktailNameDiv">
-				<div
-					id="cocktailNameDivSpinner"
-					class="flex-row justify-content-center align-items-center d-none w-100 h-100"
-				>
-					<div class="spinner-border" role="status"></div>
-				</div>
-				<ul
-					class="list-group custom-list col-sm"
-					id="cocktailNameUl"
-				></ul>
+	<div class="main-container d-flex">
+		<!--COLUMN 1-->
+		<ul class="list-group custom-list col-10 col-md-6 m-1" id="alcoholTypeUl"></ul>
+		<!--COLUMN 2-->
+		<div class="custom-list col-10 col-md-6 m-1" id="cocktailNameDiv">
+			<div id="cocktailNameDivSpinner" class="flex-row 
+                 justify-content-center 
+                 align-items-center 
+                 d-none 
+                 w-100 
+                 h-100">
+				<div class="spinner-border" role="status"></div>
 			</div>
-			<div class="list-group custom-list col-sm" id="imageWrapper">
-				<div
-					id="recipeImageSpinner"
-					class="flex-row justify-content-center align-items-center d-none w-100 h-100"
-				>
-					<div class="spinner-border" role="status"></div>
-				</div>
-				<div class="list-group custom-list col-sm" id="imageDiv"></div>
+
+			<ul class="list-group custom-list w-100" id="cocktailNameUl"></ul>
+		</div>
+		<!--COLUMN 3-->
+		<div class="list-group custom-list col-10 col-md-6 m-1" id="imageWrapper">
+			<div id="recipeImageSpinner" class="
+                 flex-row 
+                 justify-content-center 
+                 align-items-center 
+                 d-none 
+                 w-100 
+                 h-100">
+				<div class="spinner-border" role="status"></div>
+			</div>
+			<div class="list-group custom-list" id="imageDiv"></div>
+		</div>
+	</div>
+
+	<section>
+		<div class="recipe-container text-center">
+			<div id="recipeContainerSpinner" class="
+					flex-row
+					justify-content-center
+					align-items-center
+					d-none
+					w-100
+					h-100">
+				<div class="spinner-border" role="status"></div>
+			</div>
+			<div class="recipe-header w-100 text-center">
+				<span id="recipeHeader"></span>
+			</div>
+			<div class="recipe-description text-center w-50 col-8">
+				<span id="recipeSpan"></span>
 			</div>
 		</div>
-		<section>
-			<div class="recipe-container">
-				<div
-					id="recipeContainerSpinner"
-					class="flex-row justify-content-center align-items-center d-none w-100 h-100"
-				>
-					<div class="spinner-border" role="status"></div>
-				</div>
-				<div class="recipe-header w-100">
-					<span id="recipeHeader"></span>
-				</div>
-				<div class="recipe-description col-8">
-					<span id="recipeSpan"></span>
-				</div>
+	</section>
+	<section>
+		<div class="ingredients-container">
+			<div class="list-group text-center" id="ingredientsDiv"></div>
+		</div>
+	</section>
+	<section>
+		<div class="button-container">
+			<div>
+				<button class="reloadBtn d-md-none" id="reloadPage">New</button>
+				<button class="reloadBtn reloadBtnBtm d-md-block d-none" id="reloadPage">New</button>
+				<button id="favouriteDrinkButton"><i id="favouriteDrinkIcon" class="bi bi-suit-heart"></i></button>
 			</div>
-		</section>
-		<section>
-			<div class="ingredients-container">
-				<div class="list-group" id="ingredientsDiv"></div>
-			</div>
-		</section>
-		<section>
-			<div class="button-container">
-				<div>
-					<button class="reloadBtn" id="reloadPage">New</button>
-					<button id="favouriteDrinkButton"
-						><i id="favouriteDrinkIcon" class="bi bi-suit-heart"></i
-					></button>
-				</div>
-			</div>
-		</section>
-	</body>
+		</div>
+	</section>
+
+</body>
+
 </html>

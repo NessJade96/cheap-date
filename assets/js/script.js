@@ -22,7 +22,7 @@ $(function () {
 		$("#favouritesPage").addClass("hideHTML"); //Names for the divs that wrap the about and favourites pages // need to add in css class "hideHTML" to hide display
 	});
 	//clickhandler to reload the page -> instead of reload page - empty the html from the two drink divs - element.empty() alcoholTypeLi active.
-	$("#reloadPage").on("click", function () {
+	$(".reloadBtn").on("click", function () {
 		$("#cocktailNameUl").empty();
 		$("#imageDiv").empty();
 		$("#ingredientsDiv").empty();
@@ -58,10 +58,26 @@ $(function () {
 			.removeClass("bi-suit-heart-fill")
 			.addClass("bi-suit-heart");
 	});
-
+	function getIngredientPrice(ingredientName,callIngredientName,measure) {
+		return fetch(`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${ingredientName}`)
+		.then(response=>response.json())
+		.then(response=>{
+			if (response.products !== null){
+				var randomItemIndex = Math.floor(Math.random() * response.Products.length);
+				var randomProduct = response.Products[randomItemIndex];
+				
+				// need to send these two straight back so they are in scope for the calling function
+				randomProduct["myMeasure"] = measure;
+				randomProduct["callIngredientName"] = callIngredientName;
+				return randomProduct;
+			}
+			else return null;
+		});		
+}
+	
 	function addAlcoholNames() {
 		var alcoholNamesArray = [
-			"Absinth",
+			"Absinthe",
 			"Tequila",
 			"Gin",
 			"Vodka",
@@ -71,6 +87,7 @@ $(function () {
 			"Beer",
 			"Wine",
 			"Champagne",
+			"Cognac"
 		];
 		var html = ``;
 		alcoholNamesArray.map((alcohol) => {
@@ -145,15 +162,6 @@ $(function () {
 			});
 	}
 
-	//https://spoonacular.com/food-api/
-	// fetch (`https://api.spoonacular.com/food/ingredients/search?apiKey=8745aeb27da04cd69ab054ceafed0495&query=Vodka`)
-	// .then((response) => response.json())
-	// 			.then((data) => {
-	// 				console.log(data);
-	// 			})
-	// 			.catch((error) => {
-	// 				console.log(error);
-	// 			});
 	// add listener to alcoholTypeUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
 	$("#alcoholTypeUl").on("click", function (e) {
 		// prevent default
@@ -167,7 +175,7 @@ $(function () {
 
 		// empty the cocktailNameUl	so we can append new items there
 		$("#cocktailNameUl").empty();
-		$("#cocktailNameUl").css({ width: "300px" });
+
 		// turn on spinner
 		$("#cocktailNameDivSpinner").removeClass("d-none").addClass("d-flex");
 
@@ -198,6 +206,7 @@ $(function () {
 
 	// event listener for the cocktailNameUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
 	$("#cocktailNameUl").on("click", function (e) {
+
 		// prevent default
 		e.preventDefault();
 
@@ -217,25 +226,63 @@ $(function () {
 		// api call to get the recipe of the selected cocktail
 		getRecipe(e.target.id).then((response) => {
 			if (response.status === "success") {
-				console.log(response.data);
 
 				// empty ingredients div
 				$("#ingredientsDiv").empty();
+
 				// setup ingredients string
-				var ingredientsHTML = `<ul>`;
+				$("#ingredientsDiv").append(`<table id="ingredientsTable">`);
 				for (var i = 1; i <= 15; i++) {
+					var ingredientTr = ``;
+					
+					// need to send measure in getIngredientPrice function call to get it back again in scope
+					// there must be a better way to do this...
+					var measure = response.data.drinks[0]["strMeasure" + i];
+					var callIngredientName = response.data.drinks[0]["strIngredient" + i];
+					// The drinks object will include all 15 ingredients, the unsed ones will be null, we don't want those
 					if (response.data.drinks[0]["strIngredient" + i] !== null) {
-						ingredientsHTML += `<li>${
-							response.data.drinks[0]["strIngredient" + i]
-						} ${
-							response.data.drinks[0]["strMeasure" + i] === null
-								? ""
-								: response.data.drinks[0]["strMeasure" + i]
-						}</li>`;
+
+						// get the price of this ingredient, also send measure to get it back again, unless it's ice
+						if (callIngredientName !== "Ice") {
+							getIngredientPrice(response.data.drinks[0]["strIngredient" + i], callIngredientName, measure)
+							.then((ingredient) => {
+
+								// set up the tr
+								ingredientTr = ``;
+								var thisIngredient = ingredient.Products[0];
+								ingredientTr += `<tr>
+								<td>${ingredient.callIngredientName}</td>
+								<td>${thisIngredient.Name}</td>
+								<td>`;
+
+								// sometimes the price comes back null, don't print that
+								if (thisIngredient.Price !== null) { 
+									ingredientTr += `$${thisIngredient.Price}</td>`;
+								}
+								ingredientTr += `<td>${ingredient.myMeasure}</td></tr>`;	
+							})
+							.then(() => {
+
+								// append the tr to ingredientsTable
+								$("#ingredientsTable").append(ingredientTr);
+							});
+						}
+						else {
+							if (callIngredientName === "Ice") {
+								ingredientTr = ``;
+								ingredientTr += `<tr>
+								<td>Ice</td>
+								<td></td>
+								<td></td>
+								<td>${measure}</td></tr>`;
+								$("#ingredientsTable").append(ingredientTr);	
+							}
+						}
 					}
 				}
-				ingredientsHTML += `</ul>`;
-				$("#ingredientsDiv").append(ingredientsHTML);
+				
+
+				
 
 				// print the image, name and instructions to recipeDiv
 				$("#imageDiv").html(
