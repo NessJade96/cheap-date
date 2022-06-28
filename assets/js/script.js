@@ -59,7 +59,7 @@ $(function () {
 			.addClass("bi-suit-heart");
 	});
 	function getIngredientPrice(ingredientName,callIngredientName,measure) {
-		return fetch(`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}`)
+		return fetch(`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${ingredientName}`)
 		.then(response=>response.json())
 		.then(response=>{
 			if (response.products !== null){
@@ -231,7 +231,7 @@ $(function () {
 				$("#ingredientsDiv").empty();
 
 				// setup ingredients string
-				$("#ingredientsDiv").append(`<table id="ingredientsTable">`);
+				$("#ingredientsDiv").append(`<table id="ingredientsTable" class="col-10">`);
 				for (var i = 1; i <= 15; i++) {
 					var ingredientTr = ``;
 					
@@ -239,15 +239,12 @@ $(function () {
 					// there must be a better way to do this...
 					var measure = response.data.drinks[0]["strMeasure" + i];
 					var callIngredientName = response.data.drinks[0]["strIngredient" + i];
-					// The drinks object will include all 15 ingredients, the unsed ones will be null or "", we don't want those
-					if (response.data.drinks[0]["strIngredient" + i] !== null && response.data.drinks[0]["strIngredient" + i] !== "") {
+					// The drinks object will include all 15 ingredients, the unsed ones will be null, we don't want those
+					if (response.data.drinks[0]["strIngredient" + i] !== null) {
 
 						// get the price of this ingredient, also send measure to get it back again, unless it's ice
 						if (callIngredientName !== "Ice") {
-							if (callIngredientName === "Roses sweetened lime juice"){
-								callIngredientName = "Lime Juice";
-							}
-							getIngredientPrice(callIngredientName, callIngredientName, measure)
+							getIngredientPrice(response.data.drinks[0]["strIngredient" + i], callIngredientName, measure)
 							.then((ingredient) => {
 
 								// set up the tr
