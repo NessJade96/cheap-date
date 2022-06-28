@@ -132,18 +132,32 @@ $(function () {
 	}
 
 	function getRecipe(drinkId,isInt) {
+		// api key for dev is "1"
+		var apiKey = "1";
 		if (isInt) {
 			drinkId = parseInt(drinkId);
 		}
 		else {
 
 			// this means the call came from the fav page, we need to get the id of this drink
-			console.log(drinkId);
+			var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/search.php?s=${drinkId}`;
+			fetch(url)
+				.then((response) => response.json())
+				.then((data) => {
+
+					// then create a button and append it
+					$("#cocktailNameUl").append(`<li class="list-group-item custom-item cocktailNameLi" id="${data.drinks[0].idDrink}Li"><button class="drinkName" id="${data.drinks[0].idDrink}">${data.drinks[0].strDrink}</button></li>`);
+					
+					// then fake click it
+					$("#"+data.drinks[0].idDrink).trigger("click");
+				})
+				.catch((error) => {
+					console.log("getCocktails id from string response error");
+				});
+			
 		}
 		// drink ID is a string ie "11007"
 
-		// api key for dev is "1"
-		var apiKey = "1";
 
 		// we are going to return a promise containing this object
 		var returnValue = {};
