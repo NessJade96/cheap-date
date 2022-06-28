@@ -59,7 +59,7 @@ $(function () {
 			.addClass("bi-suit-heart");
 	});
 	function getIngredientPrice(ingredientName,callIngredientName,measure) {
-		return fetch(`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${ingredientName}`)
+		return fetch(`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}`)
 		.then(response=>response.json())
 		.then(response=>{
 			if (response.products !== null){
