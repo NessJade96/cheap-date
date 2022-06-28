@@ -283,9 +283,6 @@ $(function () {
 						}
 					}
 				}
-				
-
-				
 
 				// print the image, name and instructions to recipeDiv
 				$("#imageDiv").html(
