@@ -243,7 +243,7 @@ $(function () {
 					if (response.data.drinks[0]["strIngredient" + i] !== null && response.data.drinks[0]["strIngredient" + i] !== "") {
 
 						// get the price of this ingredient, also send measure to get it back again, unless it's ice
-						if (callIngredientName !== "Ice") {
+						if (callIngredientName !== "Ice" && callIngredientName !== "Absinthe") {
 							if (callIngredientName === "Roses sweetened lime juice"){
 								callIngredientName = "Lime Juice";
 							}
@@ -271,15 +271,27 @@ $(function () {
 							});
 						}
 						else {
-							if (callIngredientName === "Ice") {
-								ingredientTr = ``;
-								ingredientTr += `<tr>
-								<td>Ice</td>
-								<td></td>
-								<td></td>
-								<td>${measure}</td></tr>`;
-								$("#ingredientsTable").append(ingredientTr);	
+							ingredientTr = ``;
+								ingredientTr += `<tr>`;
+							switch (callIngredientName) {
+								case "Ice":
+									ingredientTr += `
+										<td>Ice</td>
+										<td>From your freezer</td>
+										<td>FREE!</td>
+										<td>${measure}</td></tr>`;
+									break;
+								case "Absinthe":
+									ingredientTr += `
+										<td>Absinthe</td>
+										<td>Green Fairy Absinth 500Ml</td>
+										<td>$75.99</td>
+										<td>${measure}</td></tr>`;
+									break;
 							}
+							
+							$("#ingredientsTable").append(ingredientTr);	
+							
 						}
 					}
 				}
