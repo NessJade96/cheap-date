@@ -141,6 +141,7 @@ body{
     position: absolute;
     top: 0;
     left: 0;
+    color: #fff;
     background: transparent;
 }
 #cocktailNameDiv::-webkit-scrollbar{
@@ -216,13 +217,15 @@ body{
 #recipeImageSpinner {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0;  
+    color: white;
     background: transparent;
 }
 #recipeContainerSpinner {
     position: absolute;
     top: 0;
     left: 0;
+    color: #fff;
     background: transparent;
 }
 
