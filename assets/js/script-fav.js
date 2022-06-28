@@ -9,9 +9,9 @@ $(function () {
 
 			if (cocktail != "") {
 				favouriteDrinkItem =
-					"<div><button id='favouriteDrinkItem' class='cocktailFavDrinksButton'>" +
+					"<li class='col cocktailNameLi list-group-item d-flex justify-content-between align-items-center cocktailFavDrinksButton custom-item'><button id='favouriteDrinkItem'>" +
 					cocktail +
-					"</button><button class='removeFavCocktail'> x</button></div>";
+					"</button><button class='col-sm col-auto removeFavCocktail'> x</button></li>";
 				$("#cocktailFavDiv").append(favouriteDrinkItem);
 			}
 		});
