@@ -1,26 +1,4 @@
 $(function () {
-	//clickhandler on the nav bar:
-	$("#aboutButtonNav").on("click", function () {
-		console.log("takes you to the about page");
-		//Once the html is complete this funciton will hide all the pages, then make the about page visible.
-		$(this).addClass("displayHTML"); //need to add in css to show display
-		$("#homePage").addClass("hideHTML");
-		$("#favouritesPage").addClass("hideHTML"); //Names for the divs that wrap the home and favourites pages // need to add in css class "hideHTML" to hide display
-	});
-	//clickhandler on the nav bar:
-	$("#favouritesButtonNav").on("click", function () {
-		console.log("takes you to the favourites page");
-		$(this).addClass("displayHTML"); //need to add in css to show display
-		$("#homePage").addClass("hideHTML");
-		$("#aboutPage").addClass("hideHTML"); //Names for the divs that wrap the home and about pages // need to add in css class "hideHTML" to hide display
-	});
-	//clickhandler on the nav bar:
-	$("#homeButtonNav").on("click", function () {
-		console.log("takes you to the home page");
-		$(this).addClass("displayHTML"); //need to add in css to show display
-		$("#aboutPage").addClass("hideHTML");
-		$("#favouritesPage").addClass("hideHTML"); //Names for the divs that wrap the about and favourites pages // need to add in css class "hideHTML" to hide display
-	});
 	//clickhandler to reload the page -> instead of reload page - empty the html from the two drink divs - element.empty() alcoholTypeLi active.
 	$(".reloadBtn").on("click", function () {
 		$("#cocktailNameUl").empty();
@@ -58,7 +36,7 @@ $(function () {
 			.removeClass("bi-suit-heart-fill")
 			.addClass("bi-suit-heart");
 	});
-	
+
 	function addAlcoholNames() {
 		var alcoholNamesArray = [
 			"Absinthe",
@@ -71,7 +49,7 @@ $(function () {
 			"Beer",
 			"Wine",
 			"Champagne",
-			"Cognac"
+			"Cognac",
 		];
 		var html = ``;
 		alcoholNamesArray.map((alcohol) => {
@@ -82,41 +60,46 @@ $(function () {
 	}
 	addAlcoholNames();
 
-	function getIngredientPrice(ingredientName,callIngredientName,measure) {
-		return fetch(`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}`)
-		.then(response=>response.json())
-		.then(response=>{
-			if (response.products !== null){
-				var randomItemIndex = Math.floor(Math.random() * response.Products.length);
-				var randomProduct = response.Products[randomItemIndex];
-				
-				// need to send these two straight back so they are in scope for the calling function
-				randomProduct["myMeasure"] = measure;
-				randomProduct["callIngredientName"] = callIngredientName;
-				
-				returnValue = {
-					status: "success",
-					data: randomProduct
-				}
+	function getIngredientPrice(ingredientName, callIngredientName, measure) {
+		return fetch(
+			`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(
+				ingredientName
+			)}`
+		)
+			.then((response) => response.json())
+			.then((response) => {
+				if (response.products !== null) {
+					var randomItemIndex = Math.floor(
+						Math.random() * response.Products.length
+					);
+					var randomProduct = response.Products[randomItemIndex];
 
-				return returnValue;
-			}
-			else {
+					// need to send these two straight back so they are in scope for the calling function
+					randomProduct["myMeasure"] = measure;
+					randomProduct["callIngredientName"] = callIngredientName;
+
+					returnValue = {
+						status: "success",
+						data: randomProduct,
+					};
+
+					return returnValue;
+				} else {
+					returnValue = {
+						status: "error",
+						data: null,
+					};
+
+					return returnValue;
+				}
+			})
+			.catch((error) => {
 				returnValue = {
 					status: "error",
-					data: null
-				}
-
+					errorMessage: "getIngredientPrice response error",
+				};
 				return returnValue;
-			}
-		})
-		.catch((error) => {
-			returnValue = {
-				status: "error",
-				errorMessage: "getIngredientPrice response error",
-			};
-			return returnValue;
-		});		
+			});
 	}
 	// call this function with the value from the search text input on click listener
 	function getCocktails(cocktailAlcoholType) {
@@ -228,7 +211,6 @@ $(function () {
 
 	// event listener for the cocktailNameUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
 	$("#cocktailNameUl").on("click", function (e) {
-
 		// prevent default
 		e.preventDefault();
 
@@ -248,7 +230,6 @@ $(function () {
 		// api call to get the recipe of the selected cocktail
 		getRecipe(e.target.id).then((response) => {
 			if (response.status === "success") {
-
 				// empty ingredients div
 				$("#ingredientsDiv").empty();
 
@@ -256,51 +237,62 @@ $(function () {
 				$("#ingredientsDiv").append(`<table id="ingredientsTable">`);
 				for (var i = 1; i <= 15; i++) {
 					var ingredientTr = ``;
-					
+
 					// need to send measure in getIngredientPrice function call to get it back again in scope
 					// there must be a better way to do this...
 					var measure = response.data.drinks[0]["strMeasure" + i];
-					var callIngredientName = response.data.drinks[0]["strIngredient" + i];
+					var callIngredientName =
+						response.data.drinks[0]["strIngredient" + i];
 					// The drinks object will include all 15 ingredients, the unsed ones will be null or "", we don't want those
-					if (response.data.drinks[0]["strIngredient" + i] !== null && response.data.drinks[0]["strIngredient" + i] !== "") {
-
+					if (
+						response.data.drinks[0]["strIngredient" + i] !== null &&
+						response.data.drinks[0]["strIngredient" + i] !== ""
+					) {
 						// get the price of this ingredient, also send measure to get it back again, unless it's ice
-						if (callIngredientName !== "Ice" && callIngredientName !== "Absinthe") {
-							if (callIngredientName === "Roses sweetened lime juice"){
+						if (
+							callIngredientName !== "Ice" &&
+							callIngredientName !== "Absinthe"
+						) {
+							if (
+								callIngredientName ===
+								"Roses sweetened lime juice"
+							) {
 								callIngredientName = "Lime Juice";
 							}
-							getIngredientPrice(callIngredientName, callIngredientName, measure)
-							.then((response) => {
-								console.log("response", response);
-								if (response.status === "success"){
-									console.log("success", response);
-									// set up the tr
-									ingredientTr = ``;
-									var thisIngredient = response.data.Products[0];
-									ingredientTr += `<tr>
+							getIngredientPrice(
+								callIngredientName,
+								callIngredientName,
+								measure
+							)
+								.then((response) => {
+									console.log("response", response);
+									if (response.status === "success") {
+										console.log("success", response);
+										// set up the tr
+										ingredientTr = ``;
+										var thisIngredient =
+											response.data.Products[0];
+										ingredientTr += `<tr>
 									<td>${response.data.callIngredientName}</td>
 									<td>${thisIngredient.Name}</td>
 									<td>`;
 
-									// sometimes the price comes back null, don't print that
-									if (thisIngredient.Price !== null) { 
-										ingredientTr += `$${thisIngredient.Price}</td>`;
+										// sometimes the price comes back null, don't print that
+										if (thisIngredient.Price !== null) {
+											ingredientTr += `$${thisIngredient.Price}</td>`;
+										}
+										ingredientTr += `<td>${response.data.myMeasure}</td></tr>`;
+									} else {
+										ingredientTr = `<tr><td colspan="4">${response.errorMessage}</td></tr>`;
 									}
-									ingredientTr += `<td>${response.data.myMeasure}</td></tr>`;
-								}
-								else {
-									ingredientTr = `<tr><td colspan="4">${response.errorMessage}</td></tr>`;
-								}	
-							})
-							.then(() => {
-
-								// append the tr to ingredientsTable
-								$("#ingredientsTable").append(ingredientTr);
-							});
-						}
-						else {
+								})
+								.then(() => {
+									// append the tr to ingredientsTable
+									$("#ingredientsTable").append(ingredientTr);
+								});
+						} else {
 							ingredientTr = ``;
-								ingredientTr += `<tr>`;
+							ingredientTr += `<tr>`;
 							switch (callIngredientName) {
 								case "Ice":
 									ingredientTr += `
@@ -317,9 +309,8 @@ $(function () {
 										<td>${measure}</td></tr>`;
 									break;
 							}
-							
-							$("#ingredientsTable").append(ingredientTr);	
-							
+
+							$("#ingredientsTable").append(ingredientTr);
 						}
 					}
 				}
