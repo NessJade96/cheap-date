@@ -226,19 +226,6 @@ body{
     background: transparent;
 }
 
-#favouriteDrinkButton {
-    width: 50px;
-    height: 50px;
-    background: none;
-    border: none;
-    transition: transform 0.3s ease-out;
-}
-#favouriteDrinkButton:hover {
-    transform: scale(1.5);
-    color:rgb(226, 43, 165);
-    transition: transform 0.3s ease-out;
-}
-
 .reloadBtn{
     width: 75px;
     padding:5px;
@@ -247,15 +234,9 @@ body{
     background-color:var(--mainColor60);
     border-radius: 5px;
     border: none;
-    position:fixed;
-    top:50%;
-    left:0;
-}
-
-.reloadBtnBtm{
-    top:0;
-    left:0
-
+    position:absolute;
+    top:180px;
+    left:65px;
 }
 
 .reloadBtn:hover {
@@ -287,6 +268,25 @@ body{
       background-position: -2800px 0;
 }
 
+
+/* MEDIA QUERIES FOR NEW BUTTON */
+@media screen and (max-width: 760px) {
+
+   .reloadBtn{
+    top:100px;
+    left:40%;
+    right:50%;
+    
+   }
+
+   .reloadBtn{
+    margin:auto;
+    width:20%
+   }
+
+
+
+}
 
 
 
