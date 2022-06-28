@@ -87,6 +87,7 @@ body{
 
 .bar-header {
     font-family: 'Nova Square';
+    padding-bottom: 20px;
     font-size:45px;
 }
 
@@ -164,6 +165,7 @@ body{
 .recipe-description{
     display:flex;
     justify-content: center;
+    padding-bottom:20px;
 }
 
 
@@ -174,7 +176,6 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 100px;
-    text-align: center;
     font-family:'Source Code Pro';
     color:#FFF;
 }
@@ -291,3 +292,7 @@ body{
     }
 
 } */
+
+
+/* TESTING NEW BUTON */
+
