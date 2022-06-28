@@ -308,3 +308,10 @@ $(function () {
 		});
 	});
 });
+
+// FAVOURITES BUTTON FUNCTION
+$(function() {
+	$(".heart").on("click", function() {
+	  $(this).toggleClass("is-active");
+	});
+  });
