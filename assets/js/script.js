@@ -271,9 +271,9 @@ $(function () {
 							}
 							getIngredientPrice(callIngredientName, callIngredientName, measure)
 							.then((response) => {
-								console.log("response", response);
+								
 								if (response.status === "success"){
-									console.log("success", response);
+									
 									// set up the tr
 									ingredientTr = ``;
 									var thisIngredient = response.data.Products[0];
