@@ -26,17 +26,6 @@ $(function () {
 		);
 	});
 
-	$("#favouriteDrinkButton").on("mouseover", function () {
-		$("#favouriteDrinkIcon")
-			.removeClass("bi-suit-heart")
-			.addClass("bi-suit-heart-fill");
-	});
-	$("#favouriteDrinkButton").on("mouseout", function () {
-		$("#favouriteDrinkIcon")
-			.removeClass("bi-suit-heart-fill")
-			.addClass("bi-suit-heart");
-	});
-
 	function addAlcoholNames() {
 		var alcoholNamesArray = [
 			"Absinthe",
@@ -343,6 +332,3 @@ $(function () {
 		$(this).toggleClass("is-active");
 	});
 });
-
-
-
