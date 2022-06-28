@@ -58,22 +58,6 @@ $(function () {
 			.removeClass("bi-suit-heart-fill")
 			.addClass("bi-suit-heart");
 	});
-	function getIngredientPrice(ingredientName,callIngredientName,measure) {
-		return fetch(`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}`)
-		.then(response=>response.json())
-		.then(response=>{
-			if (response.products !== null){
-				var randomItemIndex = Math.floor(Math.random() * response.Products.length);
-				var randomProduct = response.Products[randomItemIndex];
-				
-				// need to send these two straight back so they are in scope for the calling function
-				randomProduct["myMeasure"] = measure;
-				randomProduct["callIngredientName"] = callIngredientName;
-				return randomProduct;
-			}
-			else return null;
-		});		
-}
 	
 	function addAlcoholNames() {
 		var alcoholNamesArray = [
@@ -98,6 +82,42 @@ $(function () {
 	}
 	addAlcoholNames();
 
+	function getIngredientPrice(ingredientName,callIngredientName,measure) {
+		return fetch(`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}`)
+		.then(response=>response.json())
+		.then(response=>{
+			if (response.products !== null){
+				var randomItemIndex = Math.floor(Math.random() * response.Products.length);
+				var randomProduct = response.Products[randomItemIndex];
+				
+				// need to send these two straight back so they are in scope for the calling function
+				randomProduct["myMeasure"] = measure;
+				randomProduct["callIngredientName"] = callIngredientName;
+				
+				returnValue = {
+					status: "success",
+					data: randomProduct
+				}
+
+				return returnValue;
+			}
+			else {
+				returnValue = {
+					status: "error",
+					data: null
+				}
+
+				return returnValue;
+			}
+		})
+		.catch((error) => {
+			returnValue = {
+				status: "error",
+				errorMessage: "getIngredientPrice response error",
+			};
+			return returnValue;
+		});		
+	}
 	// call this function with the value from the search text input on click listener
 	function getCocktails(cocktailAlcoholType) {
 		// is a string, ie "Rum"
@@ -117,12 +137,13 @@ $(function () {
 					status: "success",
 					data: data,
 				};
+
 				return returnValue;
 			})
 			.catch((error) => {
 				returnValue = {
 					status: "error",
-					errorMessage: error,
+					errorMessage: "getCocktails response error",
 				};
 
 				return returnValue;
@@ -156,8 +177,9 @@ $(function () {
 			.catch((error) => {
 				returnValue = {
 					status: "error",
-					errorMessage: error,
+					errorMessage: "getRecipe response error",
 				};
+
 				return returnValue;
 			});
 	}
@@ -248,21 +270,27 @@ $(function () {
 								callIngredientName = "Lime Juice";
 							}
 							getIngredientPrice(callIngredientName, callIngredientName, measure)
-							.then((ingredient) => {
+							.then((response) => {
+								console.log("response", response);
+								if (response.status === "success"){
+									console.log("success", response);
+									// set up the tr
+									ingredientTr = ``;
+									var thisIngredient = response.data.Products[0];
+									ingredientTr += `<tr>
+									<td>${response.data.callIngredientName}</td>
+									<td>${thisIngredient.Name}</td>
+									<td>`;
 
-								// set up the tr
-								ingredientTr = ``;
-								var thisIngredient = ingredient.Products[0];
-								ingredientTr += `<tr>
-								<td>${ingredient.callIngredientName}</td>
-								<td>${thisIngredient.Name}</td>
-								<td>`;
-
-								// sometimes the price comes back null, don't print that
-								if (thisIngredient.Price !== null) { 
-									ingredientTr += `$${thisIngredient.Price}</td>`;
+									// sometimes the price comes back null, don't print that
+									if (thisIngredient.Price !== null) { 
+										ingredientTr += `$${thisIngredient.Price}</td>`;
+									}
+									ingredientTr += `<td>${response.data.myMeasure}</td></tr>`;
 								}
-								ingredientTr += `<td>${ingredient.myMeasure}</td></tr>`;	
+								else {
+									ingredientTr = `<tr><td colspan="4">${response.errorMessage}</td></tr>`;
+								}	
 							})
 							.then(() => {
 
