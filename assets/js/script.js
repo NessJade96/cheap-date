@@ -344,4 +344,9 @@ $(function () {
 			}
 		});
 	});
+		// FAVOURITES BUTTON FUNCTION
+		$(".heart").on("click", function() {
+			$(this).toggleClass("is-active");
+		});
+	  
 });
