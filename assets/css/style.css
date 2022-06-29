@@ -233,6 +233,8 @@ body {
 }
 #imageDiv {
 	border-radius: 5px;
+	min-width: 284px;
+	min-height: 328px;
 }
 #recipeImageSpinner {
 	position: absolute;
@@ -299,7 +301,6 @@ body {
 @media screen and (max-width: 760px) {
 
    .reloadBtn{
-    top:100px;
     left:40%;
     right:50%;
     
