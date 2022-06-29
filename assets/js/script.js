@@ -10,8 +10,23 @@ $(function () {
 
 	//clickhandler to reload the page -> instead of reload page - empty the html from the two drink divs - element.empty() alcoholTypeLi active.
 	$(".reloadBtn").on("click", function () {
-		$("#cocktailNameUl").empty();
-		$("#imageDiv").empty();
+		$(".reloadBtn").hide();
+		$(".heart").hide();
+		$("#cocktailNameUl").empty();	
+		$("#cocktailNameDiv").css({
+			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
+			'background-repeat': 'no-repeat',
+			'background-size': 'cover'
+		});
+		$("#imageDiv").css({
+			'background-image':'none'
+		});
+		
+		$("#imageWrapper").css({
+			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
+			'background-repeat': 'no-repeat',
+			'background-size': 'cover'
+		});
 		$("#ingredientsDiv").empty();
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
@@ -19,7 +34,6 @@ $(function () {
 		if (window.location.href.indexOf('?') > -1) {
 			history.pushState('', document.title, window.location.pathname);
 		}
-
 		$("#alcoholTypeUl").show();
 		$("#cocktailNameDiv").show();
 	});
@@ -194,11 +208,24 @@ $(function () {
 	$("#alcoholTypeUl").on("click", function (e) {
 		// prevent default
 		e.preventDefault();
-
+		$(".reloadBtn").show();
+		$(".heart").show();
 		// remove active from any LI that currently has it and empty divs
 		$(".alcoholTypeLi").removeClass("active");
 		$("#cocktailNameUl").empty();
-		$("#imageDiv").empty();
+		$("#cocktailNameDiv").css({
+			'background-image':'none',
+			'background':'var(--mainColor10)'
+		});
+		$("#imageDiv").css({
+			'background-image':'none'
+		});
+		
+		$("#imageWrapper").css({
+			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
+			'background-repeat': 'no-repeat',
+			'background-size': 'cover'
+		});
 		$("#ingredientsDiv").empty();
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
@@ -208,7 +235,10 @@ $(function () {
 
 		// empty the cocktailNameUl	so we can append new items there
 		$("#cocktailNameUl").empty();
-
+		$("#cocktailNameDiv").css({
+			'background-image':'none',
+			'background':'var(--mainColor10)'
+		});
 		// turn on spinner
 		$("#cocktailNameDivSpinner").removeClass("d-none").addClass("d-flex");
 
@@ -242,12 +272,23 @@ $(function () {
 		// prevent default
 		e.preventDefault();
 		
+		$(".reloadBtn").show();
+		
+		$(".heart").show();
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
 
 		// remove the active class from any cocktailNameLi that currently has it
 		$(".cocktailNameLi").removeClass("active");
-		$("#imageDiv").empty();
+		$("#imageDiv").css({
+			'background-image':'none'
+		});
+		
+		$("#imageWrapper").css({
+			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
+			'background-repeat': 'no-repeat',
+			'background-size': 'cover'
+		});
 		$("#ingredientsDiv").empty();
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
@@ -366,6 +407,11 @@ $(function () {
 					'background-image':`url(${response.data.drinks[0].strDrinkThumb})`,
 					'background-repeat': 'no-repeat',
 					'background-size': 'contain'
+				});
+
+				$("#imageWrapper").css({
+					'background-image':`none`,
+					'background': 'var(--mainColor10)'
 				});
 				$("#recipeHeader").html(
 					`<h3 id="h3DrinkName">${response.data.drinks[0].strDrink}<h3>`

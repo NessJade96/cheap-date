@@ -231,7 +231,9 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 }
-
+#imageDiv {
+	border-radius: 5px;
+}
 #recipeImageSpinner {
 	position: absolute;
 	top: 0;
@@ -258,8 +260,9 @@ body {
     border-radius: 5px;
     border: none;
     position:absolute;
-    top:180px;
-    left:65px;
+    bottom:100px;
+    left:110px;
+	display: none;
 }
 
 .reloadBtn:hover {
@@ -284,6 +287,7 @@ body {
 	cursor: pointer;
 	transition: background-position 1s steps(28);
 	transition-duration: 0s;
+	display: none;
 }
 
 .heart.is-active {
