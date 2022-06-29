@@ -322,169 +322,97 @@ $(function () {
 						response.data.drinks[0]["strIngredient" + i] !== null &&
 						response.data.drinks[0]["strIngredient" + i] !== ""
 					) {
-						// get the price of this ingredient, also send measure to get it back again, unless it's ice
-						if (
-							// put items here that fail on WW API, and also put them in the switch statement in the else below
-							callIngredientName !== "Ice" &&
-							callIngredientName !== "Absinthe" &&
-							callIngredientName !== "Creme de Cassis" &&
-							callIngredientName !== "Creme de Cacao" &&
-							callIngredientName !== "Champagne" &&
-							callIngredientName !== "Grenadine" &&
-							callIngredientName !== "Sweet and sour" &&
-							callIngredientName !== "Apple Cider" &&
-							callIngredientName !== "Strawberry schnapps" &&
-							callIngredientName !== "Sugar Syrup" &&
-							callIngredientName !== "Rosemary Syrup"
-						) {
-							// put ingredients that we want to rename here
-							switch (callIngredientName) {
-								case "Roses sweetened lime juice":
-									callIngredientName = "Lime Juice";
-									break;
-								case "Lemon peel":
-									callIngredientName = "Lemon";
-									break;
-								case "7-up":
-									callIngredientName = "Lemonaide";
-									break;
-								case "Cherry":
-									callIngredientName = "Cherries";
-									break;
-								default:
-									break;
-							}
+
+						// put ingredients that we want to rename here
+						switch (callIngredientName.toLowerCase()) {
+							case "roses sweetened lime juice":
+								callIngredientName = "lime juice";
+								break;
+							case "lemon peel":
+								callIngredientName = "Lemon";
+								break;
+							case "7-up":
+								callIngredientName = "Lemonaide";
+								break;
+							case "cherry":
+								callIngredientName = "Cherries";
+								break;
+							case "club soda":
+								callIngredientName = "Soda Water";
+								break;
+							case "cherry grenadine":
+								callIngredientName = "Grenadine";
+								break;
+							default:
+								break;
+						}
+
+						// Create array of items not in WW API
+						var dodgyIngredientArray = [
+						{name: "ice", supplier: "home", string: "From your freezer", price: "Free!"},
+						{name: "absinthe", supplier: "danMurphys", string: "Green Fairy Absinth 500Ml", price: "$75.99"},
+						{name: "creme de cassis", supplier: "danMurphys", string: "Creme de Cassis", price: "$29.99"},
+						{name: "creme de cacao", supplier: "danMurphys", string: "Vok Brown Creme De Cacao 500mL", price: "$27.99"},
+						{name: "champagne", supplier: "danMurphys", string: "Special Cuvee Champagne", price: "$86.99"},
+						{name: "grenadine", supplier: "danMurphys", string: "Grenadine Syrup", price: "$8.99"},
+						{name: "sweet and sour", supplier: "danMurphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
+						{name: "apple cider", supplier: "woolWorths", string: "Somersby Apple Cider Bottle 330ml", price: "$4.80"},
+						{name: "blue curacao", supplier: "danMurphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
+						{name: "strawberry schnapps", supplier: "danMurphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
+						{name: "sugar syrup", supplier: "woolWorths", string: "Monin Pure Cane Sugar Syrup 700mL", price: "$16.00"},
+						{name: "rosemary syrup", supplier: "home", string: "", price: ""}
+					];
+					
+					const ingredientIndex = dodgyIngredientArray.findIndex(item => item.name === callIngredientName.toLowerCase());
+	
+						if (ingredientIndex !== -1) {
+							
+							// these items aren't in the WW API so we have to hard code them.
+							ingredientTr = ``;
+							ingredientTr += `<tr>`;
+							ingredientTr += `
+								<td>${dodgyIngredientArray[ingredientIndex].name}</td>
+								<td>${dodgyIngredientArray[ingredientIndex].string}</td>
+								<td><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier}.png" /></td>
+								<td>${dodgyIngredientArray[ingredientIndex].price}</td>
+								<td>${measure}</td></tr>`;
+							$("#ingredientsTable").append(ingredientTr);
+						}
+						else {
+							// get the price of this ingredient, also send measure to get it back again, unless it's ice
+
 							getIngredientPrice(
 								callIngredientName,
 								callIngredientName,
 								measure
 							)
-								.then((response) => {
-									if (response.status === "success") {
-										
-										// set up the tr
-										ingredientTr = ``;
-										var thisIngredient =
-											response.data.Products[0];
-										ingredientTr += `<tr>
-									<td>${response.data.callIngredientName}</td>
-									<td>${thisIngredient.Name}</td>
-									<td>`;
+							.then((response) => {
+								if (response.status === "success") {
+									
+									// set up the tr
+									ingredientTr = ``;
+									var thisIngredient =
+										response.data.Products[0];
+									ingredientTr += `<tr>
+								<td>${response.data.callIngredientName}</td>
+								<td>${thisIngredient.Name}</td>
+								<td><img src="./assets/images/woolWorths.png" /></td>
+								<td>`;
 
-										// sometimes the price comes back null, don't print that
-										if (thisIngredient.Price !== null) {
-											ingredientTr += `$${thisIngredient.Price}</td>`;
-										}
-										ingredientTr += `<td>${response.data.myMeasure}</td></tr>`;
-									} else {
-										ingredientTr = `<tr><td colspan="4">${response.errorMessage}</td></tr>`;
+									// sometimes the price comes back null, don't print that
+									if (thisIngredient.Price !== null) {
+										ingredientTr += `$${thisIngredient.Price}</td>`;
 									}
-								})
-								.then(() => {
-									// append the tr to ingredientsTable
-									$("#ingredientsTable").append(ingredientTr);
-								});
-						} else {
-							ingredientTr = ``;
-							ingredientTr += `<tr>`;
-							switch (callIngredientName) {
-								case "Ice":
-									ingredientTr += `
-										<td>Ice</td>
-										<td>From your freezer</td>
-										<td>FREE!</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Absinthe":
-									ingredientTr += `
-										<td>Absinthe</td>
-										<td>Green Fairy Absinth 500Ml</td>
-										<td>$75.99</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Creme de Cassis":
-									ingredientTr += `
-										<td>Creme de Cassis</td>
-										<td>Bardinet Creme De Cassis 700mL</td>
-										<td>$29.99</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Creme de Cacao":
-									ingredientTr += `
-										<td>Creme de Cacao</td>
-										<td>Vok Brown Creme De Cacao 500mL</td>
-										<td>$27.99</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Champagne":
-									ingredientTr += `
-										<td>Champagne</td>
-										<td>Special Cuvee Champagne</td>
-										<td>$86.99</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Grenadine":
-									ingredientTr += `
-										<td>Grenadine</td>
-										<td>Grenadine Syrup</td>
-										<td>$15.99</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Sweet and sour":
-									ingredientTr += `
-										<td>Sweet and sour</td>
-										<td>Sweet & Sour Mixer 1L</td>
-										<td>$14.49</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Apple Cider":
-									ingredientTr += `
-										<td>Apple Cider</td>
-										<td>Somersby Apple Cider Bottle 330ml</td>
-										<td>$4.80</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Blue Curacao":
-									ingredientTr += `
-										<td>Blue Curacao</td>
-										<td>Vok	Blue Curacao 500mL</td>
-										<td>$28.99</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Cherry Grenadine":
-									ingredientTr += `
-										<td>Cherry Grenadine</td>
-										<td>Grenadine 375mL</td>
-										<td>$8.99</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Cherry Grenadine":
-									ingredientTr += `
-										<td>Strawberry schnapps</td>
-										<td>De Kuyper Strawberry Schnapps 700mL</td>
-										<td>$42.99</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Cherry Grenadine":
-									ingredientTr += `
-										<td>Sugar Syrup</td>
-										<td>Monin Pure Cane Sugar Syrup 700mL</td>
-										<td>$16.00</td>
-										<td>${measure}</td></tr>`;
-								break;
-								case "Rosemary Syrup":
-									ingredientTr += `
-										<td>Rosemary Syrup</td>
-										<td></td>
-										<td></td>
-										<td>${measure}</td></tr>`;
-								break;
-								default: 
-								break;
-							}
-
-							$("#ingredientsTable").append(ingredientTr);
-						}
+									ingredientTr += `<td>${response.data.myMeasure}</td></tr>`;
+								} else {
+									ingredientTr = `<tr><td colspan="4">${response.errorMessage}</td></tr>`;
+								}
+							})
+							.then(() => {
+								// append the tr to ingredientsTable
+								$("#ingredientsTable").append(ingredientTr);
+							});
+						} 	
 					}
 				}
 
