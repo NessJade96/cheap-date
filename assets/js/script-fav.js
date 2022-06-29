@@ -26,6 +26,8 @@ $(function () {
 		var storedCocktails = JSON.parse(
 			localStorage.getItem("storedCocktails")
 		);
+		storedCocktails.sort()
+		console.log(storedCocktails.sort())
 		var eventTarget = $(event.target);
 		var favouritedCocktail = eventTarget.prev().text();
 		var removeCocktail = storedCocktails.indexOf(favouritedCocktail);
