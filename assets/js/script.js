@@ -22,6 +22,7 @@ $(function () {
 
 		$("#alcoholTypeUl").show();
 		$("#cocktailNameDiv").show();
+		window.scrollTo({top: document.querySelector('body').offsetTop, behavior: "smooth" });
 	});
 
 	//click event listener to save current selected drink to local storage as an Array
