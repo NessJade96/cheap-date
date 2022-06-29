@@ -241,7 +241,7 @@ $(function () {
 	$("#cocktailNameUl").on("click", function (e) {
 		// prevent default
 		e.preventDefault();
-
+		
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
 
@@ -264,6 +264,8 @@ $(function () {
 			if (response.status === "success") {
 				// empty ingredients div
 				$("#ingredientsDiv").empty();
+
+				console.log(response.data.drinks[0]);
 
 				// setup ingredients string
 				$("#ingredientsDiv").append(`<table id="ingredientsTable">`);
@@ -360,9 +362,11 @@ $(function () {
 				}
 
 				// print the image, name and instructions to recipeDiv
-				$("#imageDiv").html(
-					`<img src="${response.data.drinks[0].strDrinkThumb}"/>`
-				);
+				$("#imageDiv").css({
+					'background-image':`url(${response.data.drinks[0].strDrinkThumb})`,
+					'background-repeat': 'no-repeat',
+					'background-size': 'contain'
+				});
 				$("#recipeHeader").html(
 					`<h3 id="h3DrinkName">${response.data.drinks[0].strDrink}<h3>`
 				);
