@@ -16,6 +16,8 @@ $(function () {
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
 		$(".alcoholTypeLi").removeClass("active");
+		$("#alcoholTypeUl").show();
+		$("#cocktailNameDiv").show();
 	});
 
 	//click event listener to save current selected drink to local storage as an Array
@@ -139,12 +141,13 @@ $(function () {
 		}
 		else {
 
+			$("#alcoholTypeUl").hide();
+			$("#cocktailNameDiv").hide();
 			// this means the call came from the fav page, we need to get the id of this drink
 			var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/search.php?s=${drinkId}`;
 			fetch(url)
 				.then((response) => response.json())
 				.then((data) => {
-
 					// then create a button and append it
 					$("#cocktailNameUl").append(`<li class="list-group-item custom-item cocktailNameLi" id="${data.drinks[0].idDrink}Li"><button class="drinkName" id="${data.drinks[0].idDrink}">${data.drinks[0].strDrink}</button></li>`);
 					
@@ -297,9 +300,8 @@ $(function () {
 								measure
 							)
 								.then((response) => {
-									console.log("response", response);
 									if (response.status === "success") {
-										console.log("success", response);
+										
 										// set up the tr
 										ingredientTr = ``;
 										var thisIngredient =
