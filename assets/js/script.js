@@ -280,7 +280,8 @@ $(function () {
 						if (
 							// put items here that fail on WW API, and also put them in the switch statement in the else below
 							callIngredientName !== "Ice" &&
-							callIngredientName !== "Absinthe"
+							callIngredientName !== "Absinthe" &&
+							callIngredientName !== "Creme de Cassis"
 						) {
 							// put ingredients that we want to rename here
 							switch (callIngredientName) {
@@ -336,6 +337,13 @@ $(function () {
 										<td>Absinthe</td>
 										<td>Green Fairy Absinth 500Ml</td>
 										<td>$75.99</td>
+										<td>${measure}</td></tr>`;
+									break;
+								case "Creme de Cassis":
+									ingredientTr += `
+										<td>Creme de Cassis</td>
+										<td>Bardinet Creme De Cassis 700mL</td>
+										<td>$29.99</td>
 										<td>${measure}</td></tr>`;
 									break;
 								default: 
