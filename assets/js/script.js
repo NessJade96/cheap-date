@@ -16,6 +16,12 @@ $(function () {
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
 		$(".alcoholTypeLi").removeClass("active");
+		if (window.location.href.indexOf('?') > -1) {
+			history.pushState('', document.title, window.location.pathname);
+		}
+
+		$("#alcoholTypeUl").show();
+		$("#cocktailNameDiv").show();
 	});
 
 	//click event listener to save current selected drink to local storage as an Array
@@ -59,26 +65,22 @@ $(function () {
 	addAlcoholNames();
 
 	function getIngredientPrice(ingredientName, callIngredientName, measure) {
+		console.log("getIngredientPrice->ingredientName: ",ingredientName);
 		return fetch(
-			`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(
-				ingredientName
-			)}`
-		)
+			`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}&sorttype=relevance`)
 			.then((response) => response.json())
 			.then((response) => {
 				if (response.products !== null) {
-					var randomItemIndex = Math.floor(
-						Math.random() * response.Products.length
-					);
-					var randomProduct = response.Products[randomItemIndex];
+
+					var thisProduct = response.Products[0];
 
 					// need to send these two straight back so they are in scope for the calling function
-					randomProduct["myMeasure"] = measure;
-					randomProduct["callIngredientName"] = callIngredientName;
+					thisProduct["myMeasure"] = measure;
+					thisProduct["callIngredientName"] = callIngredientName;
 
 					returnValue = {
 						status: "success",
-						data: randomProduct,
+						data: thisProduct,
 					};
 
 					return returnValue;
@@ -139,12 +141,13 @@ $(function () {
 		}
 		else {
 
+			$("#alcoholTypeUl").hide();
+			$("#cocktailNameDiv").hide();
 			// this means the call came from the fav page, we need to get the id of this drink
 			var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/search.php?s=${drinkId}`;
 			fetch(url)
 				.then((response) => response.json())
 				.then((data) => {
-
 					// then create a button and append it
 					$("#cocktailNameUl").append(`<li class="list-group-item custom-item cocktailNameLi" id="${data.drinks[0].idDrink}Li"><button class="drinkName" id="${data.drinks[0].idDrink}">${data.drinks[0].strDrink}</button></li>`);
 					
@@ -283,7 +286,8 @@ $(function () {
 						if (
 							// put items here that fail on WW API, and also put them in the switch statement in the else below
 							callIngredientName !== "Ice" &&
-							callIngredientName !== "Absinthe"
+							callIngredientName !== "Absinthe" &&
+							callIngredientName !== "Creme de Cassis"
 						) {
 							// put ingredients that we want to rename here
 							switch (callIngredientName) {
@@ -299,9 +303,8 @@ $(function () {
 								measure
 							)
 								.then((response) => {
-									console.log("response", response);
 									if (response.status === "success") {
-										console.log("success", response);
+										
 										// set up the tr
 										ingredientTr = ``;
 										var thisIngredient =
@@ -340,6 +343,13 @@ $(function () {
 										<td>Absinthe</td>
 										<td>Green Fairy Absinth 500Ml</td>
 										<td>$75.99</td>
+										<td>${measure}</td></tr>`;
+									break;
+								case "Creme de Cassis":
+									ingredientTr += `
+										<td>Creme de Cassis</td>
+										<td>Bardinet Creme De Cassis 700mL</td>
+										<td>$29.99</td>
 										<td>${measure}</td></tr>`;
 									break;
 								default: 
