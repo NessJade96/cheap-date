@@ -265,14 +265,17 @@ $(function () {
 					) {
 						// get the price of this ingredient, also send measure to get it back again, unless it's ice
 						if (
+							// put items here that fail on WW API, and also put them in the switch statement in the else below
 							callIngredientName !== "Ice" &&
 							callIngredientName !== "Absinthe"
 						) {
-							if (
-								callIngredientName ===
-								"Roses sweetened lime juice"
-							) {
-								callIngredientName = "Lime Juice";
+							// put ingredients that we want to rename here
+							switch (callIngredientName) {
+								case "Roses sweetened lime juice":
+									callIngredientName = "Lime Juice";
+									break;
+								default:
+									break;
 							}
 							getIngredientPrice(
 								callIngredientName,
@@ -322,6 +325,8 @@ $(function () {
 										<td>Green Fairy Absinth 500Ml</td>
 										<td>$75.99</td>
 										<td>${measure}</td></tr>`;
+									break;
+								default: 
 									break;
 							}
 
