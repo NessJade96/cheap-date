@@ -384,7 +384,7 @@ $(function () {
 
 						if (ingredientIndex !== -1) {
 
-							// these items aren't in the WW API so we have to hard code them.
+							// Print the items that aren't in WW API
 							ingredientTr = ``;
 							ingredientTr += `<tr>`;
 							ingredientTr += `
