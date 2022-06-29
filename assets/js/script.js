@@ -7,6 +7,14 @@ $(function () {
 		getRecipe(drink,false);
 	}
 
+	function capatilizeSentence(sentence) {
+		var arr = sentence.split(" ");
+		for (var i = 0; i < arr.length; i++) {
+			arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+		}
+		return arr.join(" ");
+	}
+
 
 	//clickhandler to reload the page -> instead of reload page - empty the html from the two drink divs - element.empty() alcoholTypeLi active.
 	$(".reloadBtn").on("click", function () {
@@ -385,7 +393,7 @@ $(function () {
 							ingredientTr = ``;
 							ingredientTr += `<tr>`;
 							ingredientTr += `
-								<td>${dodgyIngredientArray[ingredientIndex].name}</td>
+								<td>${capatilizeSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
 								<td>${dodgyIngredientArray[ingredientIndex].string}</td>
 								<td><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier}.png" /></td>
 								<td>${dodgyIngredientArray[ingredientIndex].price}</td>
