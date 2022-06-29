@@ -62,25 +62,20 @@ $(function () {
 
 	function getIngredientPrice(ingredientName, callIngredientName, measure) {
 		return fetch(
-			`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(
-				ingredientName
-			)}`
-		)
+			`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}&sorttype=relevance`)
 			.then((response) => response.json())
 			.then((response) => {
 				if (response.products !== null) {
-					var randomItemIndex = Math.floor(
-						Math.random() * response.Products.length
-					);
-					var randomProduct = response.Products[randomItemIndex];
+
+					var thisProduct = response.Products[0];
 
 					// need to send these two straight back so they are in scope for the calling function
-					randomProduct["myMeasure"] = measure;
-					randomProduct["callIngredientName"] = callIngredientName;
+					thisProduct["myMeasure"] = measure;
+					thisProduct["callIngredientName"] = callIngredientName;
 
 					returnValue = {
 						status: "success",
-						data: randomProduct,
+						data: thisProduct,
 					};
 
 					return returnValue;
