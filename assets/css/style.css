@@ -144,7 +144,10 @@ body {
 	overflow-x: hidden;
 	scrollbar-width: none;
 	position: relative;
-	background-image: url(../images/cocktailNamesUiBG.png);
+	background-image: url('../images/cocktailNamesUlBG.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+
 }
 
 #cocktailNameDivSpinner {
@@ -224,6 +227,9 @@ body {
 
 #imageWrapper {
 	position: relative;
+	background-image: url('../images/cocktailNamesUlBG.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 #recipeImageSpinner {
