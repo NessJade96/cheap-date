@@ -288,12 +288,29 @@ $(function () {
 							// put items here that fail on WW API, and also put them in the switch statement in the else below
 							callIngredientName !== "Ice" &&
 							callIngredientName !== "Absinthe" &&
-							callIngredientName !== "Creme de Cassis"
+							callIngredientName !== "Creme de Cassis" &&
+							callIngredientName !== "Creme de Cacao" &&
+							callIngredientName !== "Champagne" &&
+							callIngredientName !== "Grenadine" &&
+							callIngredientName !== "Sweet and sour" &&
+							callIngredientName !== "Apple Cider" &&
+							callIngredientName !== "Strawberry schnapps" &&
+							callIngredientName !== "Sugar Syrup" &&
+							callIngredientName !== "Rosemary Syrup"
 						) {
 							// put ingredients that we want to rename here
 							switch (callIngredientName) {
 								case "Roses sweetened lime juice":
 									callIngredientName = "Lime Juice";
+									break;
+								case "Lemon peel":
+									callIngredientName = "Lemon";
+									break;
+								case "7-up":
+									callIngredientName = "Lemonaide";
+									break;
+								case "Cherry":
+									callIngredientName = "Cherries";
 									break;
 								default:
 									break;
@@ -338,23 +355,93 @@ $(function () {
 										<td>From your freezer</td>
 										<td>FREE!</td>
 										<td>${measure}</td></tr>`;
-									break;
+								break;
 								case "Absinthe":
 									ingredientTr += `
 										<td>Absinthe</td>
 										<td>Green Fairy Absinth 500Ml</td>
 										<td>$75.99</td>
 										<td>${measure}</td></tr>`;
-									break;
+								break;
 								case "Creme de Cassis":
 									ingredientTr += `
 										<td>Creme de Cassis</td>
 										<td>Bardinet Creme De Cassis 700mL</td>
 										<td>$29.99</td>
 										<td>${measure}</td></tr>`;
-									break;
+								break;
+								case "Creme de Cacao":
+									ingredientTr += `
+										<td>Creme de Cacao</td>
+										<td>Vok Brown Creme De Cacao 500mL</td>
+										<td>$27.99</td>
+										<td>${measure}</td></tr>`;
+								break;
+								case "Champagne":
+									ingredientTr += `
+										<td>Champagne</td>
+										<td>Special Cuvee Champagne</td>
+										<td>$86.99</td>
+										<td>${measure}</td></tr>`;
+								break;
+								case "Grenadine":
+									ingredientTr += `
+										<td>Grenadine</td>
+										<td>Grenadine Syrup</td>
+										<td>$15.99</td>
+										<td>${measure}</td></tr>`;
+								break;
+								case "Sweet and sour":
+									ingredientTr += `
+										<td>Sweet and sour</td>
+										<td>Sweet & Sour Mixer 1L</td>
+										<td>$14.49</td>
+										<td>${measure}</td></tr>`;
+								break;
+								case "Apple Cider":
+									ingredientTr += `
+										<td>Apple Cider</td>
+										<td>Somersby Apple Cider Bottle 330ml</td>
+										<td>$4.80</td>
+										<td>${measure}</td></tr>`;
+								break;
+								case "Blue Curacao":
+									ingredientTr += `
+										<td>Blue Curacao</td>
+										<td>Vok	Blue Curacao 500mL</td>
+										<td>$28.99</td>
+										<td>${measure}</td></tr>`;
+								break;
+								case "Cherry Grenadine":
+									ingredientTr += `
+										<td>Cherry Grenadine</td>
+										<td>Grenadine 375mL</td>
+										<td>$8.99</td>
+										<td>${measure}</td></tr>`;
+								break;
+								case "Cherry Grenadine":
+									ingredientTr += `
+										<td>Strawberry schnapps</td>
+										<td>De Kuyper Strawberry Schnapps 700mL</td>
+										<td>$42.99</td>
+										<td>${measure}</td></tr>`;
+								break;
+								case "Cherry Grenadine":
+									ingredientTr += `
+										<td>Sugar Syrup</td>
+										<td>Monin Pure Cane Sugar Syrup 700mL</td>
+										<td>$16.00</td>
+										<td>${measure}</td></tr>`;
+								break;
+								case "Rosemary Syrup":
+									ingredientTr += `
+										<td>Rosemary Syrup</td>
+										<td></td>
+										<td></td>
+										<td>${measure}</td></tr>`;
+								break;
 								default: 
-									break;
+								break;
 							}
 
 							$("#ingredientsTable").append(ingredientTr);
