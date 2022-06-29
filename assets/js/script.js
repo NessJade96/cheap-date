@@ -351,6 +351,9 @@ $(function () {
 								case "Cherry":
 									callIngredientName = "Cherries";
 									break;
+								case "Club soda":
+									callIngredientName = "Soda Water";
+									break;
 								default:
 									break;
 							}
