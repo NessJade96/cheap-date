@@ -178,8 +178,13 @@ $(function () {
 		// prevent default
 		e.preventDefault();
 
-		// remove active from any LI that currently has it
+		// remove active from any LI that currently has it and empty divs
 		$(".alcoholTypeLi").removeClass("active");
+		$("#cocktailNameUl").empty();
+		$("#imageDiv").empty();
+		$("#ingredientsDiv").empty();
+		$("#recipeHeader").empty();
+		$("#recipeSpan").empty();
 
 		// add active class to then parent Li of the button they pressed
 		$("#" + e.target.id + "Li").addClass("active");
@@ -225,6 +230,10 @@ $(function () {
 
 		// remove the active class from any cocktailNameLi that currently has it
 		$(".cocktailNameLi").removeClass("active");
+		$("#imageDiv").empty();
+		$("#ingredientsDiv").empty();
+		$("#recipeHeader").empty();
+		$("#recipeSpan").empty();
 
 		// add the active class the the li parent of the button pressed.
 		$("#" + e.target.id + "Li").addClass("active");
