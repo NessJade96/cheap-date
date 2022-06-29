@@ -208,8 +208,8 @@ $(function () {
 	$("#alcoholTypeUl").on("click", function (e) {
 		// prevent default
 		e.preventDefault();
-		$(".reloadBtn").show();
-		$(".heart").show();
+		$(".reloadBtn").hide();
+		$(".heart").hide();
 		// remove active from any LI that currently has it and empty divs
 		$(".alcoholTypeLi").removeClass("active");
 		$("#cocktailNameUl").empty();
