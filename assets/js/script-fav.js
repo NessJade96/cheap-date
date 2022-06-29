@@ -4,6 +4,15 @@ $(function () {
 		var storedCocktails = JSON.parse(
 			localStorage.getItem("storedCocktails")
 		);
+		storedCocktails.sort()
+		storedCocktails = storedCocktails.filter(
+			function(i){
+				if (!this[i]) {
+					this[i] = 1; 
+					return i;
+				}},
+			{}
+		   );
 		storedCocktails.forEach((cocktail,index) => {
 			var favouriteDrinkItem;
 
