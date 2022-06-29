@@ -16,6 +16,10 @@ $(function () {
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
 		$(".alcoholTypeLi").removeClass("active");
+		if (window.location.href.indexOf('?') > -1) {
+			history.pushState('', document.title, window.location.pathname);
+		}
+
 		$("#alcoholTypeUl").show();
 		$("#cocktailNameDiv").show();
 	});
