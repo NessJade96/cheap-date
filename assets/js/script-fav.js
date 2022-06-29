@@ -4,6 +4,15 @@ $(function () {
 		var storedCocktails = JSON.parse(
 			localStorage.getItem("storedCocktails")
 		);
+		storedCocktails.sort()
+		storedCocktails = storedCocktails.filter(
+			function(i){
+				if (!this[i]) {
+					this[i] = 1; 
+					return i;
+				}},
+			{}
+		   );
 		storedCocktails.forEach((cocktail,index) => {
 			var favouriteDrinkItem;
 
@@ -17,6 +26,7 @@ $(function () {
 		});
 	}
 	loadDrinks();
+
 	$("#cocktailFavDiv").on("click",(e) => {
 		console.log(e.target.id);
 		window.location.href = "/index.html?drink="+e.target.id;
@@ -26,8 +36,6 @@ $(function () {
 		var storedCocktails = JSON.parse(
 			localStorage.getItem("storedCocktails")
 		);
-		storedCocktails.sort()
-		console.log(storedCocktails.sort())
 		var eventTarget = $(event.target);
 		var favouritedCocktail = eventTarget.prev().text();
 		var removeCocktail = storedCocktails.indexOf(favouritedCocktail);
