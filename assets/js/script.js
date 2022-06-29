@@ -12,7 +12,7 @@ $(function () {
 	$(".reloadBtn").on("click", function () {
 		$(".reloadBtn").hide();
 		$(".heart").hide();
-		$("#cocktailNameUl").empty();	
+		$("#cocktailNameUl").empty();
 		$("#cocktailNameDiv").css({
 			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
 			'background-repeat': 'no-repeat',
@@ -21,7 +21,7 @@ $(function () {
 		$("#imageDiv").css({
 			'background-image':'none'
 		});
-		
+
 		$("#imageWrapper").css({
 			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
 			'background-repeat': 'no-repeat',
@@ -165,14 +165,14 @@ $(function () {
 				.then((data) => {
 					// then create a button and append it
 					$("#cocktailNameUl").append(`<li class="list-group-item custom-item cocktailNameLi" id="${data.drinks[0].idDrink}Li"><button class="drinkName" id="${data.drinks[0].idDrink}">${data.drinks[0].strDrink}</button></li>`);
-					
+
 					// then fake click it
 					$("#"+data.drinks[0].idDrink).trigger("click");
 				})
 				.catch((error) => {
 					console.log("getCocktails id from string response error");
 				});
-			
+
 		}
 		// drink ID is a string ie "11007"
 
@@ -221,7 +221,7 @@ $(function () {
 		$("#imageDiv").css({
 			'background-image':'none'
 		});
-		
+
 		$("#imageWrapper").css({
 			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
 			'background-repeat': 'no-repeat',
@@ -272,9 +272,9 @@ $(function () {
 	$("#cocktailNameUl").on("click", function (e) {
 		// prevent default
 		e.preventDefault();
-		
+
 		$(".reloadBtn").show();
-		
+
 		$(".heart").show();
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
@@ -284,7 +284,7 @@ $(function () {
 		$("#imageDiv").css({
 			'background-image':'none'
 		});
-		
+
 		$("#imageWrapper").css({
 			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
 			'background-repeat': 'no-repeat',
@@ -343,6 +343,15 @@ $(function () {
 							case "cherry grenadine":
 								callIngredientName = "Grenadine";
 								break;
+							case "apple cider":
+								callIngredientName = "Somersby Apple Cider";
+								break;
+							case "sugar syrup":
+								callIngredientName = "Monin Pure Cane Sugar Syrup";
+								break;
+							case "peach nectar":
+								callIngredientName = "Tamek Beverages Peach Nectar 1l";
+								break;
 							default:
 								break;
 						}
@@ -356,21 +365,22 @@ $(function () {
 						{name: "champagne", supplier: "danMurphys", string: "Special Cuvee Champagne", price: "$86.99"},
 						{name: "grenadine", supplier: "danMurphys", string: "Grenadine Syrup", price: "$8.99"},
 						{name: "sweet and sour", supplier: "danMurphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
-						{name: "apple cider", supplier: "woolWorths", string: "Somersby Apple Cider Bottle 330ml", price: "$4.80"},
+						{name: "151 proof rum", supplier: "nicks", string: "Goslings Black Seal 151 Proof Rum 700ml", price: "$130"},
+						// {name: "apple cider", supplier: "woolWorths", string: "Somersby Apple Cider Bottle 330ml", price: "$4.80"},
 						{name: "blue curacao", supplier: "danMurphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
 						{name: "strawberry schnapps", supplier: "danMurphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
-						{name: "sugar syrup", supplier: "woolWorths", string: "Monin Pure Cane Sugar Syrup 700mL", price: "$16.00"},
+						// {name: "sugar syrup", supplier: "woolWorths", string: "Monin Pure Cane Sugar Syrup 700mL", price: "$16.00"},
 						{name: "rosemary syrup", supplier: "home", string: "home", price: "Free"},
 						{name: "peach schnapps", supplier: "danMurphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"},
-						{name: "peach nectar", supplier: "woolWorths", string: "Tamek Beverages Peach Nectar 1l", price: "$45.99"}
-						
-						
+						// {name: "peach nectar", supplier: "woolWorths", string: "Tamek Beverages Peach Nectar 1l", price: "$4.29"}
+
+
 					];
-					
+
 					const ingredientIndex = dodgyIngredientArray.findIndex(item => item.name === callIngredientName.toLowerCase());
-	
+
 						if (ingredientIndex !== -1) {
-							
+
 							// these items aren't in the WW API so we have to hard code them.
 							ingredientTr = ``;
 							ingredientTr += `<tr>`;
@@ -392,7 +402,7 @@ $(function () {
 							)
 							.then((response) => {
 								if (response.status === "success") {
-									
+
 									// set up the tr
 									ingredientTr = ``;
 									var thisIngredient =
@@ -416,7 +426,7 @@ $(function () {
 								// append the tr to ingredientsTable
 								$("#ingredientsTable").append(ingredientTr);
 							});
-						} 	
+						}
 					}
 				}
 
@@ -454,5 +464,5 @@ $(function () {
 		$(".heart").on("click", function() {
 			$(this).toggleClass("is-active");
 		});
-	  
+
 });
