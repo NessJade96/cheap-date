@@ -325,32 +325,35 @@ $(function () {
 						// get the price of this ingredient, also send measure to get it back again, unless it's ice
 						if (
 							// put items here that fail on WW API, and also put them in the switch statement in the else below
-							callIngredientName !== "Ice" &&
-							callIngredientName !== "Absinthe" &&
-							callIngredientName !== "Creme de Cassis" &&
-							callIngredientName !== "Creme de Cacao" &&
-							callIngredientName !== "Champagne" &&
-							callIngredientName !== "Grenadine" &&
-							callIngredientName !== "Sweet and sour" &&
-							callIngredientName !== "Apple Cider" &&
-							callIngredientName !== "Strawberry schnapps" &&
-							callIngredientName !== "Sugar Syrup" &&
-							callIngredientName !== "Rosemary Syrup"
+							callIngredientName.toLowerCase() !== "ice" &&
+							callIngredientName.toLowerCase() !== "absinthe" &&
+							callIngredientName.toLowerCase() !== "creme de cassis" &&
+							callIngredientName.toLowerCase() !== "creme de cacao" &&
+							callIngredientName.toLowerCase() !== "champagne" &&
+							callIngredientName.toLowerCase() !== "grenadine" &&
+							callIngredientName.toLowerCase() !== "sweet and sour" &&
+							callIngredientName.toLowerCase() !== "apple cider" &&
+							callIngredientName.toLowerCase() !== "strawberry schnapps" &&
+							callIngredientName.toLowerCase() !== "sugar syrup" &&
+							callIngredientName.toLowerCase() !== "rosemary syrup"
 						) {
 							// put ingredients that we want to rename here
-							switch (callIngredientName) {
-								case "Roses sweetened lime juice":
+							switch (callIngredientName.toLowerCase()) {
+								case "roses sweetened lime juice":
 									callIngredientName = "Lime Juice";
 									break;
-								case "Lemon peel":
+								case "lemon peel":
 									callIngredientName = "Lemon";
 									break;
 								case "7-up":
 									callIngredientName = "Lemonaide";
 									break;
-								case "Cherry":
+								case "cherry":
 									callIngredientName = "Cherries";
 									break;
+								case "cherry grenadine":
+									callIngredientName = "Grenadine";
+								break;
 								default:
 									break;
 							}
@@ -387,92 +390,92 @@ $(function () {
 						} else {
 							ingredientTr = ``;
 							ingredientTr += `<tr>`;
-							switch (callIngredientName) {
-								case "Ice":
+							switch (callIngredientName.toLowerCase()) {
+								case "ice":
 									ingredientTr += `
 										<td>Ice</td>
 										<td>From your freezer</td>
 										<td>FREE!</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Absinthe":
+								case "absinthe":
 									ingredientTr += `
 										<td>Absinthe</td>
 										<td>Green Fairy Absinth 500Ml</td>
 										<td>$75.99</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Creme de Cassis":
+								case "creme de cassis":
 									ingredientTr += `
 										<td>Creme de Cassis</td>
 										<td>Bardinet Creme De Cassis 700mL</td>
 										<td>$29.99</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Creme de Cacao":
+								case "creme de cacao":
 									ingredientTr += `
 										<td>Creme de Cacao</td>
 										<td>Vok Brown Creme De Cacao 500mL</td>
 										<td>$27.99</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Champagne":
+								case "champagne":
 									ingredientTr += `
 										<td>Champagne</td>
 										<td>Special Cuvee Champagne</td>
 										<td>$86.99</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Grenadine":
+								case "grenadine":
 									ingredientTr += `
 										<td>Grenadine</td>
 										<td>Grenadine Syrup</td>
 										<td>$15.99</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Sweet and sour":
+								case "sweet and sour":
 									ingredientTr += `
 										<td>Sweet and sour</td>
 										<td>Sweet & Sour Mixer 1L</td>
 										<td>$14.49</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Apple Cider":
+								case "apple cider":
 									ingredientTr += `
 										<td>Apple Cider</td>
 										<td>Somersby Apple Cider Bottle 330ml</td>
 										<td>$4.80</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Blue Curacao":
+								case "blue curacao":
 									ingredientTr += `
 										<td>Blue Curacao</td>
 										<td>Vok	Blue Curacao 500mL</td>
 										<td>$28.99</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Cherry Grenadine":
+								case "cherry grenadine":
 									ingredientTr += `
 										<td>Cherry Grenadine</td>
 										<td>Grenadine 375mL</td>
 										<td>$8.99</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Cherry Grenadine":
+								case "strawberry schnapps":
 									ingredientTr += `
-										<td>Strawberry schnapps</td>
+										<td>strawberry schnapps</td>
 										<td>De Kuyper Strawberry Schnapps 700mL</td>
 										<td>$42.99</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Cherry Grenadine":
+								case "sugar syrup":
 									ingredientTr += `
 										<td>Sugar Syrup</td>
 										<td>Monin Pure Cane Sugar Syrup 700mL</td>
 										<td>$16.00</td>
 										<td>${measure}</td></tr>`;
 								break;
-								case "Rosemary Syrup":
+								case "rosemary syrup":
 									ingredientTr += `
 										<td>Rosemary Syrup</td>
 										<td></td>
