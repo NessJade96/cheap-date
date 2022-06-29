@@ -374,15 +374,10 @@ $(function () {
 						{name: "grenadine", supplier: "danMurphys", string: "Grenadine Syrup", price: "$8.99"},
 						{name: "sweet and sour", supplier: "danMurphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
 						{name: "151 proof rum", supplier: "nicks", string: "Goslings Black Seal 151 Proof Rum 700ml", price: "$130"},
-						// {name: "apple cider", supplier: "woolWorths", string: "Somersby Apple Cider Bottle 330ml", price: "$4.80"},
 						{name: "blue curacao", supplier: "danMurphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
 						{name: "strawberry schnapps", supplier: "danMurphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
-						// {name: "sugar syrup", supplier: "woolWorths", string: "Monin Pure Cane Sugar Syrup 700mL", price: "$16.00"},
 						{name: "rosemary syrup", supplier: "home", string: "home", price: "Free"},
-						{name: "peach schnapps", supplier: "danMurphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"},
-						// {name: "peach nectar", supplier: "woolWorths", string: "Tamek Beverages Peach Nectar 1l", price: "$4.29"}
-
-
+						{name: "peach schnapps", supplier: "danMurphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"}
 					];
 
 					const ingredientIndex = dodgyIngredientArray.findIndex(item => item.name === callIngredientName.toLowerCase());
