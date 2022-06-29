@@ -16,6 +16,9 @@ $(function () {
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
 		$(".alcoholTypeLi").removeClass("active");
+		if (window.location.href.indexOf('?') > -1) {
+			history.pushState('', document.title, window.location.pathname);
+		}
 	});
 
 	//click event listener to save current selected drink to local storage as an Array
