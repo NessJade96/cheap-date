@@ -266,8 +266,6 @@ $(function () {
 				// empty ingredients div
 				$("#ingredientsDiv").empty();
 
-				console.log(response.data.drinks[0]);
-
 				// setup ingredients string
 				$("#ingredientsDiv").append(`<table id="ingredientsTable">`);
 				for (var i = 1; i <= 15; i++) {
