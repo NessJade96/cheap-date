@@ -416,7 +416,7 @@ $(function () {
 									var thisIngredient =
 										response.data.Products[0];
 									ingredientTr += `<tr>
-								<td>${response.data.callIngredientName}</td>
+								<td>${capatilizeSentence(response.data.callIngredientName)}</td>
 								<td>${thisIngredient.Name}</td>
 								<td><img src="./assets/images/woolWorths.png" /></td>
 								<td>`;
