@@ -59,6 +59,7 @@ $(function () {
 	addAlcoholNames();
 
 	function getIngredientPrice(ingredientName, callIngredientName, measure) {
+		console.log("getIngredientPrice->ingredientName: ",ingredientName);
 		return fetch(
 			`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(
 				ingredientName
