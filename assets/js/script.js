@@ -534,6 +534,7 @@ $(function () {
 	// TROLLEY BUTTON FUNCTION
 	$(".trolley").on("click", function() {
 		$(this).toggleClass("is-active");
+		setTimeout(() => {$(this).toggleClass("is-active");},500);
 	});
 
 });
