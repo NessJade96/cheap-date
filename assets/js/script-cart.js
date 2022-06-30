@@ -38,7 +38,9 @@ $(function() {
         var newSupplier = ingredient[2];
 
         // calc total price
-        subPrice += parseFloat(ingredient[3].substring(1))
+        if (ingredient[3] !== null && ingredient[3] !== "" && ingredient[3] !== "undefined" && ingredient[3] !== undefined) {
+            subPrice += parseFloat(ingredient[3].substring(1))
+        }
 
         if (oldSupplier !== newSupplier && oldSupplier !== "") {
             html += `<tr class="totalTr"><td></td><td class="subTotalLabel">SUB TOTAL:</td><td class="subTotalPrice">$${subPrice.toFixed(2)}</td></tr>`;
