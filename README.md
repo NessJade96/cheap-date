@@ -1,4 +1,5 @@
 ## Cheap Date
+Created by Ruben Iacono, Nathan Loudon, Tanel Colak, and Vanessa Bloom
 
 ## MVP (minimum viable product)
 
@@ -17,6 +18,7 @@ As a person wanting to expriment with cocktails at home, when I visit this appli
 ## Screenshot
 
 Flowchart and Wireframes in assets folder.
+
 
 ## APIs chosen
 
