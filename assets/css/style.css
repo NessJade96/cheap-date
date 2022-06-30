@@ -217,6 +217,9 @@ body {
 #ingredientsTable img {
 	height: 20px;
 }
+#ingredientsTable .itemName {
+	text-align: left;
+}
 
 #h3DrinkName {
 	color: yellow;

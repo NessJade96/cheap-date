@@ -100,7 +100,7 @@ $(function () {
 				storedIngredients.push(thisEntry);
 			}
 		});
-		
+
 		// save the new storedIngredients array to local as a string
 		localStorage.setItem(
 			"storedIngredients",
