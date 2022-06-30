@@ -36,26 +36,37 @@ $(function() {
     storedIngredients.map((ingredient,index) => {
         
         var newSupplier = ingredient[2];
+
+         
+        // calc total price
+        
+      
+        subPrice += parseFloat(ingredient[3].substring(1))
+        console.log("subPrice",subPrice);
+            
+        
+        
+
         if (oldSupplier !== newSupplier && oldSupplier !== "") {
-            html += `<tr><td></td><td class="subTotalLabel">SUB TOTAL:</td><td class="subTotalPrice">$${subPrice}</td></tr>`;
+            html += `<tr class="totalTr"><td></td><td class="subTotalLabel">SUB TOTAL:</td><td class="subTotalPrice">$${subPrice.toFixed(2)}</td></tr>`;
             totalPrice = totalPrice + subPrice;
             subPrice = 0;
             
-        }
-        else {
-            // calc total price
-            subPrice = subPrice + parseInt(ingredient[3].substring(1));
-            oldSupplier = newSupplier;
-        }
-        // add table row to string
+        }        // add table row to string
         html += `
             <tr>
                 <td class="itemName">${ingredient[1]}</td>
                 <td>${ingredient[2]}</td>
                 <td>${ingredient[3]}</td>
             </tr>
-        `;
-
+        `;        
+        if (index === storedIngredients.length-1) {
+            html += `<tr class="totalTr"><td></td><td class="subTotalLabel">SUB TOTAL:</td><td class="subTotalPrice">$${subPrice.toFixed(2)}</td></tr>`;
+            totalPrice = totalPrice + subPrice;
+            subPrice = 0;
+            
+        } 
+        oldSupplier = newSupplier;
     });
 
 
@@ -63,6 +74,6 @@ $(function() {
     $("#ingredientsTable").append(html);
 
     // append totalprice
-    $("#ingredientsTable").append(`<tr><td></td><td class="overallTotalLabel">TOTAL:</td><td class="overallTotalPrice">$${totalPrice}</td></tr></table>`);
+    $("#ingredientsTable").append(`<tr class="totalTr"><td></td><td class="overallTotalLabel">TOTAL:</td><td class="overallTotalPrice">$${totalPrice.toFixed(2)}</td></tr></table>`);
 
 });
