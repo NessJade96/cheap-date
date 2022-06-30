@@ -451,8 +451,8 @@ $(function () {
 							ingredientTr += `<tr>`;
 							ingredientTr += `
 								<td>${capatilizeSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
-								<td>${dodgyIngredientArray[ingredientIndex].string}</td>
-								<td><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier}.png" /></td>
+								<td class="ingredientLongName">${dodgyIngredientArray[ingredientIndex].string}</td>
+								<td class="ingredientSupplierLogo"><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier}.png" /></td>
 								<td>${dodgyIngredientArray[ingredientIndex].price}</td>
 								<td>${measure}</td></tr>`;
 							$("#ingredientsTable").append(ingredientTr);
@@ -474,8 +474,8 @@ $(function () {
 										response.data.Products[0];
 									ingredientTr += `<tr>
 								<td>${capatilizeSentence(response.data.callIngredientName)}</td>
-								<td>${thisIngredient.Name}</td>
-								<td><img src="./assets/images/woolWorths.png" /></td>
+								<td class="ingredientLongName">${thisIngredient.Name}</td>
+								<td class="ingredientSupplierLogo"><img src="./assets/images/woolWorths.png" /></td>
 								<td>`;
 
 									// sometimes the price comes back null, don't print that
