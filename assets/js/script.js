@@ -428,6 +428,9 @@ $(function () {
 							case "schweppes Russchian":
 								callIngredientName = " Sanpellegrino Tonica Citrus Flavoured Tonic Water";
 								break;
+							case "creme de menthe":
+								callIngredientName = "Marie Brizard - Crème De Menthe 500ml";
+								break;
 							default:
 								break;
 						}
