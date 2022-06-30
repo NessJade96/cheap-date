@@ -224,7 +224,7 @@ $(function () {
 		else {
 
 			$("#alcoholTypeUl").hide();
-			$("#cocktailNameDiv").hide();
+			$("#cocktailNameDiv").removeClass("d-md-flex").addClass("d-none");
 			// this means the call came from the fav page, we need to get the id of this drink
 			var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/search.php?s=${drinkId}`;
 			fetch(url)
