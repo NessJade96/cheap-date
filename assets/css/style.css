@@ -201,7 +201,16 @@ body {
 	color: #fff;
 	position: relative;
 }
-
+#ingredientsListButtons {
+	text-align: right;
+}
+#ingredientsListButtons img {
+ 	width: 30px;
+ 	margin-right: 20px;
+}
+#ingredientsListButtons div {
+	display: inline;
+}
 .navbar-color {
 	background-color: var(--background);
 }
