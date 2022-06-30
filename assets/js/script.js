@@ -286,6 +286,8 @@ $(function () {
 			'background-image':'none',
 			'background':'var(--mainColor10)'
 		});
+		$("#cocktailNameDiv").removeClass("d-none").addClass("d-flex");
+		$("#imageWrapper").removeClass("d-flex").addClass("d-none");
 		$("#imageDiv").css({
 			'background-image':'none'
 		});
@@ -360,6 +362,7 @@ $(function () {
 			'background-repeat': 'no-repeat',
 			'background-size': 'cover'
 		});
+		$("#imageWrapper").removeClass("d-none").addClass("d-flex");
 		$("#ingredientsDiv").empty();
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
