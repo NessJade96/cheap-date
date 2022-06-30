@@ -20,6 +20,7 @@ $(function () {
 	$(".reloadBtn").on("click", function () {
 		$(".reloadBtn").hide();
 		$(".heart").hide();
+		$(".trolley").hide();
 		$("#cocktailNameUl").empty();
 		$("#cocktailNameDiv").css({
 			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
@@ -63,8 +64,53 @@ $(function () {
 			JSON.stringify(storedCocktails)
 		);
 	});
+	$("#trolleyButton").on("click", function (event) {
+
+		// prevent the page from reloading
+		event.preventDefault();
+
+		// get the current stored ingredients from local
+		var storedIngredients = JSON.parse(
+			localStorage.getItem("storedIngredients")
+		);
+
+		// if nothing is stored in local, create array
+		if (storedIngredients === null) {
+			storedIngredients = [];
+		}
+		
+		// loop over each row of the table
+		var thisIngredientsList = $('table#ingredientsTable tr').map(function() {
+
+			// loop over each td in the tr
+			return $(this).find('td').map(function() {
+
+				// return the html content of the td
+				return $(this).html();
+			});
+			
+		// keep the tr as it's own object
+		}).get();
+
+		// loop over the array of objects created above
+		thisIngredientsList.map((thisEntry) => {
+
+			// if the name (object key 0) of the object doesn't equal thisIngredient, then add it to the storedIngredients array
+			if (storedIngredients.findIndex(storedIngredient => thisEntry[0] === storedIngredient[0] ) === -1) {
+				storedIngredients.push(thisEntry);
+			}
+		});
+		
+		// save the new storedIngredients array to local as a string
+		localStorage.setItem(
+			"storedIngredients",
+			JSON.stringify(storedIngredients)
+		);	
+	});
 
 	function addAlcoholNames() {
+
+		// this is a list of alcohols that will appear on the front page
 		var alcoholNamesArray = [
 			"Absinthe",
 			"Tequila",
@@ -78,16 +124,27 @@ $(function () {
 			"Champagne",
 			"Cognac",
 		];
+
+		// create the string that we will write to the page later
 		var html = ``;
+
+		// loop through the alcohol name and create li's and buttons by concating string
 		alcoholNamesArray.map((alcohol) => {
 			html += `<li class="list-group-item d-flex justify-content-between align-items-center custom-item alcoholTypeLi" id="${alcohol}Li">
 			<button id="${alcohol}">${alcohol}</button></li>`;
 		});
+
+		// and print the li's and buttons to the alcoholTypeUl list
 		$("#alcoholTypeUl").append(html);
 	}
+
+	// call the addAlcoholNames on page load
 	addAlcoholNames();
 
+	// function to get the price of ingredients from the WW API
 	function getIngredientPrice(ingredientName, callIngredientName, measure) {
+
+		// please leave this log so that it is easy to track API failures (product doesn't exist) as they happen
 		console.log("getIngredientPrice->ingredientName: ",ingredientName);
 		return fetch(
 			`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}&sorttype=relevance`)
@@ -95,6 +152,7 @@ $(function () {
 			.then((response) => {
 				if (response.products !== null) {
 
+					// just use the first product returned
 					var thisProduct = response.Products[0];
 
 					// need to send these two straight back so they are in scope for the calling function
@@ -106,6 +164,7 @@ $(function () {
 						data: thisProduct,
 					};
 
+					// and return as a promise
 					return returnValue;
 				} else {
 					returnValue = {
@@ -149,7 +208,7 @@ $(function () {
 			.catch((error) => {
 				returnValue = {
 					status: "error",
-					errorMessage: "getCocktails response error",
+					errorMessage: "getCocktails response error|"+cocktailAlcoholType,
 				};
 
 				return returnValue;
@@ -219,6 +278,7 @@ $(function () {
 		e.preventDefault();
 		$(".reloadBtn").hide();
 		$(".heart").hide();
+		$(".trolley").hide();
 		// remove active from any LI that currently has it and empty divs
 		$(".alcoholTypeLi").removeClass("active");
 		$("#cocktailNameUl").empty();
@@ -285,6 +345,7 @@ $(function () {
 		$(".reloadBtn").show();
 
 		$(".heart").show();
+		$(".trolley").show();
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
 
@@ -465,9 +526,13 @@ $(function () {
 			$('html, body').animate({scrollTop: $("#ingredientsDiv").offset().top}, 500);
 		});
 	});
-		// FAVOURITES BUTTON FUNCTION
-		$(".heart").on("click", function() {
-			$(this).toggleClass("is-active");
-		});
+	// FAVOURITES BUTTON FUNCTION
+	$(".heart").on("click", function() {
+		$(this).toggleClass("is-active");
+	});
+	// TROLLEY BUTTON FUNCTION
+	$(".trolley").on("click", function() {
+		$(this).toggleClass("is-active");
+	});
 
 });
