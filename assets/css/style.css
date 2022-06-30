@@ -218,6 +218,9 @@ body {
 #ingredientsTable img {
 	height: 20px;
 }
+#ingredientsTable .itemName {
+	text-align: left;
+}
 
 #h3DrinkName {
 	color: yellow;
@@ -318,6 +321,20 @@ body {
 	transition-duration: 1s;
 	background-position: -2800px 0;
 }
+
+
+.subTotalPrice,
+.subTotalLabel {
+	padding: 10px 10px;
+}
+.overallTotalLabel,
+.overallTotalPrice {
+	padding: 5px 10px;
+	font-weight: bold;
+}
+.totalTr td {
+	background: var(--background);
+}
 /* MEDIA QUERIES FOR NEW BUTTON */
 @media screen and (max-width: 991px) {
  
@@ -358,4 +375,4 @@ body {
 
    }
 
-}
+
