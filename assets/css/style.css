@@ -199,6 +199,7 @@ body {
 	margin:70px;
 	font-family: "Source Code Pro";
 	color: #fff;
+	position: relative;
 }
 
 .navbar-color {
