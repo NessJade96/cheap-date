@@ -347,10 +347,11 @@ $(function () {
 	console.log($(".drinkName").text())
 	var activateHeart = $(".drinkName").text()
 	for (let i = 0; i < storedCocktails.length; i++){
-		if (activateHeart === storedCocktails[i]){
+		if (activateHeart && activateHeart === storedCocktails[i]){
 			$(".heart").toggleClass("is-active")
 		}
 	}}
+	isDrinkFavourited();
 	
 	// event listener for the cocktailNameUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
 	$("#cocktailNameUl").on("click", function (e) {
@@ -363,8 +364,9 @@ $(function () {
 
 
 		isDrinkFavourited();
-
 		$(".trolley").show();
+
+
 
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
@@ -560,8 +562,6 @@ $(function () {
 		});
 	});
 
-
-
 	// FAVOURITES BUTTON FUNCTION
 	$(".heart").on("click", function() {
 		$(this).toggleClass("is-active");
@@ -571,6 +571,5 @@ $(function () {
 		$(this).toggleClass("is-active");
 		setTimeout(() => {$(this).toggleClass("is-active");},500);
 	});
-
 
 });
