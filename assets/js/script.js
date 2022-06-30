@@ -560,10 +560,7 @@ $(function () {
 		});
 	});
 
-		// FAVOURITES BUTTON FUNCTION
-		$(".heart").on("click", function() {
-			$(this).toggleClass("is-active");
-		});
+
 
 	// FAVOURITES BUTTON FUNCTION
 	$(".heart").on("click", function() {
