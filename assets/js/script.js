@@ -224,7 +224,7 @@ $(function () {
 		else {
 
 			$("#alcoholTypeUl").hide();
-			$("#cocktailNameDiv").hide();
+			$("#cocktailNameDiv").removeClass("d-md-flex").addClass("d-none");
 			// this means the call came from the fav page, we need to get the id of this drink
 			var url = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/search.php?s=${drinkId}`;
 			fetch(url)
@@ -362,8 +362,12 @@ $(function () {
 
 		$(".heart").show();
 
+
 		isDrinkFavourited();
 		$(".trolley").show();
+
+
+
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
 
@@ -557,6 +561,7 @@ $(function () {
 			$('html, body').animate({scrollTop: $("#ingredientsDiv").offset().top}, 500);
 		});
 	});
+
 	// FAVOURITES BUTTON FUNCTION
 	$(".heart").on("click", function() {
 		$(this).toggleClass("is-active");
@@ -566,4 +571,5 @@ $(function () {
 		$(this).toggleClass("is-active");
 		setTimeout(() => {$(this).toggleClass("is-active");},500);
 	});
+
 });

@@ -30,7 +30,7 @@ $(function () {
 
 	$("#cocktailFavDiv").on("click",(e) => {
 		console.log(e.target.id);
-		window.location.href = "/index.html?drink="+e.target.id;
+		window.location.href = "./index.html?drink="+e.target.id;
 	})
 
 	//This removes the hearted drinks from list and local storage:
