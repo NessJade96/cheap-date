@@ -44,7 +44,7 @@ $(function () {
 		}
 		$("#alcoholTypeUl").show();
 		$("#cocktailNameDiv").show();
-		window.scrollTo({top: document.querySelector('body').offsetTop, behavior: "smooth" });
+		$('html, body').animate({scrollTop: $("body").offset().top}, 500);
 	});
 
 	//click event listener to save current selected drink to local storage as an Array
@@ -270,10 +270,11 @@ $(function () {
 				$("#cocktailNameDivSpinner")
 					.removeClass("d-flex")
 					.addClass("d-none");
-			} else {
-				console.log(response.errorMessage);
-			}
-		});
+				} else {
+					console.log(response.errorMessage);
+				}
+				$('html, body').animate({scrollTop: $("#cocktailNameUl").offset().top}, 500);
+			});
 	});
 
 	// event listener for the cocktailNameUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
@@ -461,6 +462,7 @@ $(function () {
 			} else {
 				console.log(response.errorMessage);
 			}
+			$('html, body').animate({scrollTop: $("#ingredientsDiv").offset().top}, 500);
 		});
 	});
 		// FAVOURITES BUTTON FUNCTION
