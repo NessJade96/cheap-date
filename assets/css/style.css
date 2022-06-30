@@ -319,6 +319,25 @@ body {
 	background-position: -2800px 0;
 }
 /* MEDIA QUERIES FOR NEW BUTTON */
+@media screen and (max-width: 991px) {
+ 
+	.custom-link{
+	 color: #fff;
+	 font-family: "Nova Square";
+	 margin-left: 0;
+	}
+ 
+	.custom-nav{
+	 display: flex;
+	 justify-content: center;
+	 font-size: 25px;
+	 float:none;
+	 padding-right: 0;
+ 
+	}
+ 
+ }
+
 @media screen and (max-width: 760px) {
 
    .reloadBtn{
@@ -334,6 +353,9 @@ body {
    
    .ingredientLongName {
 		display: none;
+   }
+	
+
    }
 
 }
