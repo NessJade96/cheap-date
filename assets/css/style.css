@@ -95,23 +95,29 @@ body {
 .favourites-desc {
 	display: flex;
 	justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  max-width: 100%;
-  padding-bottom: 40px;
-  padding-top: 40px;
-  margin:70px;
-  font-family: 'Source Code Pro';
+	flex-wrap: wrap;
+	flex-direction: column;
+	max-width: 100%;
+	padding-bottom: 40px;
+	padding-top: 40px;
+	margin: 70px;
+	font-family: 'Source Code Pro';
 }
 
-.favourites-header{
-    display: flex;
-    justify-content: center;
-    font-family: 'Nova Square';
-    padding-bottom: 20px;
-    font-size:45px;
+.favourites-header {
+	display: flex;
+	justify-content: center;
+	font-family: 'Nova Square';
+	padding-bottom: 20px;
+	font-size: 45px;
 }
 
+/* NAV HAMBURGER CUSTOM COLOR */
+
+.navbar-toggler {
+	border: var(--mainColor10) solid 1px;
+
+}
 
 
 /* ------------------------------------------------ ALCOHOL TYPE */
@@ -122,6 +128,7 @@ body {
 	color: #fff;
 	background: none;
 }
+
 .alcoholTypeLi.active button {
 	color: rgb(255, 255, 255);
 	font-weight: bold;
@@ -135,10 +142,12 @@ body {
 	color: #fff;
 	background: none;
 }
+
 .cocktailNameLi.active button {
 	color: rgb(255, 255, 255);
 	font-weight: bold;
 }
+
 #cocktailNameDiv {
 	overflow-y: scroll;
 	overflow-x: hidden;
@@ -152,13 +161,14 @@ body {
 }
 
 #cocktailNameDivSpinner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #fff;
-    background: transparent;
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #fff;
+	background: transparent;
 
 }
+
 #cocktailNameDiv::-webkit-scrollbar {
 	display: none;
 }
@@ -212,12 +222,15 @@ body {
 	font-family: "Source Code Pro";
 	font-weight: 300;
 }
+
 #ingredientsDiv tr:nth-child(odd) {
 	background: var(--mainColor10);
 }
+
 #ingredientsTable img {
 	height: 20px;
 }
+
 #ingredientsTable .itemName {
 	text-align: left;
 }
@@ -238,39 +251,41 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
 #imageDiv {
 	border-radius: 5px;
 	min-width: 284px;
 	min-height: 328px;
 }
+
 #recipeImageSpinner {
 	position: absolute;
 	top: 0;
 	left: 0;
-    color: #fff;
+	color: #fff;
 	background: transparent;
 }
 
 #recipeContainerSpinner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #fff;
-    background: transparent;
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #fff;
+	background: transparent;
 }
 
 
-.reloadBtn{
-    width: 75px;
-    padding:5px;
-    font-family: 'Nova Square';
-    color:black;
-    background-color:var(--mainColor60);
-    border-radius: 5px;
-    border: none;
-    position:absolute;
-    bottom:100px;
-    left:110px;
+.reloadBtn {
+	width: 75px;
+	padding: 5px;
+	font-family: 'Nova Square';
+	color: black;
+	background-color: var(--mainColor60);
+	border-radius: 5px;
+	border: none;
+	position: absolute;
+	bottom: 100px;
+	left: 110px;
 	display: none;
 }
 
@@ -288,7 +303,7 @@ body {
 }
 
 /* FAVOURITES BUTTON */
-	/* SOURCE: https://codepen.io/mattbhenley/pen/gQbWgd */
+/* SOURCE: https://codepen.io/mattbhenley/pen/gQbWgd */
 .heart {
 	width: 100px;
 	height: 100px;
@@ -304,6 +319,7 @@ body {
 	transition-duration: 1s;
 	background-position: -2800px 0;
 }
+
 /* TROLLEY BUTTON */
 .trolley {
 	width: 100px;
@@ -327,52 +343,53 @@ body {
 .subTotalLabel {
 	padding: 10px 10px;
 }
+
 .overallTotalLabel,
 .overallTotalPrice {
 	padding: 5px 10px;
 	font-weight: bold;
 }
+
 .totalTr td {
 	background: var(--background);
 }
+
 /* MEDIA QUERIES FOR NEW BUTTON */
 @media screen and (max-width: 991px) {
- 
-	.custom-link{
-	 color: #fff;
-	 font-family: "Nova Square";
-	 margin-left: 0;
+
+	.custom-link {
+		color: #fff;
+		font-family: "Nova Square";
+		margin-left: 0;
 	}
- 
-	.custom-nav{
-	 display: flex;
-	 justify-content: center;
-	 font-size: 25px;
-	 float:none;
-	 padding-right: 0;
- 
+
+	.custom-nav {
+		display: flex;
+		justify-content: center;
+		font-size: 25px;
+		float: none;
+		padding-right: 0;
+
 	}
- 
- }
+
+}
 
 @media screen and (max-width: 760px) {
 
-   .reloadBtn{
-		left:40%;
-		right:50%;
-		margin:auto;
-		width:20%  
-   }
+	.reloadBtn {
+		left: 40%;
+		right: 50%;
+		margin: auto;
+		width: 20%
+	}
 
-   .ingredientSupplierLogo {
+	.ingredientSupplierLogo {
 		display: none;
-   }
-   
-   .ingredientLongName {
+	}
+
+	.ingredientLongName {
 		display: none;
-   }
-	
-
-   }
+	}
 
 
+}
