@@ -344,6 +344,9 @@ $(function () {
 		var storedCocktails = JSON.parse(
 			localStorage.getItem("storedCocktails")
 		);
+		if (storedCocktails === null){
+			storedCocktails = []
+		}
 	console.log($(".drinkName").text())
 	var activateHeart = $(".drinkName").text()
 	for (let i = 0; i < storedCocktails.length; i++){
