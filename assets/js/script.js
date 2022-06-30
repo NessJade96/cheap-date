@@ -428,18 +428,18 @@ $(function () {
 
 						// Create array of items not in WW API
 						var dodgyIngredientArray = [
-						{name: "ice", supplier: "home", string: "From your freezer", price: "Free!"},
-						{name: "absinthe", supplier: "danMurphys", string: "Green Fairy Absinth 500Ml", price: "$75.99"},
-						{name: "creme de cassis", supplier: "danMurphys", string: "Creme de Cassis", price: "$29.99"},
-						{name: "creme de cacao", supplier: "danMurphys", string: "Vok Brown Creme De Cacao 500mL", price: "$27.99"},
-						{name: "champagne", supplier: "danMurphys", string: "Special Cuvee Champagne", price: "$86.99"},
-						{name: "grenadine", supplier: "danMurphys", string: "Grenadine Syrup", price: "$8.99"},
-						{name: "sweet and sour", supplier: "danMurphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
+						{name: "ice", supplier: "Home", string: "From your freezer", price: "Free!"},
+						{name: "absinthe", supplier: "Dan+Murphys", string: "Green Fairy Absinth 500Ml", price: "$75.99"},
+						{name: "creme de cassis", supplier: "Dan+Murphys", string: "Creme de Cassis", price: "$29.99"},
+						{name: "creme de cacao", supplier: "Dan+Murphys", string: "Vok Brown Creme De Cacao 500mL", price: "$27.99"},
+						{name: "champagne", supplier: "Dan+Murphys", string: "Special Cuvee Champagne", price: "$86.99"},
+						{name: "grenadine", supplier: "Dan+Murphys", string: "Grenadine Syrup", price: "$8.99"},
+						{name: "sweet and sour", supplier: "Dan+Murphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
 						{name: "151 proof rum", supplier: "nicks", string: "Goslings Black Seal 151 Proof Rum 700ml", price: "$130"},
-						{name: "blue curacao", supplier: "danMurphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
-						{name: "strawberry schnapps", supplier: "danMurphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
-						{name: "rosemary syrup", supplier: "home", string: "home", price: "Free"},
-						{name: "peach schnapps", supplier: "danMurphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"}
+						{name: "blue curacao", supplier: "Dan+Murphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
+						{name: "strawberry schnapps", supplier: "Dan+Murphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
+						{name: "rosemary syrup", supplier: "Home", string: "home", price: "Free"},
+						{name: "peach schnapps", supplier: "Dan+Murphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"}
 					];
 
 					const ingredientIndex = dodgyIngredientArray.findIndex(item => item.name === callIngredientName.toLowerCase());
@@ -448,13 +448,14 @@ $(function () {
 
 							// Print the items that aren't in WW API
 							ingredientTr = ``;
-							ingredientTr += `<tr>`;
 							ingredientTr += `
-								<td>${capatilizeSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
-								<td class="ingredientLongName">${dodgyIngredientArray[ingredientIndex].string}</td>
-								<td class="ingredientSupplierLogo"><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier}.png" /></td>
-								<td>${dodgyIngredientArray[ingredientIndex].price}</td>
-								<td>${(measure !== null)?measure:""}</td></tr>`;
+								<tr>
+									<td>${capatilizeSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
+									<td class="ingredientLongName">${dodgyIngredientArray[ingredientIndex].string}</td>
+									<td class="ingredientSupplierLogo"><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier.replaceAll("+","")}.png" /></td>
+									<td>${dodgyIngredientArray[ingredientIndex].price}</td>
+									<td>${(measure !== null)?measure:""}</td>
+								</tr>`;
 							$("#ingredientsTable").append(ingredientTr);
 						}
 						else {
@@ -475,7 +476,7 @@ $(function () {
 									ingredientTr += `<tr>
 								<td>${capatilizeSentence(response.data.callIngredientName)}</td>
 								<td class="ingredientLongName">${thisIngredient.Name}</td>
-								<td class="ingredientSupplierLogo"><img src="./assets/images/woolWorths.png" /></td>
+								<td class="ingredientSupplierLogo"><img src="./assets/images/Woolworths.png" /></td>
 								<td>`;
 
 									// sometimes the price comes back null, don't print that
