@@ -454,7 +454,7 @@ $(function () {
 								<td class="ingredientLongName">${dodgyIngredientArray[ingredientIndex].string}</td>
 								<td class="ingredientSupplierLogo"><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier}.png" /></td>
 								<td>${dodgyIngredientArray[ingredientIndex].price}</td>
-								<td>${measure}</td></tr>`;
+								<td>${(measure !== null)?measure:""}</td></tr>`;
 							$("#ingredientsTable").append(ingredientTr);
 						}
 						else {
@@ -482,7 +482,7 @@ $(function () {
 									if (thisIngredient.Price !== null) {
 										ingredientTr += `$${thisIngredient.Price}</td>`;
 									}
-									ingredientTr += `<td>${response.data.myMeasure}</td></tr>`;
+									ingredientTr += `<td>${(response.data.myMeasure !== null)?response.data.myMeasure:""}</td></tr>`;
 								} else {
 									ingredientTr = `<tr><td colspan="4">${response.errorMessage}</td></tr>`;
 								}
