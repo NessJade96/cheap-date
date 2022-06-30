@@ -422,6 +422,12 @@ $(function () {
 							case "peach nectar":
 								callIngredientName = "Tamek Beverages Peach Nectar 1l";
 								break;
+							case "kirschwasser":
+								callIngredientName = "Kirsch";
+								break;
+							case "schweppes Russchian":
+								callIngredientName = " Sanpellegrino Tonica Citrus Flavoured Tonic Water";
+								break;
 							default:
 								break;
 						}
@@ -439,7 +445,9 @@ $(function () {
 						{name: "blue curacao", supplier: "Dan+Murphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
 						{name: "strawberry schnapps", supplier: "Dan+Murphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
 						{name: "rosemary syrup", supplier: "Home", string: "home", price: "Free"},
-						{name: "peach schnapps", supplier: "Dan+Murphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"}
+						{name: "peach schnapps", supplier: "Dan+Murphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"},
+						{name: "licorice root", supplier: "The+Licorice+Shop", string: "Pure Licorice Root", price: "$3.00"},
+						{name: "wormwood", supplier: "iHerb", string: "Wormwood, 1 fl oz", price: "$22.32 "}
 					];
 
 					const ingredientIndex = dodgyIngredientArray.findIndex(item => item.name === callIngredientName.toLowerCase());
