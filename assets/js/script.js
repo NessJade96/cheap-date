@@ -20,6 +20,7 @@ $(function () {
 	$(".reloadBtn").on("click", function () {
 		$(".reloadBtn").hide();
 		$(".heart").hide();
+		$(".trolley").hide();
 		$("#cocktailNameUl").empty();
 		$("#cocktailNameDiv").css({
 			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
@@ -44,7 +45,7 @@ $(function () {
 		}
 		$("#alcoholTypeUl").show();
 		$("#cocktailNameDiv").show();
-		window.scrollTo({top: document.querySelector('body').offsetTop, behavior: "smooth" });
+		$('html, body').animate({scrollTop: $("body").offset().top}, 500);
 	});
 
 	//click event listener to save current selected drink to local storage as an Array
@@ -63,8 +64,53 @@ $(function () {
 			JSON.stringify(storedCocktails)
 		);
 	});
+	$("#trolleyButton").on("click", function (event) {
+
+		// prevent the page from reloading
+		event.preventDefault();
+
+		// get the current stored ingredients from local
+		var storedIngredients = JSON.parse(
+			localStorage.getItem("storedIngredients")
+		);
+
+		// if nothing is stored in local, create array
+		if (storedIngredients === null) {
+			storedIngredients = [];
+		}
+		
+		// loop over each row of the table
+		var thisIngredientsList = $('table#ingredientsTable tr').map(function() {
+
+			// loop over each td in the tr
+			return $(this).find('td').map(function() {
+
+				// return the html content of the td
+				return $(this).html();
+			});
+			
+		// keep the tr as it's own object
+		}).get();
+
+		// loop over the array of objects created above
+		thisIngredientsList.map((thisEntry) => {
+
+			// if the name (object key 0) of the object doesn't equal thisIngredient, then add it to the storedIngredients array
+			if (storedIngredients.findIndex(storedIngredient => thisEntry[0] === storedIngredient[0] ) === -1) {
+				storedIngredients.push(thisEntry);
+			}
+		});
+
+		// save the new storedIngredients array to local as a string
+		localStorage.setItem(
+			"storedIngredients",
+			JSON.stringify(storedIngredients)
+		);	
+	});
 
 	function addAlcoholNames() {
+
+		// this is a list of alcohols that will appear on the front page
 		var alcoholNamesArray = [
 			"Absinthe",
 			"Tequila",
@@ -78,16 +124,27 @@ $(function () {
 			"Champagne",
 			"Cognac",
 		];
+
+		// create the string that we will write to the page later
 		var html = ``;
+
+		// loop through the alcohol name and create li's and buttons by concating string
 		alcoholNamesArray.map((alcohol) => {
 			html += `<li class="list-group-item d-flex justify-content-between align-items-center custom-item alcoholTypeLi" id="${alcohol}Li">
 			<button id="${alcohol}">${alcohol}</button></li>`;
 		});
+
+		// and print the li's and buttons to the alcoholTypeUl list
 		$("#alcoholTypeUl").append(html);
 	}
+
+	// call the addAlcoholNames on page load
 	addAlcoholNames();
 
+	// function to get the price of ingredients from the WW API
 	function getIngredientPrice(ingredientName, callIngredientName, measure) {
+
+		// please leave this log so that it is easy to track API failures (product doesn't exist) as they happen
 		console.log("getIngredientPrice->ingredientName: ",ingredientName);
 		return fetch(
 			`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}&sorttype=relevance`)
@@ -95,6 +152,7 @@ $(function () {
 			.then((response) => {
 				if (response.products !== null) {
 
+					// just use the first product returned
 					var thisProduct = response.Products[0];
 
 					// need to send these two straight back so they are in scope for the calling function
@@ -106,6 +164,7 @@ $(function () {
 						data: thisProduct,
 					};
 
+					// and return as a promise
 					return returnValue;
 				} else {
 					returnValue = {
@@ -149,7 +208,7 @@ $(function () {
 			.catch((error) => {
 				returnValue = {
 					status: "error",
-					errorMessage: "getCocktails response error",
+					errorMessage: "getCocktails response error|"+cocktailAlcoholType,
 				};
 
 				return returnValue;
@@ -219,6 +278,7 @@ $(function () {
 		e.preventDefault();
 		$(".reloadBtn").hide();
 		$(".heart").hide();
+		$(".trolley").hide();
 		// remove active from any LI that currently has it and empty divs
 		$(".alcoholTypeLi").removeClass("active");
 		$("#cocktailNameUl").empty();
@@ -226,6 +286,8 @@ $(function () {
 			'background-image':'none',
 			'background':'var(--mainColor10)'
 		});
+		$("#cocktailNameDiv").removeClass("d-none").addClass("d-flex");
+		$("#imageWrapper").removeClass("d-flex").addClass("d-none");
 		$("#imageDiv").css({
 			'background-image':'none'
 		});
@@ -270,10 +332,11 @@ $(function () {
 				$("#cocktailNameDivSpinner")
 					.removeClass("d-flex")
 					.addClass("d-none");
-			} else {
-				console.log(response.errorMessage);
-			}
-		});
+				} else {
+					console.log(response.errorMessage);
+				}
+				$('html, body').animate({scrollTop: $("#cocktailNameUl").offset().top}, 500);
+			});
 	});
 
 	//function to load the heart button as active if that drink is saved in local storage. 
@@ -297,8 +360,12 @@ $(function () {
 		$(".reloadBtn").show();
 
 		$(".heart").show();
+<<<<<<< 207-make-heart-button-active-when-user-clicks-on-fav-and-returns-to-main-screen
 
 		isDrinkFavourited();
+=======
+		$(".trolley").show();
+>>>>>>> main
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
 
@@ -313,6 +380,7 @@ $(function () {
 			'background-repeat': 'no-repeat',
 			'background-size': 'cover'
 		});
+		$("#imageWrapper").removeClass("d-none").addClass("d-flex");
 		$("#ingredientsDiv").empty();
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
@@ -375,24 +443,35 @@ $(function () {
 							case "peach nectar":
 								callIngredientName = "Tamek Beverages Peach Nectar 1l";
 								break;
+							case "kirschwasser":
+								callIngredientName = "Kirsch";
+								break;
+							case "schweppes Russchian":
+								callIngredientName = " Sanpellegrino Tonica Citrus Flavoured Tonic Water";
+								break;
+							case "creme de menthe":
+								callIngredientName = "Marie Brizard - Crème De Menthe 500ml";
+								break;
 							default:
 								break;
 						}
 
 						// Create array of items not in WW API
 						var dodgyIngredientArray = [
-						{name: "ice", supplier: "home", string: "From your freezer", price: "Free!"},
-						{name: "absinthe", supplier: "danMurphys", string: "Green Fairy Absinth 500Ml", price: "$75.99"},
-						{name: "creme de cassis", supplier: "danMurphys", string: "Creme de Cassis", price: "$29.99"},
-						{name: "creme de cacao", supplier: "danMurphys", string: "Vok Brown Creme De Cacao 500mL", price: "$27.99"},
-						{name: "champagne", supplier: "danMurphys", string: "Special Cuvee Champagne", price: "$86.99"},
-						{name: "grenadine", supplier: "danMurphys", string: "Grenadine Syrup", price: "$8.99"},
-						{name: "sweet and sour", supplier: "danMurphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
+						{name: "ice", supplier: "Home", string: "From your freezer", price: "Free!"},
+						{name: "absinthe", supplier: "Dan+Murphys", string: "Green Fairy Absinth 500Ml", price: "$75.99"},
+						{name: "creme de cassis", supplier: "Dan+Murphys", string: "Creme de Cassis", price: "$29.99"},
+						{name: "creme de cacao", supplier: "Dan+Murphys", string: "Vok Brown Creme De Cacao 500mL", price: "$27.99"},
+						{name: "champagne", supplier: "Dan+Murphys", string: "Special Cuvee Champagne", price: "$86.99"},
+						{name: "grenadine", supplier: "Dan+Murphys", string: "Grenadine Syrup", price: "$8.99"},
+						{name: "sweet and sour", supplier: "Dan+Murphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
 						{name: "151 proof rum", supplier: "nicks", string: "Goslings Black Seal 151 Proof Rum 700ml", price: "$130"},
-						{name: "blue curacao", supplier: "danMurphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
-						{name: "strawberry schnapps", supplier: "danMurphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
-						{name: "rosemary syrup", supplier: "home", string: "home", price: "Free"},
-						{name: "peach schnapps", supplier: "danMurphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"}
+						{name: "blue curacao", supplier: "Dan+Murphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
+						{name: "strawberry schnapps", supplier: "Dan+Murphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
+						{name: "rosemary syrup", supplier: "Home", string: "home", price: "Free"},
+						{name: "peach schnapps", supplier: "Dan+Murphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"},
+						{name: "licorice root", supplier: "The+Licorice+Shop", string: "Pure Licorice Root", price: "$3.00"},
+						{name: "wormwood", supplier: "iHerb", string: "Wormwood, 1 fl oz", price: "$22.32 "}
 					];
 
 					const ingredientIndex = dodgyIngredientArray.findIndex(item => item.name === callIngredientName.toLowerCase());
@@ -401,13 +480,14 @@ $(function () {
 
 							// Print the items that aren't in WW API
 							ingredientTr = ``;
-							ingredientTr += `<tr>`;
 							ingredientTr += `
-								<td>${capatilizeSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
-								<td>${dodgyIngredientArray[ingredientIndex].string}</td>
-								<td><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier}.png" /></td>
-								<td>${dodgyIngredientArray[ingredientIndex].price}</td>
-								<td>${measure}</td></tr>`;
+								<tr>
+									<td>${capatilizeSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
+									<td class="ingredientLongName">${dodgyIngredientArray[ingredientIndex].string}</td>
+									<td class="ingredientSupplierLogo"><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier.replaceAll("+","")}.png" /></td>
+									<td>${dodgyIngredientArray[ingredientIndex].price}</td>
+									<td>${(measure !== null)?measure:""}</td>
+								</tr>`;
 							$("#ingredientsTable").append(ingredientTr);
 						}
 						else {
@@ -427,15 +507,15 @@ $(function () {
 										response.data.Products[0];
 									ingredientTr += `<tr>
 								<td>${capatilizeSentence(response.data.callIngredientName)}</td>
-								<td>${thisIngredient.Name}</td>
-								<td><img src="./assets/images/woolWorths.png" /></td>
+								<td class="ingredientLongName">${thisIngredient.Name}</td>
+								<td class="ingredientSupplierLogo"><img src="./assets/images/Woolworths.png" /></td>
 								<td>`;
 
 									// sometimes the price comes back null, don't print that
 									if (thisIngredient.Price !== null) {
 										ingredientTr += `$${thisIngredient.Price}</td>`;
 									}
-									ingredientTr += `<td>${response.data.myMeasure}</td></tr>`;
+									ingredientTr += `<td>${(response.data.myMeasure !== null)?response.data.myMeasure:""}</td></tr>`;
 								} else {
 									ingredientTr = `<tr><td colspan="4">${response.errorMessage}</td></tr>`;
 								}
@@ -476,10 +556,24 @@ $(function () {
 			} else {
 				console.log(response.errorMessage);
 			}
+			$('html, body').animate({scrollTop: $("#ingredientsDiv").offset().top}, 500);
 		});
 	});
+<<<<<<< 207-make-heart-button-active-when-user-clicks-on-fav-and-returns-to-main-screen
 		// FAVOURITES BUTTON FUNCTION
 		$(".heart").on("click", function() {
 			$(this).toggleClass("is-active");
 		});
+=======
+	// FAVOURITES BUTTON FUNCTION
+	$(".heart").on("click", function() {
+		$(this).toggleClass("is-active");
+	});
+	// TROLLEY BUTTON FUNCTION
+	$(".trolley").on("click", function() {
+		$(this).toggleClass("is-active");
+		setTimeout(() => {$(this).toggleClass("is-active");},500);
+	});
+
+>>>>>>> main
 });
