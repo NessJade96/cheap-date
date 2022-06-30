@@ -339,6 +339,19 @@ $(function () {
 			});
 	});
 
+	//function to load the heart button as active if that drink is saved in local storage. 
+	function isDrinkFavourited(){
+		var storedCocktails = JSON.parse(
+			localStorage.getItem("storedCocktails")
+		);
+	console.log($(".drinkName").text())
+	var activateHeart = $(".drinkName").text()
+	for (let i = 0; i < storedCocktails.length; i++){
+		if (activateHeart === storedCocktails[i]){
+			$(".heart").toggleClass("is-active")
+		}
+	}}
+	
 	// event listener for the cocktailNameUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
 	$("#cocktailNameUl").on("click", function (e) {
 		// prevent default
@@ -347,7 +360,12 @@ $(function () {
 		$(".reloadBtn").show();
 
 		$(".heart").show();
+<<<<<<< 207-make-heart-button-active-when-user-clicks-on-fav-and-returns-to-main-screen
+
+		isDrinkFavourited();
+=======
 		$(".trolley").show();
+>>>>>>> main
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
 
@@ -541,6 +559,12 @@ $(function () {
 			$('html, body').animate({scrollTop: $("#ingredientsDiv").offset().top}, 500);
 		});
 	});
+<<<<<<< 207-make-heart-button-active-when-user-clicks-on-fav-and-returns-to-main-screen
+		// FAVOURITES BUTTON FUNCTION
+		$(".heart").on("click", function() {
+			$(this).toggleClass("is-active");
+		});
+=======
 	// FAVOURITES BUTTON FUNCTION
 	$(".heart").on("click", function() {
 		$(this).toggleClass("is-active");
@@ -551,4 +575,5 @@ $(function () {
 		setTimeout(() => {$(this).toggleClass("is-active");},500);
 	});
 
+>>>>>>> main
 });
