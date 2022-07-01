@@ -20,8 +20,6 @@
 	
 	<!-- import script files -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-	<script src="./assets/js/script.js"></script>
 	<script src="./assets/js/script-cart.js"></script>
 	
 	<title>Cheap Date</title>
@@ -43,7 +41,7 @@
 				<span class="navbar-toggler-icon navbar-dark"></span>
 			</button>
 			<div
-				class="custom-nav collapse navbar-collapse"
+				class="custom-nav collapse navbar-collapse noPrint"
 				id="navbarText">
 				<ul class="navbar-nav text-center mr-auto">
 					<li class="nav-item active">
@@ -78,15 +76,15 @@
 		<h1 class="bar-header text-white">your cart</h1>
 	</div>
 	<section class="d-flex justify-content-center p-2 text-white col-sm-12 m-2 col-md-6">
-		<p id="pageText"></p>
+		<p id="pageText" class="noPrint"></p>
 	</section>
 	
 	
 </section>
 <!-- INGREDIENTS CONTAINER -->
 <section id="ingredientsListButtons"  >
-    <div id="print"><img src="./assets/images/printer.png"></div>
-    <div id="empty"><img src="./assets/images/empty.png"></div>
+    <div id="print" class="noPrint"><img src="./assets/images/printer.png"></div>
+    <div id="empty" class="noPrint"><img src="./assets/images/empty.png"></div>
 </section>
 <section>
     <div class="ingredients-container m-3 p-2">
