@@ -13,7 +13,7 @@ $(function () {
 			storedCocktails = []
 		}
 		console.log($(".drinkName").text())
-		var activateHeart = $(".drinkName").text()
+		var activateHeart = $(".cocktailNameLi.active .drinkName").text()
 		for (let i = 0; i < storedCocktails.length; i++){
 			if (activateHeart && activateHeart === storedCocktails[i]){
 				$(".heart").toggleClass("is-active")
@@ -248,8 +248,11 @@ $(function () {
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 58198989fa0388c52889e50b3e27dea557be2a7c
 	//click event listener to save current selected drink to local storage as an Array
 	$("#favouriteDrinkButton").on("click", function (event) {
 		event.preventDefault();
@@ -270,7 +273,10 @@ $(function () {
 
 
 
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 58198989fa0388c52889e50b3e27dea557be2a7c
 	$("#trolleyButton").on("click", function (event) {
 
 		// prevent the page from reloading
@@ -386,11 +392,16 @@ $(function () {
 
 				// turn off spinner
 				$("#cocktailNameDivSpinner").removeClass("d-flex").addClass("d-none");
-				} else {
-					console.log(response.errorMessage);
-				}
-				$('html, body').animate({scrollTop: $("#cocktailNameUl").offset().top}, 500);
-			});
+			} 
+			else {
+				console.log(response.errorMessage);
+				$("#exampleModalLongTitle").text("API ERROR");
+				$("#modal-body-div").html("Please try again. <br>" + response.errorMessage);
+				$("#modal-footer-div").append(`<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>`);
+				$("#myModal").modal('show');
+			}
+			$('html, body').animate({scrollTop: $("#cocktailNameUl").offset().top}, 500);
+		});
 	});
 
 
@@ -406,16 +417,13 @@ $(function () {
 		$(".reloadBtn").show();
 		$(".heart").show();
 		$(".trolley").show();
-
-		// show the fav icon if drink is favourited
-		isDrinkFavourited();
-
+		
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
-
+		
 		// remove the active class from any cocktailNameLi that currently has it
 		$(".cocktailNameLi").removeClass("active");
-
+		
 		// remove the cocktail image if there is one, add the image div place holder image
 		$("#imageDiv").css({'background-image':'none'});
 		$("#imageWrapper").css({
@@ -426,24 +434,24 @@ $(function () {
 		$("#imageWrapper").removeClass("d-none");
 
 		// show the image div
-	 $("#imageWrapper").addClass("d-md-flex");
+		$("#imageWrapper").addClass("d-md-flex");
 		$("#ingredientsDiv").empty();
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
 
 		// add the active class the the li parent of the button pressed.
 		$("#" + e.target.id + "Li").addClass("active");
-
+		
 		// turn on the spinner
 		$("#recipeImageSpinner").removeClass("d-none").addClass("d-flex");
 		$("#recipeContainerSpinner").removeClass("d-none").addClass("d-flex");
-
+		
 		// api call to get the recipe of the selected cocktail
 		getRecipe(e.target.id, true).then((response) => {
 			if (response.status === "success") {
 				// empty ingredients div
 				$("#ingredientsDiv").empty();
-
+				
 				// setup ingredients string
 				$("#ingredientsDiv").append(`<table id="ingredientsTable">`);
 				for (var i = 1; i <= 15; i++) {
@@ -453,43 +461,43 @@ $(function () {
 					// there must be a better way to do this...
 					var measure = response.data.drinks[0]["strMeasure" + i];
 					var callIngredientName =
-						response.data.drinks[0]["strIngredient" + i];
+					response.data.drinks[0]["strIngredient" + i];
 					// The drinks object will include all 15 ingredients, the unsed ones will be null or "", we don't want those
 					if (
 						response.data.drinks[0]["strIngredient" + i] !== null &&
 						response.data.drinks[0]["strIngredient" + i] !== ""
 					) {
-
+						
 						// put ingredients that we want to rename here
 						switch (callIngredientName.toLowerCase()) {
 							case "roses sweetened lime juice":
 								callIngredientName = "lime juice";
 								break;
-							case "lemon peel":
+								case "lemon peel":
 								callIngredientName = "Lemon";
 								break;
 							case "7-up":
 								callIngredientName = "Lemonaide";
 								break;
-							case "cherry":
-								callIngredientName = "Cherries";
-								break;
-							case "club soda":
+								case "cherry":
+									callIngredientName = "Cherries";
+									break;
+									case "club soda":
 								callIngredientName = "Soda Water";
 								break;
-							case "cherry grenadine":
-								callIngredientName = "Grenadine";
+								case "cherry grenadine":
+									callIngredientName = "Grenadine";
 								break;
-							case "apple cider":
+								case "apple cider":
 								callIngredientName = "Somersby Apple Cider";
 								break;
 							case "sugar syrup":
 								callIngredientName = "Monin Pure Cane Sugar Syrup";
 								break;
-							case "peach nectar":
-								callIngredientName = "Tamek Beverages Peach Nectar 1l";
+								case "peach nectar":
+									callIngredientName = "Tamek Beverages Peach Nectar 1l";
 								break;
-							case "kirschwasser":
+								case "kirschwasser":
 								callIngredientName = "Kirsch";
 								break;
 							case "schweppes Russchian":
@@ -498,16 +506,16 @@ $(function () {
 							case "creme de menthe":
 								callIngredientName = "Marie Brizard - Crème De Menthe 500ml";
 								break;
-							default:
-								break;
+								default:
+									break;
 						}
-
+						
 						// Create array of items not in WW API
 						var dodgyIngredientArray = [
-						{name: "ice", supplier: "Home", string: "From your freezer", price: "Free!"},
-						{name: "absinthe", supplier: "Dan+Murphys", string: "Green Fairy Absinth 500Ml", price: "$75.99"},
-						{name: "creme de cassis", supplier: "Dan+Murphys", string: "Creme de Cassis", price: "$29.99"},
-						{name: "creme de cacao", supplier: "Dan+Murphys", string: "Vok Brown Creme De Cacao 500mL", price: "$27.99"},
+							{name: "ice", supplier: "Home", string: "From your freezer", price: "Free!"},
+							{name: "absinthe", supplier: "Dan+Murphys", string: "Green Fairy Absinth 500Ml", price: "$75.99"},
+							{name: "creme de cassis", supplier: "Dan+Murphys", string: "Creme de Cassis", price: "$29.99"},
+							{name: "creme de cacao", supplier: "Dan+Murphys", string: "Vok Brown Creme De Cacao 500mL", price: "$27.99"},
 						{name: "champagne", supplier: "Dan+Murphys", string: "Special Cuvee Champagne", price: "$86.99"},
 						{name: "grenadine", supplier: "Dan+Murphys", string: "Grenadine Syrup", price: "$8.99"},
 						{name: "sweet and sour", supplier: "Dan+Murphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
@@ -522,18 +530,18 @@ $(function () {
 
 					const ingredientIndex = dodgyIngredientArray.findIndex(item => item.name === callIngredientName.toLowerCase());
 
-						if (ingredientIndex !== -1) {
+					if (ingredientIndex !== -1) {
 
-							// Print the items that aren't in WW API
-							ingredientTr = ``;
-							ingredientTr += `
-								<tr>
+						// Print the items that aren't in WW API
+						ingredientTr = ``;
+						ingredientTr += `
+						<tr>
 									<td>${capatiliseSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
 									<td class="ingredientLongName">${dodgyIngredientArray[ingredientIndex].string}</td>
 									<td class="ingredientSupplierLogo"><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier.replaceAll("+","")}.png" /></td>
 									<td>${dodgyIngredientArray[ingredientIndex].price}</td>
 									<td>${(measure !== null)?measure:""}</td>
-								</tr>`;
+									</tr>`;
 							$("#ingredientsTable").append(ingredientTr);
 						}
 						else {
@@ -543,7 +551,7 @@ $(function () {
 								callIngredientName,
 								callIngredientName,
 								measure
-							)
+								)
 							.then((response) => {
 								if (response.status === "success") {
 
@@ -551,12 +559,12 @@ $(function () {
 									ingredientTr = ``;
 									var thisIngredient =
 										response.data.Products[0];
-									ingredientTr += `<tr>
-								<td>${capatiliseSentence(response.data.callIngredientName)}</td>
+										ingredientTr += `<tr>
+										<td>${capatiliseSentence(response.data.callIngredientName)}</td>
 								<td class="ingredientLongName">${thisIngredient.Name}</td>
 								<td class="ingredientSupplierLogo"><img src="./assets/images/Woolworths.png" /></td>
 								<td>`;
-
+								
 									// sometimes the price comes back null, don't print that
 									if (thisIngredient.Price !== null) {
 										ingredientTr += `$${thisIngredient.Price}</td>`;
@@ -573,14 +581,14 @@ $(function () {
 						}
 					}
 				}
-
+				
 				// print the image, name and instructions to recipeDiv
 				$("#imageDiv").css({
 					'background-image':`url(${response.data.drinks[0].strDrinkThumb})`,
 					'background-repeat': 'no-repeat',
 					'background-size': 'contain'
 				});
-
+				
 				$("#imageWrapper").css({
 					'background-image':`none`,
 					'background': 'var(--mainColor10)'
@@ -590,21 +598,25 @@ $(function () {
 				);
 				$("#recipeSpan").html(
 					`<p>${response.data.drinks[0].strInstructions}</p>`
-				);
-
-				// turn off the spinner
-				$("#recipeImageSpinner")
+					);
+					
+					// turn off the spinner
+					$("#recipeImageSpinner")
 					.removeClass("d-flex")
 					.addClass("d-none");
-				$("#recipeContainerSpinner")
+					$("#recipeContainerSpinner")
 					.removeClass("d-flex")
 					.addClass("d-none");
-				
-				// check if drink is a fav
-				isDrinkFavourited();
-
-			} else {
-				console.log(response.errorMessage);
+					
+					// check if drink is a fav
+					isDrinkFavourited();
+					
+				} else {
+					console.log(response.errorMessage);
+				$("#exampleModalLongTitle").text("API ERROR");
+				$("#modal-body-div").text("Please try again");
+				$("#modal-footer-div").append(`<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>`);
+				$("#myModal").modal('show');
 			}
 
 			// auto scroll to ingredients
@@ -643,5 +655,12 @@ $(function () {
 
 	// when we come back from facs page we need to know if the drink is favourited
 	isDrinkFavourited();
+
+	// MODAL USAGE
+	// to change title text = $("exampleModalLongTitle").text("");
+	// to add body text = $("#modal-body-div").text("");
+	// add close button = $("").append(`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`);
+	// add save button = $("").append(`<button type="button" class="btn btn-primary">Save changes</button>`);
+	// to open modal = $("myModal").modal(options);
 
 });
