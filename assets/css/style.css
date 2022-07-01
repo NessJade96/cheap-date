@@ -78,6 +78,13 @@ body {
 	font-family: "Source Code Pro";
 }
 
+.about-container{
+	padding-bottom: 40px;
+	padding-top: 110px;
+	font-family: "Source Code Pro";
+
+}
+
 .bar-header {
 	font-family: "Nova Square";
 	padding-bottom: 20px;
