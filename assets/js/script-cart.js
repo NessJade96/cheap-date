@@ -150,11 +150,13 @@ $(function() {
                 // get the current stored ingredients
                 var storedIngredients = getStoredIngredients();
 
+
                 // find the index of the object we need to remove
                 var itemIndex = storedIngredients.findIndex(ingredient => ingredient[0].replaceAll(" ","") === itemClickTrName);
 
                 // remove the element at index from the storedIngredients array
                 storedIngredients.splice(itemIndex,1);
+
 
 
                 // save the new storedIngredients array to local as a string
