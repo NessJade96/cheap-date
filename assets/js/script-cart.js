@@ -142,16 +142,15 @@ $(function() {
         var itemClickId = itemClickToChange[1];
         var itemClickSupplier = itemClickToChange[2];
 
-        console.log(itemClickToDo);
         switch (itemClickToDo) {
             case "removeItem":
                 // remove item from local storage
                 // get the current stored ingredients
                 var storedIngredients = getStoredIngredients();
-            console.log(storedIngredients);
+
                 // remove the element at index from the storedIngredients array
                 storedIngredients.splice(itemClickId,1);
-            console.log(storedIngredients);
+
                 // save the new storedIngredients array to local as a string
                 localStorage.setItem(
                     "storedIngredients",
