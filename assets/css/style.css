@@ -375,6 +375,7 @@ body {
 .removeItem {
 	color:rgb(122, 122, 122);
 	padding-right: 5px;
+	cursor:grab;
 }
 .supplierTd {
 	padding: 5px 10px;
@@ -426,6 +427,12 @@ body {
 	.ingredientLongName {
 		display: none;
 	}
+}
 
 
+
+@media print {    
+    .noPrint {
+        display: none !important;
+    }
 }

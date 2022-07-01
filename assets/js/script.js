@@ -248,11 +248,6 @@ $(function () {
 
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 58198989fa0388c52889e50b3e27dea557be2a7c
 	//click event listener to save current selected drink to local storage as an Array
 	$("#favouriteDrinkButton").on("click", function (event) {
 		event.preventDefault();
@@ -273,10 +268,6 @@ $(function () {
 
 
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> 58198989fa0388c52889e50b3e27dea557be2a7c
 	$("#trolleyButton").on("click", function (event) {
 
 		// prevent the page from reloading
@@ -512,7 +503,7 @@ $(function () {
 						
 						// Create array of items not in WW API
 						var dodgyIngredientArray = [
-							{name: "ice", supplier: "Home", string: "From your freezer", price: "Free!"},
+							{name: "ice", supplier: "Home", string: "Ice", price: "Free!"},
 							{name: "absinthe", supplier: "Dan+Murphys", string: "Green Fairy Absinth 500Ml", price: "$75.99"},
 							{name: "creme de cassis", supplier: "Dan+Murphys", string: "Creme de Cassis", price: "$29.99"},
 							{name: "creme de cacao", supplier: "Dan+Murphys", string: "Vok Brown Creme De Cacao 500mL", price: "$27.99"},
