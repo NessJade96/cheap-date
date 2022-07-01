@@ -1,145 +1,35 @@
 $(function () {
 
-	var url_string = window.location.href;
-	var url = new URL(url_string);
-	var drink = url.searchParams.get("drink");
-	if (drink != null && drink !== "undefined" && drink != "") {
-		getRecipe(drink,false);
+	/* -----------------------------------------------------------------------------------------------------------
+									FUNCTIONS
+	----------------------------------------------------------------------------------------------------------- */
+	
+	//function to load the heart button as active if that drink is saved in local storage. 
+	function isDrinkFavourited(){
+		var storedCocktails = JSON.parse(
+			localStorage.getItem("storedCocktails")
+		);
+		if (storedCocktails === null){
+			storedCocktails = []
+		}
+		console.log($(".drinkName").text())
+		var activateHeart = $(".drinkName").text()
+		for (let i = 0; i < storedCocktails.length; i++){
+			if (activateHeart && activateHeart === storedCocktails[i]){
+				$(".heart").toggleClass("is-active")
+			}
+		}
 	}
 
-	function capatilizeSentence(sentence) {
+
+	// capitalise the first letter of every string
+	function capatiliseSentence(sentence) {
 		var arr = sentence.split(" ");
 		for (var i = 0; i < arr.length; i++) {
 			arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
 		}
 		return arr.join(" ");
 	}
-
-
-	//clickhandler to reload the page -> instead of reload page - empty the html from the two drink divs - element.empty() alcoholTypeLi active.
-	$(".reloadBtn").on("click", function () {
-		$(".reloadBtn").hide();
-		$(".heart").hide();
-		$(".trolley").hide();
-		$("#cocktailNameUl").empty();
-		$("#cocktailNameDiv").css({
-			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
-			'background-repeat': 'no-repeat',
-			'background-size': 'cover'
-		});
-		$("#imageDiv").css({
-			'background-image':'none'
-		});
-
-		$("#imageWrapper").css({
-			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
-			'background-repeat': 'no-repeat',
-			'background-size': 'cover'
-		});
-		$("#ingredientsDiv").empty();
-		$("#recipeHeader").empty();
-		$("#recipeSpan").empty();
-		$(".alcoholTypeLi").removeClass("active");
-		if (window.location.href.indexOf('?') > -1) {
-			history.pushState('', document.title, window.location.pathname);
-		}
-		$("#alcoholTypeUl").show();
-		$("#cocktailNameDiv").show();
-		$('html, body').animate({scrollTop: $("body").offset().top}, 500);
-	});
-
-	//click event listener to save current selected drink to local storage as an Array
-	$("#favouriteDrinkButton").on("click", function (event) {
-		event.preventDefault();
-		var storedCocktails = JSON.parse(
-			localStorage.getItem("storedCocktails")
-		);
-		if (storedCocktails === null) {
-			storedCocktails = [];
-		}
-		var favouritedCocktail = $("#h3DrinkName").text();
-		storedCocktails.push(favouritedCocktail);
-		localStorage.setItem(
-			"storedCocktails",
-			JSON.stringify(storedCocktails)
-		);
-	});
-	$("#trolleyButton").on("click", function (event) {
-
-		// prevent the page from reloading
-		event.preventDefault();
-
-		// get the current stored ingredients from local
-		var storedIngredients = JSON.parse(
-			localStorage.getItem("storedIngredients")
-		);
-
-		// if nothing is stored in local, create array
-		if (storedIngredients === null) {
-			storedIngredients = [];
-		}
-		
-		// loop over each row of the table
-		var thisIngredientsList = $('table#ingredientsTable tr').map(function() {
-
-			// loop over each td in the tr
-			return $(this).find('td').map(function() {
-
-				// return the html content of the td
-				return $(this).html();
-			});
-			
-		// keep the tr as it's own object
-		}).get();
-
-		// loop over the array of objects created above
-		thisIngredientsList.map((thisEntry) => {
-
-			// if the name (object key 0) of the object doesn't equal thisIngredient, then add it to the storedIngredients array
-			if (storedIngredients.findIndex(storedIngredient => thisEntry[0] === storedIngredient[0] ) === -1) {
-				storedIngredients.push(thisEntry);
-			}
-		});
-
-		// save the new storedIngredients array to local as a string
-		localStorage.setItem(
-			"storedIngredients",
-			JSON.stringify(storedIngredients)
-		);	
-	});
-
-	function addAlcoholNames() {
-
-		// this is a list of alcohols that will appear on the front page
-		var alcoholNamesArray = [
-			"Absinthe",
-			"Tequila",
-			"Gin",
-			"Vodka",
-			"Rum",
-			"Whiskey",
-			"Brandy",
-			"Beer",
-			"Wine",
-			"Champagne",
-			"Cognac",
-		];
-
-		// create the string that we will write to the page later
-		var html = ``;
-
-		// loop through the alcohol name and create li's and buttons by concating string
-		alcoholNamesArray.map((alcohol) => {
-			html += `<li class="list-group-item d-flex justify-content-between align-items-center custom-item alcoholTypeLi" id="${alcohol}Li">
-			<button id="${alcohol}">${alcohol}</button></li>`;
-		});
-
-		// and print the li's and buttons to the alcoholTypeUl list
-		$("#alcoholTypeUl").append(html);
-	}
-
-	// call the addAlcoholNames on page load
-	addAlcoholNames();
 
 	// function to get the price of ingredients from the WW API
 	function getIngredientPrice(ingredientName, callIngredientName, measure) {
@@ -272,22 +162,178 @@ $(function () {
 			});
 	}
 
-	// add listener to alcoholTypeUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
-	$("#alcoholTypeUl").on("click", function (e) {
-		// prevent default
-		e.preventDefault();
+	function addAlcoholNames() {
+
+		// this is a list of alcohols that will appear on the front page
+		var alcoholNamesArray = [
+			"Absinthe",
+			"Tequila",
+			"Gin",
+			"Vodka",
+			"Rum",
+			"Whiskey",
+			"Brandy",
+			"Beer",
+			"Wine",
+			"Champagne",
+			"Cognac",
+		];
+
+		// create the string that we will write to the page later
+		var html = ``;
+
+		// loop through the alcohol name and create li's and buttons by concating string
+		alcoholNamesArray.map((alcohol) => {
+			html += `<li class="list-group-item d-flex justify-content-between align-items-center custom-item alcoholTypeLi" id="${alcohol}Li">
+			<button id="${alcohol}">${alcohol}</button></li>`;
+		});
+
+		// and print the li's and buttons to the alcoholTypeUl list
+		$("#alcoholTypeUl").append(html);
+	}
+
+	/* -----------------------------------------------------------------------------------------------------------
+									CLICK HANDLERS
+	   ----------------------------------------------------------------------------------------------------------- */
+
+
+	//clickhandler to reload the page -> instead of reload page - empty the html from the two drink divs - element.empty() alcoholTypeLi active.
+	$(".reloadBtn").on("click", function () {
+
+		// hide the reload button, fav icon, and trolley icon
 		$(".reloadBtn").hide();
 		$(".heart").hide();
 		$(".trolley").hide();
-		// remove active from any LI that currently has it and empty divs
-		$(".alcoholTypeLi").removeClass("active");
+
+		// empty the cocktailNameUL and add the BG placeholder image, 
 		$("#cocktailNameUl").empty();
 		$("#cocktailNameDiv").css({
-			'background-image':'none',
-			'background':'var(--mainColor10)'
+			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
+			'background-repeat': 'no-repeat',
+			'background-size': 'cover'
 		});
-		$("#cocktailNameDiv").removeClass("d-none").addClass("d-flex");
-		$("#imageWrapper").removeClass("d-flex").addClass("d-none");
+
+		// remove the old cocktail image, change BG of imageWrapper to place holder, add d-none back to image wrapper
+		$("#imageDiv").css({
+			'background-image':'none'
+		});
+		$("#imageWrapper").addClass("d-none");
+
+		$("#imageWrapper").css({
+			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
+			'background-repeat': 'no-repeat',
+			'background-size': 'cover'
+		});
+
+		// empty ingredients stuff
+		$("#ingredientsDiv").empty();
+		$("#recipeHeader").empty();
+		$("#recipeSpan").empty();
+
+		// remove the highlight from alcohol type button
+		$(".alcoholTypeLi").removeClass("active");
+
+		// delete the querystring which will be there if came from favs page
+		if (window.location.href.indexOf('?') > -1) {
+			history.pushState('', document.title, window.location.pathname);
+		}
+
+		// show the alcohol type, cocktail name div, and image wrapper div
+		$("#alcoholTypeUl").show();
+		$("#cocktailNameDiv").addClass("d-md-flex");
+		$("#imageWrapper").addClass("d-md-flex");
+		$('html, body').animate({scrollTop: $("body").offset().top}, 500);
+	});
+
+	//click event listener to save current selected drink to local storage as an Array
+	$("#favouriteDrinkButton").on("click", function (event) {
+		event.preventDefault();
+		var storedCocktails = JSON.parse(
+			localStorage.getItem("storedCocktails")
+		);
+		if (storedCocktails === null) {
+			storedCocktails = [];
+		}
+		var favouritedCocktail = $("#h3DrinkName").text();
+		storedCocktails.push(favouritedCocktail);
+		localStorage.setItem(
+			"storedCocktails",
+			JSON.stringify(storedCocktails)
+		);
+	});
+	$("#trolleyButton").on("click", function (event) {
+
+		// prevent the page from reloading
+		event.preventDefault();
+
+		// get the current stored ingredients from local
+		var storedIngredients = JSON.parse(
+			localStorage.getItem("storedIngredients")
+		);
+
+		// if nothing is stored in local, create array
+		if (storedIngredients === null) {
+			storedIngredients = [];
+		}
+		
+		// loop over each row of the table
+		var thisIngredientsList = $('table#ingredientsTable tr').map(function() {
+
+			// loop over each td in the tr
+			return $(this).find('td').map(function() {
+
+				// return the html content of the td
+				return $(this).html();
+			});
+			
+		// keep the tr as it's own object
+		}).get();
+
+		// loop over the array of objects created above
+		thisIngredientsList.map((thisEntry) => {
+
+			// if the name (object key 0) of the object doesn't equal thisIngredient, then add it to the storedIngredients array
+			if (storedIngredients.findIndex(storedIngredient => thisEntry[0] === storedIngredient[0] ) === -1) {
+				storedIngredients.push(thisEntry);
+			}
+		});
+
+		// save the new storedIngredients array to local as a string
+		localStorage.setItem(
+			"storedIngredients",
+			JSON.stringify(storedIngredients)
+		);	
+	});
+
+
+
+
+	
+
+	// add listener to alcoholTypeUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
+	$("#alcoholTypeUl").on("click", function (e) {
+
+		// prevent default
+		e.preventDefault();
+
+		// hide unneeded buttons
+		$(".reloadBtn").hide();
+		$(".heart").hide();
+		$(".trolley").hide();
+
+		// remove active from any LI that currently has it and empty divs
+		$(".alcoholTypeLi").removeClass("active");
+
+		// empty cocktail name div and and allow it to show > mobile screens
+		$("#cocktailNameUl").empty();
+		// $("#cocktailNameDiv").css({
+		// 	'background-image':'none',
+		// 	'background':'var(--mainColor10)'
+		// });
+		$("#cocktailNameDiv").removeClass("d-none").addClass("d-md-flex");
+
+
+		$("#imageWrapper").addClass("d-md-flex");
 		$("#imageDiv").css({
 			'background-image':'none'
 		});
@@ -329,9 +375,7 @@ $(function () {
 				$("#cocktailNameUl").append(buttonsHTML);
 
 				// turn off spinner
-				$("#cocktailNameDivSpinner")
-					.removeClass("d-flex")
-					.addClass("d-none");
+				$("#cocktailNameDivSpinner").removeClass("d-flex").addClass("d-none");
 				} else {
 					console.log(response.errorMessage);
 				}
@@ -339,53 +383,40 @@ $(function () {
 			});
 	});
 
-	//function to load the heart button as active if that drink is saved in local storage. 
-	function isDrinkFavourited(){
-		var storedCocktails = JSON.parse(
-			localStorage.getItem("storedCocktails")
-		);
-		if (storedCocktails === null){
-			storedCocktails = []
-		}
-	console.log($(".drinkName").text())
-	var activateHeart = $(".drinkName").text()
-	for (let i = 0; i < storedCocktails.length; i++){
-		if (activateHeart && activateHeart === storedCocktails[i]){
-			$(".heart").toggleClass("is-active")
-		}
-	}}
-	isDrinkFavourited();
+
+	
 	
 	// event listener for the cocktailNameUl. Button clicks will bubble up to this. This saves us putting a listener on every button.
 	$("#cocktailNameUl").on("click", function (e) {
+
 		// prevent default
 		e.preventDefault();
 
+		// show buttons
 		$(".reloadBtn").show();
-
 		$(".heart").show();
-
-
-		isDrinkFavourited();
 		$(".trolley").show();
 
-
+		// show the fav icon if drink is favourited
+		isDrinkFavourited();
 
 		// get the id of the button clicked, ie "11007"
 		selectedCocktail = e.target.id;
 
 		// remove the active class from any cocktailNameLi that currently has it
 		$(".cocktailNameLi").removeClass("active");
-		$("#imageDiv").css({
-			'background-image':'none'
-		});
 
+		// remove the cocktail image if there is one, add the image div place holder image
+		$("#imageDiv").css({'background-image':'none'});
 		$("#imageWrapper").css({
 			'background-image': `url('./assets/images/cocktailNamesUlBG.png')`,
 			'background-repeat': 'no-repeat',
 			'background-size': 'cover'
 		});
-		$("#imageWrapper").removeClass("d-none").addClass("d-flex");
+		$("#imageWrapper").removeClass("d-none");
+
+		// show the image div
+	 $("#imageWrapper").addClass("d-md-flex");
 		$("#ingredientsDiv").empty();
 		$("#recipeHeader").empty();
 		$("#recipeSpan").empty();
@@ -487,7 +518,7 @@ $(function () {
 							ingredientTr = ``;
 							ingredientTr += `
 								<tr>
-									<td>${capatilizeSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
+									<td>${capatiliseSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
 									<td class="ingredientLongName">${dodgyIngredientArray[ingredientIndex].string}</td>
 									<td class="ingredientSupplierLogo"><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier.replaceAll("+","")}.png" /></td>
 									<td>${dodgyIngredientArray[ingredientIndex].price}</td>
@@ -511,7 +542,7 @@ $(function () {
 									var thisIngredient =
 										response.data.Products[0];
 									ingredientTr += `<tr>
-								<td>${capatilizeSentence(response.data.callIngredientName)}</td>
+								<td>${capatiliseSentence(response.data.callIngredientName)}</td>
 								<td class="ingredientLongName">${thisIngredient.Name}</td>
 								<td class="ingredientSupplierLogo"><img src="./assets/images/Woolworths.png" /></td>
 								<td>`;
@@ -558,21 +589,49 @@ $(function () {
 				$("#recipeContainerSpinner")
 					.removeClass("d-flex")
 					.addClass("d-none");
+				
+				// check if drink is a fav
+				isDrinkFavourited();
+
 			} else {
 				console.log(response.errorMessage);
 			}
+
+			// auto scroll to ingredients
 			$('html, body').animate({scrollTop: $("#ingredientsDiv").offset().top}, 500);
 		});
 	});
 
 	// FAVOURITES BUTTON FUNCTION
+	/* SOURCE: https://codepen.io/mattbhenley/pen/gQbWgd */
 	$(".heart").on("click", function() {
 		$(this).toggleClass("is-active");
 	});
+
 	// TROLLEY BUTTON FUNCTION
+	/* SOURCE: https://codepen.io/mattbhenley/pen/gQbWgd */
 	$(".trolley").on("click", function() {
 		$(this).toggleClass("is-active");
 		setTimeout(() => {$(this).toggleClass("is-active");},500);
 	});
+
+	/* -----------------------------------------------------------------------------------------------------------
+									RUNS ON PAGE LOAD
+	----------------------------------------------------------------------------------------------------------- */
+	
+
+	// get the query string if we came from favs page and auto load cocktail
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var drink = url.searchParams.get("drink");
+	if (drink != null && drink !== "undefined" && drink != "" && drink !== undefined ) {
+		getRecipe(drink,false);
+	}
+
+	// call the addAlcoholNames on page load
+	addAlcoholNames();
+
+	// when we come back from facs page we need to know if the drink is favourited
+	isDrinkFavourited();
 
 });
