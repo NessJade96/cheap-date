@@ -82,11 +82,11 @@ $(function() {
                     
                     // add table row to string
                     html += `
-                        <tr id="itemTr-${index}" class="${newSupplier}">
+                        <tr id="${ingredient[0].replaceAll(" ","")}" class="${newSupplier}">
                             <td class="itemName">${ingredient[1]}</td>
                             <td class="noPrint">${ingredient[2]}</td>
                             <td class="${newSupplier}-price">${ingredient[3]}</td>
-                            <td ><i id="removeItem-${index}-${newSupplier.replaceAll(" ","")}" class="bi bi-bag-x removeItem noPrint"></i></td>
+                            <td ><i id="removeItem|${index}|${newSupplier.replaceAll(" ","")}|${ingredient[0].replaceAll(" ","")}" class="bi bi-bag-x removeItem noPrint"></i></td>
                         </tr>
                     `; 
                         
@@ -137,21 +137,26 @@ $(function() {
 
     $("#ingredientsDivCart").on("click", (e) => {
         
-        var itemClickToChange = e.target.id.split("-");
+        var itemClickToChange = e.target.id.split("|");
         var itemClickToDo = itemClickToChange[0];
         var itemClickId = itemClickToChange[1];
         var itemClickSupplier = itemClickToChange[2];
+        var itemClickTrName = itemClickToChange[3];
 
-        console.log(itemClickToDo);
         switch (itemClickToDo) {
             case "removeItem":
+
                 // remove item from local storage
                 // get the current stored ingredients
                 var storedIngredients = getStoredIngredients();
-            console.log(storedIngredients);
+
+                // find the index of the object we need to remove
+                var itemIndex = storedIngredients.findIndex(ingredient => ingredient[0].replaceAll(" ","") === itemClickTrName);
+
                 // remove the element at index from the storedIngredients array
-                storedIngredients.splice(itemClickId,1);
-            console.log(storedIngredients);
+                storedIngredients.splice(itemIndex,1);
+
+
                 // save the new storedIngredients array to local as a string
                 localStorage.setItem(
                     "storedIngredients",
@@ -159,7 +164,7 @@ $(function() {
                 );
 
                 // remove the row of the item
-                $("#itemTr-"+itemClickId).remove();
+                $("#"+itemClickTrName).remove();
                 
                 
                 // recalc the sub total for that supplier
