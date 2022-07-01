@@ -330,6 +330,7 @@ body {
 	background-position: -2800px 0;
 }
 
+/* ----------------------------------------------------------------------- Cart Page and Related */
 /* TROLLEY BUTTON */
 /* SOURCE: https://codepen.io/mattbhenley/pen/gQbWgd */
 .trolley {
@@ -349,7 +350,6 @@ body {
 	background-position: -2800px 0;
 }
 
-
 .subTotalPrice,
 .subTotalLabel {
 	padding: 10px 10px;
@@ -365,7 +365,25 @@ body {
 	background: var(--background);
 }
 
-/* MEDIA QUERIES FOR NEW BUTTON */
+.removeItem {
+	color:rgb(122, 122, 122);
+	padding-right: 5px;
+}
+.supplierTd {
+	padding: 5px 10px;
+	font-weight: bold;	
+}
+.supplierTr td {
+	background: rgb(23, 23, 23);
+	text-align: left;
+}
+#ingredientsListButtons {
+	margin-right: 30px;
+	text-align: right;
+}
+
+
+/* ----------------------------------------------------------------------- MEDIA QUERIES */
 @media screen and (max-width: 991px) {
 
 	.custom-link {
