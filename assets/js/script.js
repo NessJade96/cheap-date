@@ -194,7 +194,7 @@ $(function () {
 
 	/* -----------------------------------------------------------------------------------------------------------
 									CLICK HANDLERS
-	   ----------------------------------------------------------------------------------------------------------- */
+	----------------------------------------------------------------------------------------------------------- */
 
 
 	//clickhandler to reload the page -> instead of reload page - empty the html from the two drink divs - element.empty() alcoholTypeLi active.
@@ -248,6 +248,11 @@ $(function () {
 
 
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 58198989fa0388c52889e50b3e27dea557be2a7c
 	//click event listener to save current selected drink to local storage as an Array
 	$("#favouriteDrinkButton").on("click", function (event) {
 		event.preventDefault();
@@ -268,6 +273,10 @@ $(function () {
 
 
 
+<<<<<<< HEAD
+	
+=======
+>>>>>>> 58198989fa0388c52889e50b3e27dea557be2a7c
 	$("#trolleyButton").on("click", function (event) {
 
 		// prevent the page from reloading
