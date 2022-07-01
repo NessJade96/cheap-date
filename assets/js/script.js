@@ -245,6 +245,9 @@ $(function () {
 		$('html, body').animate({scrollTop: $("body").offset().top}, 500);
 	});
 
+
+
+
 	//click event listener to save current selected drink to local storage as an Array
 	$("#favouriteDrinkButton").on("click", function (event) {
 		event.preventDefault();
@@ -261,6 +264,10 @@ $(function () {
 			JSON.stringify(storedCocktails)
 		);
 	});
+
+
+
+
 	$("#trolleyButton").on("click", function (event) {
 
 		// prevent the page from reloading
@@ -376,11 +383,16 @@ $(function () {
 
 				// turn off spinner
 				$("#cocktailNameDivSpinner").removeClass("d-flex").addClass("d-none");
-				} else {
-					console.log(response.errorMessage);
-				}
-				$('html, body').animate({scrollTop: $("#cocktailNameUl").offset().top}, 500);
-			});
+			} 
+			else {
+				console.log(response.errorMessage);
+				$("#exampleModalLongTitle").text("API ERROR");
+				$("#modal-body-div").html("Please try again. <br>" + response.errorMessage);
+				$("#modal-footer-div").append(`<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>`);
+				$("#myModal").modal('show');
+			}
+			$('html, body').animate({scrollTop: $("#cocktailNameUl").offset().top}, 500);
+		});
 	});
 
 
@@ -595,6 +607,10 @@ $(function () {
 
 			} else {
 				console.log(response.errorMessage);
+				$("#exampleModalLongTitle").text("API ERROR");
+				$("#modal-body-div").text("Please try again");
+				$("#modal-footer-div").append(`<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>`);
+				$("#myModal").modal('show');
 			}
 
 			// auto scroll to ingredients
@@ -633,5 +649,12 @@ $(function () {
 
 	// when we come back from facs page we need to know if the drink is favourited
 	isDrinkFavourited();
+
+	// MODAL USAGE
+	// to change title text = $("exampleModalLongTitle").text("");
+	// to add body text = $("#modal-body-div").text("");
+	// add close button = $("").append(`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`);
+	// add save button = $("").append(`<button type="button" class="btn btn-primary">Save changes</button>`);
+	// to open modal = $("myModal").modal(options);
 
 });
