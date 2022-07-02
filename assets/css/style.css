@@ -158,7 +158,6 @@ body {
 #cocktailNameDiv {
 	overflow-y: scroll;
 	overflow-x: hidden;
-	scrollbar-width: none;
 	position: relative;
 	background-image: url('../images/cocktailNamesUlBG.png');
 	background-repeat: no-repeat;
@@ -166,6 +165,47 @@ body {
 	border-radius: 5px;
 
 }
+
+/* SCROLLBAR STYLING */
+
+	/* MAIN PAGE SCROLLBAR */
+::-webkit-scrollbar {
+	width: 0.5em;
+	
+}
+::-webkit-scrollbar-track {
+	background:var(--background);
+	
+}
+::-webkit-scrollbar-thumb {
+	background:var(--mainColor60);
+	
+}
+
+	/* SECOND COLUMN SCROLLBAR */
+#cocktailNameDiv::-webkit-scrollbar {
+	width: 0.25em;
+	
+}
+#cocktailNameDiv::-webkit-scrollbar-track {
+	background:var(--background);
+	
+}
+#cocktailNameDiv::-webkit-scrollbar-thumb {
+	background:var(--mainColor60);
+	border-top-right-radius: 100vw;
+	border-bottom-right-radius: 100vw;
+	
+}
+
+/* IF THE ABOVE SCROLLBAR STYLES DO NOT WORK, DEFAULT TO THIS: */
+@supports (scrollbar-color: var(--mainColor60) var(--background)){
+	* {
+		scrollbar-color: var(--mainColor60) var(--background);
+		scrollbar-width: thin;
+	}
+}
+
 
 #cocktailNameDivSpinner {
 	position: absolute;
@@ -176,9 +216,7 @@ body {
 
 }
 
-#cocktailNameDiv::-webkit-scrollbar {
-	display: none;
-}
+
 
 /* ------------------------------------------------  */
 
@@ -188,16 +226,6 @@ body {
 	align-items: center;
 	max-height: 280px;
 }
-
-#cocktailNameDiv::-webkit-scrollbar {
-	display: none;
-}
-
-/* .recipe-description {
-	display: flex;
-	justify-content: center;
-	padding: 8px;
-} */
 
 .recipe-container {
 	display: flex;
