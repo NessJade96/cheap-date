@@ -12,7 +12,7 @@ $(function () {
 		if (storedCocktails === null){
 			storedCocktails = []
 		}
-		console.log($(".drinkName").text())
+		
 		var activateHeart = $(".cocktailNameLi.active .drinkName").text()
 		for (let i = 0; i < storedCocktails.length; i++){
 			if (activateHeart && activateHeart === storedCocktails[i]){
@@ -35,7 +35,7 @@ $(function () {
 	function getIngredientPrice(ingredientName, callIngredientName, measure) {
 
 		// please leave this log so that it is easy to track API failures (product doesn't exist) as they happen
-		console.log("getIngredientPrice->ingredientName: ",ingredientName);
+		//console.log("getIngredientPrice->ingredientName: ",ingredientName);
 		return fetch(
 			`https://www.woolworths.com.au/apis/ui/search/products/?searchterm=${encodeURIComponent(ingredientName)}&sorttype=relevance`)
 			.then((response) => response.json())
@@ -56,19 +56,20 @@ $(function () {
 
 					// and return as a promise
 					return returnValue;
-				} else {
+				} 
+				else {
 					returnValue = {
 						status: "error",
 						data: null,
 					};
-
 					return returnValue;
 				}
 			})
 			.catch((error) => {
 				returnValue = {
 					status: "error",
-					errorMessage: "getIngredientPrice response error",
+					errorMessage: "getIngredientPrice response error: " + error,
+					ingredient: ingredientName
 				};
 				return returnValue;
 			});
@@ -96,11 +97,13 @@ $(function () {
 				return returnValue;
 			})
 			.catch((error) => {
+				
+				
 				returnValue = {
 					status: "error",
-					errorMessage: "getCocktails response error|"+cocktailAlcoholType,
+					errorMessage: "getCocktails response error|"+cocktailAlcoholType+"|"+error,
 				};
-
+				
 				return returnValue;
 			});
 	}
@@ -121,7 +124,7 @@ $(function () {
 				.then((response) => response.json())
 				.then((data) => {
 					// then create a button and append it
-					$("#cocktailNameUl").append(`<li class="list-group-item custom-item cocktailNameLi" id="${data.drinks[0].idDrink}Li"><button class="drinkName" id="${data.drinks[0].idDrink}">${data.drinks[0].strDrink}</button></li>`);
+					$("#cocktailNameUl").append(`<li class=" list-group-item custom-item cocktailNameLi" id="${data.drinks[0].idDrink}Li"><button class="drinkName" id="${data.drinks[0].idDrink}">${data.drinks[0].strDrink}</button></li>`);
 
 					// then fake click it
 					$("#"+data.drinks[0].idDrink).trigger("click");
@@ -184,7 +187,7 @@ $(function () {
 
 		// loop through the alcohol name and create li's and buttons by concating string
 		alcoholNamesArray.map((alcohol) => {
-			html += `<li class="list-group-item d-flex justify-content-between align-items-center custom-item alcoholTypeLi" id="${alcohol}Li">
+			html += `<li class=" list-group-item d-flex justify-content-between align-items-center custom-item alcoholTypeLi" id="${alcohol}Li">
 			<button id="${alcohol}">${alcohol}</button></li>`;
 		});
 
@@ -386,10 +389,18 @@ $(function () {
 			} 
 			else {
 				console.log(response.errorMessage);
-				$("#exampleModalLongTitle").text("API ERROR");
-				$("#modal-body-div").html("Please try again. <br>" + response.errorMessage);
-				$("#modal-footer-div").append(`<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>`);
-				$("#myModal").modal('show');
+				// The call failed. Check if the last two letters are Li or Ul, this will indicate that the click registered on the LI or Ul, not the button
+				if (e.target.id.slice(-2) === "Li" || e.target.id.slice(-2) === "Ul") {
+
+					// if it did, trim the erroneous characters of and call again
+					$("#"+e.target.id.slice(0,-2)).click();
+				}
+				else {
+					$("#exampleModalLongTitle").text("API ERROR");
+					$("#modal-body-div").text("Please try again");
+					$("#modal-footer-div").html(`<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>`);
+					$("#myModal").modal('show');
+				}
 			}
 			$('html, body').animate({scrollTop: $("#cocktailNameUl").offset().top}, 500);
 		});
@@ -464,31 +475,31 @@ $(function () {
 							case "roses sweetened lime juice":
 								callIngredientName = "lime juice";
 								break;
-								case "lemon peel":
+							case "lemon peel":
 								callIngredientName = "Lemon";
 								break;
 							case "7-up":
 								callIngredientName = "Lemonaide";
 								break;
-								case "cherry":
-									callIngredientName = "Cherries";
-									break;
-									case "club soda":
+							case "cherry":
+								callIngredientName = "Cherries";
+								break;
+							case "club soda":
 								callIngredientName = "Soda Water";
 								break;
-								case "cherry grenadine":
+							case "cherry grenadine":
 									callIngredientName = "Grenadine";
 								break;
-								case "apple cider":
+							case "apple cider":
 								callIngredientName = "Somersby Apple Cider";
 								break;
 							case "sugar syrup":
 								callIngredientName = "Monin Pure Cane Sugar Syrup";
 								break;
-								case "peach nectar":
-									callIngredientName = "Tamek Beverages Peach Nectar 1l";
+							case "peach nectar":
+								callIngredientName = "Tamek Beverages Peach Nectar 1l";
 								break;
-								case "kirschwasser":
+							case "kirschwasser":
 								callIngredientName = "Kirsch";
 								break;
 							case "schweppes Russchian":
@@ -497,8 +508,11 @@ $(function () {
 							case "creme de menthe":
 								callIngredientName = "Marie Brizard - Crème De Menthe 500ml";
 								break;
-								default:
-									break;
+							case "lemonaide":
+								callIngredientName = "Lemonade";
+								break;
+							default:
+								break;
 						}
 						
 						// Create array of items not in WW API
@@ -507,17 +521,17 @@ $(function () {
 							{name: "absinthe", supplier: "Dan+Murphys", string: "Green Fairy Absinth 500Ml", price: "$75.99"},
 							{name: "creme de cassis", supplier: "Dan+Murphys", string: "Creme de Cassis", price: "$29.99"},
 							{name: "creme de cacao", supplier: "Dan+Murphys", string: "Vok Brown Creme De Cacao 500mL", price: "$27.99"},
-						{name: "champagne", supplier: "Dan+Murphys", string: "Special Cuvee Champagne", price: "$86.99"},
-						{name: "grenadine", supplier: "Dan+Murphys", string: "Grenadine Syrup", price: "$8.99"},
-						{name: "sweet and sour", supplier: "Dan+Murphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
-						{name: "151 proof rum", supplier: "nicks", string: "Goslings Black Seal 151 Proof Rum 700ml", price: "$130"},
-						{name: "blue curacao", supplier: "Dan+Murphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
-						{name: "strawberry schnapps", supplier: "Dan+Murphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
-						{name: "rosemary syrup", supplier: "Home", string: "home", price: "Free"},
-						{name: "peach schnapps", supplier: "Dan+Murphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"},
-						{name: "licorice root", supplier: "The+Licorice+Shop", string: "Pure Licorice Root", price: "$3.00"},
-						{name: "wormwood", supplier: "iHerb", string: "Wormwood, 1 fl oz", price: "$22.32 "}
-					];
+							{name: "champagne", supplier: "Dan+Murphys", string: "Special Cuvee Champagne", price: "$86.99"},
+							{name: "grenadine", supplier: "Dan+Murphys", string: "Grenadine Syrup", price: "$8.99"},
+							{name: "sweet and sour", supplier: "Dan+Murphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
+							{name: "151 proof rum", supplier: "nicks", string: "Goslings Black Seal 151 Proof Rum 700ml", price: "$130"},
+							{name: "blue curacao", supplier: "Dan+Murphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
+							{name: "strawberry schnapps", supplier: "Dan+Murphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
+							{name: "rosemary syrup", supplier: "Home", string: "home", price: "Free"},
+							{name: "peach schnapps", supplier: "Dan+Murphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"},
+							{name: "licorice root", supplier: "The+Licorice+Shop", string: "Pure Licorice Root", price: "$3.00"},
+							{name: "wormwood", supplier: "iHerb", string: "Wormwood, 1 fl oz", price: "$22.32 "}
+						];
 
 					const ingredientIndex = dodgyIngredientArray.findIndex(item => item.name === callIngredientName.toLowerCase());
 
@@ -526,23 +540,19 @@ $(function () {
 						// Print the items that aren't in WW API
 						ingredientTr = ``;
 						ingredientTr += `
-						<tr>
-									<td>${capatiliseSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
-									<td class="ingredientLongName">${dodgyIngredientArray[ingredientIndex].string}</td>
-									<td class="ingredientSupplierLogo"><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier.replaceAll("+","")}.png" /></td>
-									<td>${dodgyIngredientArray[ingredientIndex].price}</td>
-									<td>${(measure !== null)?measure:""}</td>
-									</tr>`;
+							<tr>
+								<td>${capatiliseSentence(dodgyIngredientArray[ingredientIndex].name)}</td>
+								<td class="ingredientLongName">${dodgyIngredientArray[ingredientIndex].string}</td>
+								<td class="ingredientSupplierLogo"><img src="./assets/images/${dodgyIngredientArray[ingredientIndex].supplier.replaceAll("+","")}.png" /></td>
+								<td>${dodgyIngredientArray[ingredientIndex].price}</td>
+								<td>${(measure !== null)?measure:""}</td>
+							</tr>`;
 							$("#ingredientsTable").append(ingredientTr);
 						}
 						else {
-							// get the price of this ingredient, also send measure to get it back again, unless it's ice
 
-							getIngredientPrice(
-								callIngredientName,
-								callIngredientName,
-								measure
-								)
+							// get the price of this ingredient, also send measure to get it back again, unless it's ice
+							getIngredientPrice(callIngredientName,callIngredientName,measure)
 							.then((response) => {
 								if (response.status === "success") {
 
@@ -552,9 +562,9 @@ $(function () {
 										response.data.Products[0];
 										ingredientTr += `<tr>
 										<td>${capatiliseSentence(response.data.callIngredientName)}</td>
-								<td class="ingredientLongName">${thisIngredient.Name}</td>
-								<td class="ingredientSupplierLogo"><img src="./assets/images/Woolworths.png" /></td>
-								<td>`;
+										<td class="ingredientLongName">${thisIngredient.Name}</td>
+										<td class="ingredientSupplierLogo"><img src="./assets/images/Woolworths.png" /></td>
+										<td>`;
 								
 									// sometimes the price comes back null, don't print that
 									if (thisIngredient.Price !== null) {
@@ -562,7 +572,7 @@ $(function () {
 									}
 									ingredientTr += `<td>${(response.data.myMeasure !== null)?response.data.myMeasure:""}</td></tr>`;
 								} else {
-									ingredientTr = `<tr><td colspan="4">${response.errorMessage}</td></tr>`;
+									ingredientTr = `<tr><td>${response.ingredient}</td> <td></td> <td></td> <td>$0.00</td>  <td></td> </tr>`;
 								}
 							})
 							.then(() => {
@@ -592,22 +602,27 @@ $(function () {
 					);
 					
 					// turn off the spinner
-					$("#recipeImageSpinner")
-					.removeClass("d-flex")
-					.addClass("d-none");
-					$("#recipeContainerSpinner")
-					.removeClass("d-flex")
-					.addClass("d-none");
+					$("#recipeImageSpinner").removeClass("d-flex").addClass("d-none");
+					$("#recipeContainerSpinner").removeClass("d-flex").addClass("d-none");
 					
 					// check if drink is a fav
 					isDrinkFavourited();
 					
 				} else {
 					console.log(response.errorMessage);
-				$("#exampleModalLongTitle").text("API ERROR");
-				$("#modal-body-div").text("Please try again");
-				$("#modal-footer-div").append(`<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>`);
-				$("#myModal").modal('show');
+
+					// The call failed. Check if the last two letters are Li or Ul, this will indicate that the click registered on the LI or Ul, not the button
+					if (e.target.id.slice(-2) === "Li" || e.target.id.slice(-2) === "Ul") {
+
+						// if it did, trim the erroneous characters of and call again
+						$("#"+e.target.id.slice(0,-2)).click();
+					}
+					else {
+						$("#exampleModalLongTitle").text("API ERROR");
+						$("#modal-body-div").text("Please try again");
+						$("#modal-footer-div").html(`<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>`);
+						$("#myModal").modal('show');
+					}
 			}
 
 			// auto scroll to ingredients
