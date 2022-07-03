@@ -100,8 +100,8 @@ As a person wanting to experiment with cocktails at home, I want to view a recip
 
 ## Links
 
-    Deployed URL: [Cheap Date](https://nessjade96.github.io/cheap-date/index.html)
-    GitHub Repository URL: [Cheap Date Repository](https://github.com/NessJade96/cheap-date)
+    Deployed URL: [Cheap-Date](https://nessjade96.github.io/cheap-date/index.html)
+    GitHub Repository URL: [Cheap-Date-Repository](https://github.com/NessJade96/cheap-date)
 
 ## Licensing
 
