@@ -9,9 +9,12 @@
 
 :root {
 	--mainColor60: rgba(11, 223, 36);
-	--mainColor30: #0d6efd;
+	--mainColor30: #e2264d;
 	--mainColor10: rgba(65, 65, 65);
 	--background: rgba(38, 38, 38);
+	
+	
+	
 }
 
 body {
@@ -155,6 +158,11 @@ body {
 	font-weight: bold;
 }
 
+.list-group-item.active{
+	background-color: var(--mainColor30);
+	border-color:var(--mainColor30);
+}
+
 #cocktailNameDiv {
 	overflow-y: scroll;
 	overflow-x: hidden;
@@ -281,7 +289,7 @@ body {
 }
 
 #h3DrinkName {
-	color: yellow;
+	color: var(--mainColor60);
 	font-size: 35px;
 	font-family: "Nova Square";
 }
