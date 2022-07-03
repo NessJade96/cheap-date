@@ -51,9 +51,9 @@ As a person wanting to experiment with cocktails at home, I want to view a recip
 ```
 ## Prototype
 
-![wireframe home screen](assets/images/CheapDateWireFrame1.png)
-![wireframe about screen](assets/images/CheapDateWireFrame3.png)
-![wireframe favourites screen](assets/images/CheapDateWireFrame2.png)
+![wireframe home screen](assets/images/CheapDateWireFrame1.PNG)
+![wireframe about screen](assets/images/CheapDateWireFrame3.PNG)
+![wireframe favourites screen](assets/images/CheapDateWireFrame2.PNG)
 
 
 ## Screenshots
