@@ -49,12 +49,18 @@ As a person wanting to experiment with cocktails at home, I want to view a recip
     - There are no major disparities in the number of GitHub contributions between group members.
     
 ```
+## Prototype
+
+![wireframe home screen](assets/images/CheapDateWireFrame1.png)
+![wireframe about screen](assets/images/CheapDateWireFrame3.png)
+![wireframe favourites screen](assets/images/CheapDateWireFrame2.png)
+
 
 ## Screenshots
 
 ![cheap date home screen](assets/images/home-readme.png)
-![cheap date home screen](assets/images/about.png)
-![cheap date home screen](assets/images/favourites.png)
+![cheap date about screen](assets/images/about.png)
+![cheap date favourites screen](assets/images/favourites.png)
 
 
 ## APIs used in this project
@@ -64,25 +70,25 @@ As a person wanting to experiment with cocktails at home, I want to view a recip
 
 ## Breakdown of tasks:
 
-**HTML** - Ruben & Tanel
-**CSS** - Ruben & Tanel
-**BOOTSTRAP** - Ruben & Tanel
-**APIs** - Nate & Vanessa
-**JAVASCRIPT** - Nate & Vanessa
-**JQUERY** - Nate & Vanessa
+- **HTML** - [Ruben](https://github.com/r-r-i) & [Tanel](https://github.com/kreatifbob)
+- **CSS** - [Ruben](https://github.com/r-r-i) & [Tanel](https://github.com/kreatifbob)
+- **BOOTSTRAP** - [Ruben](https://github.com/r-r-i) & [Tanel](https://github.com/kreatifbob)
+- **APIs** - [Vanessa](https://github.com/NessJade96) & [Nate](https://github.com/vesnathan)
+- **JAVASCRIPT** - [Vanessa](https://github.com/NessJade96) & [Nate](https://github.com/vesnathan)
+- **JQUERY** - [Vanessa](https://github.com/NessJade96) & [Nate](https://github.com/vesnathan)
 
 ## Developing
 
     To download this repoository for further development, simply create and enter a folder on your local machine
     and run the following command in bash terminal: `git clone`
+    
+## Features to be implemented in upcoming patches
 
-## Building
-
-    NA
-
-## Deploying / Publishing
-
-## Features
+- Checkout option for users to pay for ingredients and have them delivered.
+- Allergens and dietary specification indicator next to each ingredient.
+- Share button for users to link their personalised favourites or about page.
+- Recommended tab or pop-out on page visit. Top cocktails added to favourites list that day.
+- Feedback or contact page for users to provide feedback on UXUI or application bugs.
 
 ## Configuration
 
@@ -94,8 +100,8 @@ As a person wanting to experiment with cocktails at home, I want to view a recip
 
 ## Links
 
-    Deployed URL: [Cheap Date] (https://nessjade96.github.io/cheap-date/index.html)
-    GitHub Repository URL: [Cheap Date] (https://github.com/NessJade96/cheap-date)
+    Deployed URL: [Cheap Date](https://nessjade96.github.io/cheap-date/index.html)
+    GitHub Repository URL: [Cheap Date Repository](https://github.com/NessJade96/cheap-date)
 
 ## Licensing
 
