@@ -466,7 +466,7 @@ $(function () {
 								callIngredientName = "Lemon";
 								break;
 							case "7-up":
-								callIngredientName = "Lemonaide";
+								callIngredientName = "Lemonade";
 								break;
 							case "cherry":
 								callIngredientName = "Cherries";
@@ -475,13 +475,10 @@ $(function () {
 								callIngredientName = "Soda Water";
 								break;
 							case "cherry grenadine":
-									callIngredientName = "Grenadine";
+								callIngredientName = "Grenadine";
 								break;
 							case "apple cider":
 								callIngredientName = "Somersby Apple Cider";
-								break;
-							case "sugar syrup":
-								callIngredientName = "Monin Pure Cane Sugar Syrup";
 								break;
 							case "peach nectar":
 								callIngredientName = "Tamek Beverages Peach Nectar 1l";
@@ -495,9 +492,14 @@ $(function () {
 							case "creme de menthe":
 								callIngredientName = "Marie Brizard - Crème De Menthe 500ml";
 								break;
-							case "lemonaide":
+							case "Lemonaide":
+								
 								callIngredientName = "Lemonade";
 								break;
+							case "scotch":
+								callIngredientName = "Johnnie Walker Red Label Scotch Whisky";
+								break;
+								
 							default:
 								break;
 						}
@@ -508,20 +510,33 @@ $(function () {
 							{name: "absinthe", supplier: "Dan+Murphys", string: "Green Fairy Absinth 500Ml", price: "$75.99"},
 							{name: "creme de cassis", supplier: "Dan+Murphys", string: "Creme de Cassis", price: "$29.99"},
 							{name: "creme de cacao", supplier: "Dan+Murphys", string: "Vok Brown Creme De Cacao 500mL", price: "$27.99"},
-
 							{name: "champagne", supplier: "Dan+Murphys", string: "Special Cuvee Champagne", price: "$86.99"},
 							{name: "grenadine", supplier: "Dan+Murphys", string: "Grenadine Syrup", price: "$8.99"},
 							{name: "sweet and sour", supplier: "Dan+Murphys", string: "Sweet & Sour Mixer 1L", price: "$14.49"},
-							{name: "151 proof rum", supplier: "nicks", string: "Goslings Black Seal 151 Proof Rum 700ml", price: "$130"},
+							{name: "151 proof rum", supplier: "Nicks+Wine+Merchants", string: "Goslings Black Seal 151 Proof Rum 700ml", price: "$130"},
 							{name: "blue curacao", supplier: "Dan+Murphys", string: "Vok	Blue Curacao 500mL", price: "$28.99"},
 							{name: "strawberry schnapps", supplier: "Dan+Murphys", string: "De Kuyper Strawberry Schnapps 700mL", price: "$42.99"},
 							{name: "rosemary syrup", supplier: "Home", string: "home", price: "Free"},
 							{name: "peach schnapps", supplier: "Dan+Murphys", string: "De Kuyper Peach Schnapps 700mL", price: "$45.99"},
 							{name: "licorice root", supplier: "The+Licorice+Shop", string: "Pure Licorice Root", price: "$3.00"},
-							{name: "wormwood", supplier: "iHerb", string: "Wormwood, 1 fl oz", price: "$22.32 "}
+							{name: "wormwood", supplier: "iHerb", string: "Wormwood, 1 fl oz", price: "$22.32 "},
+							{name: "white creme de menthe", supplier: "Nicks+Wine+Merchants", string: "Baitz White Creme de Menthe Liqueur (500ml)", price: "$26.99"},
+							{name: "everclear", supplier: "Dan+Murphys", string: "Poliakov Vodka 700mL", price: "$38.99"},
+							{name: "sloe gin", supplier: "Dan+Murphys", string: "Hayman's Sloe Gin 700mL", price: "$59.00"},
+							{name: "apricot brandy", supplier: "Dan+Murphys", string: "Massenez	Apricot Brandy liqueur 25% 500mL", price: "$47.80"},
+							{name: "green creme de menthe", supplier: "Dan+Murphys", string: "Vok Green Creme De Menthe 500mL", price: "$25.00"},
+							{name: "apple schnapps", supplier: "Dan+Murphys", string: "De Kuyper Apple Schnapps 700Ml", price: "$36.80"},
+							{name: "sugar syrup", supplier: "Woolworths", string: "Monin Pure Cane Sugar Syrup", price: "$16.00"},
+							{name: "passoa", supplier: "Dan+Murphys", string: "Passoa Passionfruit Liqueur 700mL", price: "$44.99"},
+							{name: "lemon-lime soda", supplier: "Woolworths", string: "Schweppes Natural Mineral Water Lemon & Lime 1.1l", price: "$1.40"},
+							{name: "mint", supplier: "Home", string: "Mint Leaves", price: "$0.00"},
+							{name: "peach bitters", supplier: "Dan+Murphys", string: "The Bitter Truth Peach Bitters 200mL", price: "$46.00"},
+							{name: "pernod", supplier: "Dan+Murphys", string: "Pernod 700mL", price: "$51.99"},
+							{name: "gold rum", supplier: "Dan+Murphys", string: "Elements 8 Gold Rum 700mL", price: "$64.90"},
+							{name: "hot damn", supplier: "Dan+Murphys", string: "FireBomb Cinnamon Schnapps 700mL", price: "$34.00"}
 						];
 
-
+console.log(callIngredientName);
 					const ingredientIndex = dodgyIngredientArray.findIndex(item => item.name === callIngredientName.toLowerCase());
 
 					if (ingredientIndex !== -1) {
