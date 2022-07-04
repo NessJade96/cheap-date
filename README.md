@@ -1,4 +1,5 @@
-# Cheap Date - *cocktails from home*
+## Cheap Date - *cocktails from home*
+Created by Ruben Iacono, Nathan Loudon, Tanel Colak, and Vanessa Bloom
 
 ## MVP (minimum viable product)
 
