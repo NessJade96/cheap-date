@@ -43,14 +43,18 @@ $(function () {
 			localStorage.getItem("storedCocktails")
 		);
 		var eventTarget = $(event.target);
-		var favouritedCocktail = eventTarget.prev().text();
+		var favouritedCocktail = eventTarget.parent().prev().text();
 		var removeCocktail = storedCocktails.indexOf(favouritedCocktail);
-		storedCocktails.splice(removeCocktail, 1);
-		localStorage.setItem(
-			"storedCocktails",
-			JSON.stringify(storedCocktails)
-		);
-		$("#cocktailFavDiv").empty();
-		loadDrinks();
+
+		if (removeCocktail > -1) {
+
+			storedCocktails.splice(removeCocktail, 1);
+			localStorage.setItem(
+				"storedCocktails",
+				JSON.stringify(storedCocktails)
+				);
+				$("#cocktailFavDiv").empty();
+				loadDrinks();
+			}
 	});
 });

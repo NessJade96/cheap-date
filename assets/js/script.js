@@ -3,21 +3,27 @@ $(function () {
 	/* -----------------------------------------------------------------------------------------------------------
 									FUNCTIONS
 	----------------------------------------------------------------------------------------------------------- */
-	
-	//function to load the heart button as active if that drink is saved in local storage. 
-	function isDrinkFavourited(){
+	function getStoredCocktails() {
 		var storedCocktails = JSON.parse(
 			localStorage.getItem("storedCocktails")
 		);
 		if (storedCocktails === null){
 			storedCocktails = []
 		}
+
+		return storedCocktails
+	}
+	//function to load the heart button as active if that drink is saved in local storage. 
+	function isDrinkFavourited(){
+		var storedCocktails = getStoredCocktails()
 		
 		var activateHeart = $(".cocktailNameLi.active .drinkName").text()
-		for (let i = 0; i < storedCocktails.length; i++){
-			if (activateHeart && activateHeart === storedCocktails[i]){
-				$(".heart").toggleClass("is-active")
-			}
+		var isFavourited = storedCocktails.indexOf(activateHeart) > -1
+		var heart = $(".heart")
+		if (isFavourited) {
+			heart.addClass("is-active")
+		} else {
+			heart.removeClass("is-active")
 		}
 	}
 
@@ -248,25 +254,6 @@ $(function () {
 		$('html, body').animate({scrollTop: $("body").offset().top}, 500);
 	});
 
-
-
-
-	//click event listener to save current selected drink to local storage as an Array
-	$("#favouriteDrinkButton").on("click", function (event) {
-		event.preventDefault();
-		var storedCocktails = JSON.parse(
-			localStorage.getItem("storedCocktails")
-		);
-		if (storedCocktails === null) {
-			storedCocktails = [];
-		}
-		var favouritedCocktail = $("#h3DrinkName").text();
-		storedCocktails.push(favouritedCocktail);
-		localStorage.setItem(
-			"storedCocktails",
-			JSON.stringify(storedCocktails)
-		);
-	});
 
 
 
@@ -635,7 +622,20 @@ $(function () {
 	// FAVOURITES BUTTON FUNCTION
 	/* SOURCE: https://codepen.io/mattbhenley/pen/gQbWgd */
 	$(".heart").on("click", function() {
-		$(this).toggleClass("is-active");
+		var drinkName = $(".cocktailNameLi.active .drinkName").text()
+		var storedCocktails = getStoredCocktails()
+		var drinkNameIndex = storedCocktails.indexOf(drinkName)
+		if (drinkNameIndex > -1) {
+			storedCocktails.splice(drinkNameIndex, 1);
+		} else {
+			storedCocktails.push(drinkName)
+		}
+
+		localStorage.setItem(
+			"storedCocktails",
+			JSON.stringify(storedCocktails)
+		);
+		isDrinkFavourited();
 	});
 
 	// TROLLEY BUTTON FUNCTION
