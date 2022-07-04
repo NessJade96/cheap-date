@@ -1,4 +1,5 @@
 $(function () {
+
 	// var removeFavCocktail = $(".removeFavCocktail");
 	function loadDrinks() {
 		var storedCocktails = JSON.parse(
@@ -12,7 +13,7 @@ $(function () {
 					return i;
 				}},
 			{}
-		   );
+		);
 		storedCocktails.forEach((cocktail,index) => {
 			var favouriteDrinkItem;
 
@@ -20,8 +21,9 @@ $(function () {
 				favouriteDrinkItem =
 					"<li class='col cocktailNameLi list-group-item d-flex justify-content-between align-items-center cocktailFavDrinksButton custom-item'><button id='"+cocktail.replace(" ","+")+"'>" +
 					cocktail +
-					"</button><button class='col-sm col-auto removeFavCocktail'> x</button></li>";
+					"</button><button class='col-sm col-auto removeFavCocktail'> <i class='bi bi-heartbreak-fill'></i></button></li>";
 				$("#cocktailFavDiv").append(favouriteDrinkItem);
+				$(".trolley").show();
 			}
 		});
 	}
@@ -30,8 +32,9 @@ $(function () {
 
 	$("#cocktailFavDiv").on("click",(e) => {
 		console.log(e.target.id);
-		window.location.href = "/index.html?drink="+e.target.id;
+		window.location.href = "./index.html?drink="+e.target.id;
 	})
+
 
 	//This removes the hearted drinks from list and local storage:
 	$(".removeFavCocktail").on("click", function (event) {

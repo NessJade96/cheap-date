@@ -7,10 +7,14 @@
 	<!-- import css files -->
 	<link href="./assets/css/reset.css" rel="stylesheet" />
 	<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-	crossorigin="anonymous"
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+		crossorigin="anonymous"
+	/>
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
 	/>
 	<link type="text/css" href="./assets/css/style.css" rel="stylesheet" />
 	
@@ -29,19 +33,19 @@
 			<a class="navbar-brand custom-brand" href="./index.html"
 				>Cheap Date</a>
 			<button
-				class="navbar-toggler"
+				class="navbar-toggler m-2"
 				type="button"
 				data-bs-toggle="collapse"
-				data-target="#navbarText"
+				data-bs-target="#navbarText"
 				aria-controls="navbarText"
 				aria-expanded="false"
 				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
+				<span class="navbar-toggler-icon navbar-dark"></span>
 			</button>
 			<div
 				class="custom-nav collapse navbar-collapse"
 				id="navbarText">
-				<ul class="navbar-nav mr-auto">
+				<ul class="navbar-nav text-center mr-auto">
 					<li class="nav-item active">
 						<a class="nav-link custom-link" href="./about.html"
 							>about<span class="sr-only"></span
@@ -70,17 +74,19 @@
 
 <section class="bar-container d-flex p-2 text-center align-items-center flex-column">
 	<div>
-		<h1 class="bar-header text-white">favourites</h1>
+		<h1 class="bar-header text-white">favourites bar</h1>
 	</div>
 	<div class="d-flex p-2 text-white col-sm-12 m-2 col-md-6">here you will find a list of your favourite cocktails. you can click on one of your favourites to view its ingredients and recipe, or remove it from the list.
 	</div>
 </section>
 <section>
-	<div>
-		<ul id="cocktailFavDiv" class='col-10 col-md-6 m-1 d-flex list-group custom-list w-100'></ul>
+	<div class="d-flex justify-content-center">
+		<ul id="cocktailFavDiv" class='justify-content-center col-10 col-md-6 m-1 d-flex list-group w-60'></ul>
 	</div>
-	
 </section>
-</div>
+
+	<!-- IMPORT BOOTSTRAP JS SCRIPT SO INTERACTIVE BS ELEMENTS WORK -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+
 </body>
 </html>
