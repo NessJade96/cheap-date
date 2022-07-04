@@ -57,12 +57,7 @@ As a person wanting to experiment with cocktails at home, I want to view a recip
 ![wireframe favourites screen](assets/images/CheapDateWireFrame2.PNG)
 
 
-<<<<<<< HEAD
-
-## APIs chosen
-=======
 ## Screenshots
->>>>>>> main
 
 ![cheap date home screen](assets/images/home-readme.png)
 ![cheap date about screen](assets/images/about.png)
