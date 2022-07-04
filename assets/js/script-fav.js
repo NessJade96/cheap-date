@@ -19,7 +19,7 @@ $(function () {
 
 			if (cocktail != "") {
 				favouriteDrinkItem =
-					"<li class='col-12 favouriteNameLi list-group-item d-flex justify-content-between align-items-center cocktailFavDrinksButton custom-item'><button id='"+cocktail.replace(" ","+")+"'>" +
+					"<li class='col-12 favouriteNameLi list-group-item d-flex justify-content-between align-items-center cocktailFavDrinksButton custom-item' id='"+cocktail.replace(" ","+")+"-Li'><button id='"+cocktail.replace(" ","+")+"'>" +
 					cocktail +
 					"</button><button class='col-2 removeFavCocktail'> <i class='bi bi-heartbreak-fill'></i></button></li>";
 				$("#cocktailFavDiv").append(favouriteDrinkItem);
@@ -32,7 +32,15 @@ $(function () {
 
 	$("#cocktailFavDiv").on("click",(e) => {
 		console.log(e.target.id);
-		window.location.href = "./index.html?drink="+e.target.id;
+
+		// sometimes the click will register on the Li, not the button
+		if (e.target.id.slice(-3) === "-Li") {
+			var query = e.target.id.slice(0,-3);
+		}
+		else {
+			var query = e.target.id;
+		}
+		window.location.href = "./index.html?drink="+query;
 	})
 
 
