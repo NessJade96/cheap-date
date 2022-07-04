@@ -29,7 +29,7 @@ As a person wanting to experiment with cocktails at home, I want to view a recip
 ## APIs used in this project
 
 1. [The Cocktail Database](https://www.thecocktaildb.com/api.php?ref=apilist.fun)
-2. [Spoonacular](https://spoonacular.com/food-api)
+2. [Woolworths] 
 
 ## Breakdown of tasks:
 

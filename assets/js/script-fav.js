@@ -19,9 +19,9 @@ $(function () {
 
 			if (cocktail != "") {
 				favouriteDrinkItem =
-					"<li class='col cocktailNameLi list-group-item d-flex justify-content-between align-items-center cocktailFavDrinksButton custom-item'><button id='"+cocktail.replace(" ","+")+"'>" +
+					"<li class='col-12 favouriteNameLi list-group-item d-flex justify-content-between align-items-center cocktailFavDrinksButton custom-item'><button id='"+cocktail.replace(" ","+")+"'>" +
 					cocktail +
-					"</button><button class='col-sm col-auto removeFavCocktail'> <i class='bi bi-heartbreak-fill'></i></button></li>";
+					"</button><button class='col-2 removeFavCocktail'> <i class='bi bi-heartbreak-fill'></i></button></li>";
 				$("#cocktailFavDiv").append(favouriteDrinkItem);
 				$(".trolley").show();
 			}
@@ -43,14 +43,18 @@ $(function () {
 			localStorage.getItem("storedCocktails")
 		);
 		var eventTarget = $(event.target);
-		var favouritedCocktail = eventTarget.prev().text();
+		var favouritedCocktail = eventTarget.parent().prev().text();
 		var removeCocktail = storedCocktails.indexOf(favouritedCocktail);
-		storedCocktails.splice(removeCocktail, 1);
-		localStorage.setItem(
-			"storedCocktails",
-			JSON.stringify(storedCocktails)
-		);
-		$("#cocktailFavDiv").empty();
-		loadDrinks();
+
+		if (removeCocktail > -1) {
+
+			storedCocktails.splice(removeCocktail, 1);
+			localStorage.setItem(
+				"storedCocktails",
+				JSON.stringify(storedCocktails)
+				);
+				$("#cocktailFavDiv").empty();
+				loadDrinks();
+			}
 	});
 });
